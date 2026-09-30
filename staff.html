@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Staff - RS FiveCare</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Konfigurasi Tailwind CSS untuk tema Prismatic Harmony
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        // Skema Warna Prismatic Harmony (Vibrant yet Soft)
+                        harmony: {
+                            primary: '#4f46e5',   // Indigo 600 - Main Portal Blue (Dokter/Admin)
+                            primary_light: '#e0e7ff', // Indigo 100
+                            accent: '#10b981',    // Emerald 500 - Joyful Green (Farmasi/Success)
+                            warning: '#f59e0b',   // Amber 500 - Soft Warning (Force Change)
+                            // NEW: Soft Red/Pink untuk Error Toast (Rose 500 & 100)
+                            error_soft: '#f43f5e', // Rose 500
+                            error_light: '#ffe4e6', // Rose 100
+                            secondary: '#3b82f6', // Blue 500 - Lighter Blue (Pendaftaran, jika dibutuhkan)
+                            kasir: '#f97316', // NEW Kasir Orange
+                        },
+                    },
+                    keyframes: {
+                        // Animasi latar belakang untuk efek dinamis (pulse)
+                        'pulse-bg': {
+                            '0%': { transform: 'scale(1) rotate(-15deg)', opacity: 0.1 },
+                            '100%': { transform: 'scale(1.1) rotate(-20deg)', opacity: 0.2 }
+                        },
+                        'pulse-bg-reverse': {
+                            '0%': { transform: 'scale(0.9) rotate(30deg)', opacity: 0.08 },
+                            '100%': { transform: 'scale(1) rotate(25deg)', opacity: 0.15 }
+                        },
+                        // Animasi pop-in untuk modal/toast baru (Lebih halus, ada pantulan ringan)
+                        'pop-in': { 
+                            '0%': { transform: 'scale(0.8) translateY(-20px)', opacity: 0 }, 
+                            '80%': { transform: 'scale(1.05) translateY(0)', opacity: 1 },
+                            '100%': { transform: 'scale(1) translateY(0)', opacity: 1 } 
+                        },
+                        'fade-out-up': {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' }
+                        },
+                    },
+                    animation: {
+                        'pulse-bg': 'pulse-bg 15s infinite alternate',
+                        'pulse-bg-reverse': 'pulse-bg-reverse 18s infinite alternate',
+                        // Diperbarui agar lebih halus/joyful
+                        'pop-in': 'pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', 
+                        'fade-out-up': 'fade-out-up 0.5s ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Latar belakang yang lebih hidup dengan gradien lembut (Joyful/Peace) */
+            background: linear-gradient(135deg, #f0f4f8 0%, #eef2ff 100%); /* soft blue-gray to indigo-50 */
+            overflow: hidden; 
+        }
+
+        /* Gaya Latar Belakang Estetik (Glassmorphism-inspired Shapes) */
+        .login-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2; /* Di bawah glass card */
+        }
+
+        /* Shape 1 (Primary Blue/Indigo) */
+        .login-bg::before {
+            content: '';
+            position: absolute;
+            top: -15vh;
+            right: -15vw;
+            width: 60vw;
+            height: 60vw;
+            background: rgba(79, 70, 229, 0.15); /* harmony-primary/15 */
+            border-radius: 50%;
+            filter: blur(150px); /* Blur lebih halus */
+            animation: pulse-bg 18s infinite alternate; /* Animasi diperlambat */
+        }
+        
+        /* Shape 2 (Accent Green) */
+        .login-bg::after {
+            content: '';
+            position: absolute;
+            bottom: -10vh;
+            left: -10vw;
+            width: 40vw;
+            height: 40vw;
+            background: rgba(16, 185, 129, 0.1); /* harmony-accent/10 */
+            border-radius: 50%;
+            filter: blur(130px); /* Blur lebih halus */
+            animation: pulse-bg-reverse 22s infinite alternate; /* Animasi diperlambat */
+        }
+        
+        /* Gambar Pendukung (Icon besar, transparan, sesuai permintaan) */
+        .login-image-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.04; /* Sangat transparan sebagai background estetik */
+            color: #4f46e5; /* Harmony Primary */
+            font-size: 35vw;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Kustomisasi untuk animasi modal */
+        #modal-force-change-content {
+            animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75); /* Sedikit transparan */
+            backdrop-filter: blur(12px); /* Efek blur halus */
+            -webkit-backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Border putih lembut */
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); /* Shadow lebih menonjol dan soft */
+        }
+
+        /* Styling untuk Input Field saat Focus (Glow Halus) */
+        .input-glow-focus:focus {
+            box-shadow: 0 0 0 4px var(--tw-ring-color);
+            border-color: var(--tw-border-color);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased flex items-center justify-center min-h-screen p-4">
+
+    <!-- Latar Belakang Estetik (Shapes/Gradients) -->
+    <div class="login-bg"></div>
+    
+    <!-- Gambar Pendukung Estetik (Icon besar, transparan) -->
+    <div class="login-image-placeholder">
+        <i class="fas fa-hand-holding-medical"></i>
+    </div>
+
+    <!-- TOAST NOTIFICATION: Desain Modern & Dinamis -->
+    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- LOGIN CARD: Desain Prismatic Harmony (Glassmorphism) -->
+    <div class="glass-card p-10 rounded-3xl w-full max-w-sm relative overflow-hidden transform transition-all duration-500 hover:scale-[1.01] hover:shadow-2xl z-10">
+        <!-- Accent Header (Gradien Biru-Hijau Cerah) -->
+        <div class="absolute top-0 left-0 w-full h-3 bg-gradient-to-r from-harmony-primary to-harmony-accent"></div>
+        
+        <div class="text-center mb-8">
+            <!-- Icon/Logo Area -->
+            <div class="bg-harmony-primary_light w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-harmony-primary/30 shadow-xl shadow-harmony-primary/30">
+                <i class="fas fa-hospital-user text-3xl text-harmony-primary"></i>
+            </div>
+            <h1 class="text-2xl font-extrabold text-slate-800">👋 Selamat Datang</h1>
+            <p class="text-slate-500 text-sm mt-1">Portal Staff Internal RS FiveCare</p>
+        </div>
+        
+        <form id="form-login" class="space-y-6">
+            <div>
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Username</label>
+                <div class="relative mt-2">
+                    <i class="fas fa-user absolute left-4 top-3.5 text-slate-400"></i>
+                    <!-- Input field dengan glow halus saat focus -->
+                    <input type="text" name="username" class="input-glow-focus w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-4 focus:ring-harmony-primary/30 focus:border-harmony-primary outline-none transition bg-white/70 focus:bg-white text-sm shadow-inner hover:border-slate-400" required placeholder="Masukkan Username">
+                </div>
+            </div>
+            <div>
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Kata Sandi</label>
+                <div class="relative mt-2">
+                    <i class="fas fa-lock absolute left-4 top-3.5 text-slate-400"></i>
+                     <!-- Input field dengan glow halus saat focus -->
+                    <input type="password" name="password" class="input-glow-focus w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:ring-4 focus:ring-harmony-primary/30 focus:border-harmony-primary outline-none transition bg-white/70 focus:bg-white text-sm shadow-inner hover:border-slate-400" required placeholder="Masukkan kata sandi">
+                </div>
+            </div>
+            <!-- Tombol dengan feedback visual ringan -->
+            <button type="submit" class="w-full bg-harmony-primary text-white py-3.5 rounded-xl font-extrabold text-lg hover:bg-harmony-primary/90 transition shadow-xl shadow-harmony-primary/50 transform active:scale-[0.98] flex items-center justify-center gap-2 hover:shadow-lg hover:-translate-y-px">
+                Masuk Portal <i class="fas fa-arrow-right ml-1"></i>
+            </button>
+        </form>
+        
+        <div class="mt-8 pt-6 border-t border-slate-100 text-center text-xs text-slate-400">
+            <p>Digunakan khusus untuk Tenaga Kesehatan & Staf Administrasi.</p>
+        </div>
+    </div>
+
+    <!-- MODAL FORCE CHANGE PASSWORD: Ditingkatkan Estetikanya -->
+    <div id="modal-force-change" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center p-4 z-[999] backdrop-blur-sm">
+        <div class="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl transform transition-transform duration-300 scale-95" id="modal-force-change-content">
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 bg-harmony-warning/20 text-harmony-warning rounded-full flex items-center justify-center mx-auto mb-3 border-4 border-white shadow-lg shadow-amber-500/20">
+                    <i class="fas fa-key text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-slate-800">⚠️ Perbarui Kata Sandi Wajib</h3>
+                <p class="text-slate-500 text-sm mt-2">Ini adalah login pertama Anda. Wajib ganti kata sandi.</p>
+            </div>
+            <form id="form-force-change" class="space-y-4">
+                <input type="hidden" name="id" id="force-id-user">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Kata Sandi Baru</label>
+                    <input type="password" name="new_password" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-3 focus:ring-harmony-warning outline-none text-sm shadow-inner" required minlength="8" placeholder="Minimal 8 karakter">
+                </div>
+                <button type="submit" class="w-full bg-harmony-warning text-white py-3 rounded-xl font-bold hover:bg-harmony-warning/80 shadow-lg shadow-harmony-warning/50 transition transform active:scale-95">Simpan & Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const API_AUTH = 'backend_staff.php'; 
+        // Menggunakan path yang dinamis untuk mendukung berbagai lingkungan
+        const BASE_PROJECT_PATH = window.location.pathname.replace(/\/staff\.html$/, ''); 
+        
+        // FUNGSI TOAST BARU DENGAN ANIMASI POP-IN & ERROR SOFT RED
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const el = document.createElement('div');
+            
+            let bgColor, iconClass, borderClass, iconColorClass;
+            
+            if (type === 'success') {
+                bgColor = 'bg-harmony-accent'; // Joyful Green
+                iconClass = 'fa-check-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else if (type === 'error') {
+                bgColor = 'bg-harmony-error_soft'; // Soft Red/Rose
+                iconClass = 'fa-exclamation-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else { // warning (Force Change Password)
+                bgColor = 'bg-harmony-warning'; // Amber
+                iconClass = 'fa-exclamation-triangle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            }
+
+            // Menggunakan animasi pop-in dan fade-out-up
+            el.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 min-w-[300px] transform transition-all pointer-events-auto animate-pop-in ${borderClass}`;
+            el.innerHTML = `<i class="fas ${iconClass} text-xl flex-shrink-0 ${iconColorClass}"></i><div class="flex-1 text-sm font-medium leading-relaxed">${message}</div>`;
+            container.appendChild(el);
+            
+            // Auto-hide (Menggunakan transisi fade out)
+            setTimeout(() => {
+                el.classList.remove('animate-pop-in'); 
+                el.classList.add('animate-fade-out-up');
+                setTimeout(() => el.remove(), 500); 
+            }, 4500);
+        }
+
+        function getPortalPath(role) {
+            const normalizedRole = role.trim().toLowerCase(); 
+            let fileName = '';
+            const base = BASE_PROJECT_PATH.replace(/\/+$/, '');
+            
+            if (normalizedRole === 'admin') {
+                fileName = 'admin_portal.html';
+            } else if (normalizedRole === 'dokter') {
+                fileName = 'dokter_portal.html';
+            } else if (normalizedRole === 'farmasi') {
+                fileName = 'farmasi_portal.html';
+            } else if (normalizedRole === 'kasir') { 
+                fileName = 'kasir_portal.html'; // TEPAT: Tambahkan redireksi Kasir
+            } else {
+                return null;
+            }
+            
+            return base + '/' + fileName; 
+        }
+
+        document.getElementById('form-login').addEventListener('submit', function(e){
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
+            btn.disabled = true;
+
+            fetch(API_AUTH + '?action=login', { method: 'POST', body: new FormData(this) })
+            .then(res => res.json())
+            .then(data => {
+                
+                // --- LOGIKA PESAN ERROR SPESIFIK ---
+                if (data.status === 'error') {
+                    let errorMessage = 'Login gagal. Silakan periksa kembali kredensial Anda.';
+                    
+                    if (data.message === 'Password salah!') {
+                        errorMessage = 'Kata sandi salah. Silakan coba lagi.';
+                    } else if (data.message === 'Username tidak ditemukan!') {
+                        errorMessage = 'Username tidak terdaftar. Pastikan Anda memasukkan username yang benar.';
+                    } else if (data.message && data.message.includes('DB Connection Failed')) {
+                        errorMessage = 'Gagal terhubung ke database. Harap hubungi Administrator Sistem.';
+                    }
+                    
+                    showToast(errorMessage, 'error'); 
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    return;
+                }
+                
+                // Jika sukses atau harus ganti password
+                if(data.status === 'success' || data.status === 'force_change_password') {
+                    // Simpan sesi (data)
+                    localStorage.setItem('staff_fivecare', JSON.stringify(data.data));
+                    
+                    if (data.status === 'force_change_password') {
+                        document.getElementById('force-id-user').value = data.data.id;
+                        document.getElementById('modal-force-change').classList.remove('hidden');
+                        showToast('Wajib ganti kata sandi awal! Akun Anda butuh diperbarui.', 'warning');
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        return;
+                    }
+                    
+                    // Redirect setelah sukses login
+                    showToast('Login Berhasil! Mengalihkan ke Portal...', 'success');
+                    const redirectUrlPath = getPortalPath(data.data.role);
+
+                    setTimeout(() => {
+                        if (redirectUrlPath) {
+                            const finalUrl = window.location.origin + redirectUrlPath;
+                            window.location.href = finalUrl;
+                        } else {
+                            showToast(`Role '${data.data.role}' belum memiliki portal khusus.`, 'error');
+                            btn.innerHTML = originalText;
+                            btn.disabled = false;
+                        }
+                    }, 1000);
+
+                } 
+                
+            })
+            .catch(() => {
+                // Perbaikan teks koneksi gagal
+                showToast('Gagal terhubung ke server. Harap periksa koneksi internet Anda.', 'error');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
+
+        // --- FORCE CHANGE PASSWORD ---
+        document.getElementById('form-force-change').addEventListener('submit', function(e){
+            e.preventDefault();
+            const newPwdInput = this.elements['new_password'];
+            const fd = new FormData(this);
+
+            if (newPwdInput.value.length < 8) {
+                showToast('Kata sandi minimal 8 karakter!', 'error');
+                return;
+            }
+            
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Memproses...';
+            btn.disabled = true;
+
+            fetch(API_AUTH + '?action=force_change_password', { method: 'POST', body: fd })
+            .then(res => res.json())
+            .then(data => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                if(data.status === 'success') {
+                    showToast('✅ Kata sandi berhasil diubah! Silahkan login ulang.', 'success');
+                    document.getElementById('modal-force-change').classList.add('hidden');
+                    
+                    // Hapus must_change_pwd dari localStorage sebelum reload
+                    const user = JSON.parse(localStorage.getItem('staff_fivecare'));
+                    // Menghindari error jika user data tiba-tiba kosong
+                    if (user) { 
+                        user.must_change_pwd = 0;
+                        localStorage.setItem('staff_fivecare', JSON.stringify(user));
+                    }
+
+                    setTimeout(() => location.reload(), 1500);
+                } else {
+                    showToast(data.message, 'error');
+                }
+            })
+            .catch(() => {
+                showToast("Kesalahan Koneksi: Gagal terhubung saat ganti kata sandi.", "error");
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        });
+
+        // Cek jika sudah login, langsung redirect
+        const s = localStorage.getItem('staff_fivecare');
+        if(s) {
+            const user = JSON.parse(s);
+            const redirectUrlPath = getPortalPath(user.role);
+            
+            if (redirectUrlPath) {
+                // Menggunakan window.location.origin untuk membangun URL absolut
+                const finalUrl = window.location.origin + redirectUrlPath;
+                
+                // Hanya redirect jika kita tidak sudah berada di halaman portal yang benar
+                if (!window.location.pathname.endsWith(redirectUrlPath)) {
+                    window.location.href = finalUrl;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

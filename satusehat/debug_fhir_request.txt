@@ -1,0 +1,462 @@
+2026-09-09 15:12:00
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 15:12:00
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 15:42:31
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001
+
+2026-09-09 16:33:43
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001
+
+2026-09-09 16:37:30
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Organization/ORGANIZATION_ID
+
+2026-09-09 16:41:07
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Organization/ORG_ID_ANDA
+
+2026-09-09 16:41:22
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Organization/06ff9913-88d6-4480-82da-d6631a80448e
+
+2026-09-09 16:45:21
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/PractitionerRole
+
+2026-09-09 16:46:38
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/PractitionerRole
+
+2026-09-09 16:48:16
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/PractitionerRole
+
+2026-09-09 16:49:20
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/PractitionerRole
+
+2026-09-09 16:51:06
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7CNIK_DOKTER
+
+2026-09-09 16:51:23
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 16:52:08
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C10006926841
+
+2026-09-09 16:59:11
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 16:59:12
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 16:59:13
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02
+
+2026-09-09 17:20:51
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 17:20:52
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 17:20:52
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02
+
+2026-09-09 17:23:14
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 17:23:15
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 17:23:16
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02
+
+2026-09-09 17:24:24
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 17:24:24
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A
+
+2026-09-09 17:24:25
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 17:24:25
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02
+
+2026-09-09 17:26:59
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 17:27:00
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A
+
+2026-09-09 17:27:00
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02
+
+2026-09-09 17:27:01
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02
+
+2026-09-09 13:04:51
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/100009880728
+
+2026-09-09 14:49:04
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 14:51:15
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 14:52:10
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 14:56:02
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 15:03:50
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 15:08:06
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 15:28:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Condition
+
+2026-09-09 15:47:39
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:47:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:47:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:47:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:47:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:54:10
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:54:11
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:54:11
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:54:11
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:54:12
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:56:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:56:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:56:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:56:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 15:56:33
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 16:47:27
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 16:47:31
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 16:51:23
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 16:51:24
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 16:56:02
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 16:57:30
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 16:57:31
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 17:06:44
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 17:17:14
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Medication
+
+2026-09-09 17:19:06
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Medication
+
+2026-09-09 17:25:25
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 17:29:09
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 17:29:57
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 17:31:39
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 17:40:41
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Medication
+
+2026-09-09 17:41:49
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 20:05:25
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 20:11:24
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Condition
+
+2026-09-09 20:17:11
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:17:13
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:17:13
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:17:13
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:17:14
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:18:58
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:18:59
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:18:59
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:19:00
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 20:19:00
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 01:24:12
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-09 21:42:41
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002
+
+2026-09-09 21:47:03
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001
+
+2026-09-09 21:47:09
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001
+
+2026-09-09 22:11:37
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-09 22:25:52
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Condition
+
+2026-09-09 22:28:55
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:28:57
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:28:58
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:30:04
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:30:06
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:30:09
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:30:09
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:30:09
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:37
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:39
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:39
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:33:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:34
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:36
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:36
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:37
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:37
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 22:40:37
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-09 23:07:09
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:07:11
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:11:32
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:11:33
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:13:31
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:13:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:16:07
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:16:09
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:16:12
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:16:13
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:20:51
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:20:53
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:20:53
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?name=Rangga+Pratama&birthdate=1990-01-01&gender=male
+
+2026-09-09 23:22:50
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001
+
+2026-09-09 23:22:52
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient
+
+2026-09-09 23:22:53
+GET https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient?name=Rangga+Pratama&birthdate=1990-01-01&gender=male
+
+2026-09-10 04:00:25
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-10 04:05:17
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-10 04:10:01
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-10 04:16:06
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Medication
+
+2026-09-10 04:19:23
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-10 08:26:07
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Encounter
+
+2026-09-10 08:30:25
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 08:30:25
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 08:30:26
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 08:30:26
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 08:30:26
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Observation
+
+2026-09-10 08:33:40
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Condition
+
+2026-09-10 08:38:44
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationRequest
+
+2026-09-10 09:07:32
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:08:16
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:08:22
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:08:24
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:09:05
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:09:14
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:10:42
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:11:22
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:14:01
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:14:02
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:15:15
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:15:15
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:15:18
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:15:19
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:16:44
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:16:44
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+
+2026-09-10 09:19:01
+POST https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/MedicationDispense
+

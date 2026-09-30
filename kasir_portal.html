@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kasir Portal - RS FiveCare</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load Chart.js for Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Konfigurasi Tailwind CSS untuk tema Prismatic Harmony (Vibrant yet Soft)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        harmony: {
+                            // Warna Utama: Blue (Primary - Admin, Pendaftaran)
+                            primary: '#3b82f6',   // Blue 500
+                            primary_dark: '#1e3a8a', // Blue 900 (Sidebar Background)
+                            primary_light: '#eff6ff', // Blue 50
+                            
+                            // Warna Sekunder: Violet (Dokter)
+                            secondary: '#8b5cf6', // Violet 500
+                            secondary_light: '#f5f3ff', // Violet 50
+                            
+                            // Warna Accent: Emerald (Farmasi, Success)
+                            accent: '#10b981',    // Emerald 500
+                            accent_light: '#e6fffa', // Emerald 50
+                            
+                            // Warna Warning/Menunggu: Amber
+                            warning: '#facc15',   // Amber 500
+                            warning_light: '#fffceb', // Amber 50
+                            
+                            // Warna Error/Laporkan (Soft Rose/Pink)
+                            error: '#f43f5e',     // Rose 500
+                            error_light: '#ffe4e6', // Rose 100
+                            
+                            // NEW ROLE COLOR: Kasir (Indigo - Biru/Ungu Gradasi)
+                            kasir: '#6366f1', // Indigo 500
+                            kasir_dark: '#4338ca', // Indigo 700
+                            kasir_light: '#eef2ff', // Indigo 50
+                        },
+                    },
+                    keyframes: {
+                        'pop-in': { 
+                            '0%': { transform: 'scale(0.8) translateY(-20px)', opacity: 0 }, 
+                            '80%': { transform: 'scale(1.05) translateY(0)', opacity: 1 },
+                            '100%': { transform: 'scale(1) translateY(0)', opacity: 1 } 
+                        },
+                        'fade-out-up': {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' }
+                        },
+                        'soft-pulse': {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.95, transform: 'scale(0.99)' }
+                        },
+                    },
+                    animation: {
+                        'pop-in': 'pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', 
+                        'fade-out-up': 'fade-out-up 0.5s ease-out forwards',
+                        'soft-pulse': 'soft-pulse 4s infinite ease-in-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Menggunakan Inter sebagai font utama */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Background Joyful & Peaceful (Soft Indigo Tint) */
+            background: linear-gradient(135deg, #f0f4f8 0%, #f7f5ff 100%); 
+        }
+        /* Animasi Transisi untuk pergantian halaman */
+        .page-content { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Custom scrollbar untuk tampilan yang lebih modern */
+        .custom-scroll::-webkit-scrollbar { width: 8px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background-color: #94a3b8; border-radius: 10px; }
+        .custom-scroll::-webkit-scrollbar-track { background-color: #f1f5f9; }
+        
+        /* Style untuk nav item aktif (Kasir Color - Indigo) */
+        .nav-item.active {
+            background-color: #2b3a55 !important; /* Warna agak gelap, sesuai gambar sidebar aktif */
+            color: #fff !important;
+            border-left: 4px solid #6366f1; /* harmony-kasir indicator (Indigo) */
+            padding-left: 1rem !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input Focus Glow (Kasir Color - Indigo) */
+        .input-glow-focus:focus {
+            box-shadow: 0 0 0 4px var(--tw-ring-color);
+            border-color: var(--tw-border-color);
+        }
+        
+        /* Glass Card for Modals/Confirmation */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); 
+            border: 1px solid rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Toast Enter Animation */
+        .toast-enter {
+            animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .toast-exit {
+            animation: fade-out-up 0.5s ease-out forwards;
+        }
+
+        .lunas {
+            color: #10b981; /* harmony-accent */
+            background-color: #e6fffa; /* harmony-accent_light */
+            font-weight: bold;
+        }
+        .belum-lunas {
+            color: #6366f1; /* harmony-kasir (Indigo) */
+            background-color: #eef2ff; /* harmony-kasir_light */
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-hidden">
+
+    <!-- TOAST & MODAL CONFIRM -->
+    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+    
+    <!-- MODAL PEMBAYARAN -->
+    <div id="modal-pembayaran" class="fixed inset-0 bg-black/60 z-[110] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden transform scale-95 transition-transform duration-300 glass-card">
+            <div class="p-6 bg-harmony-kasir text-white flex justify-between items-center rounded-t-3xl shadow-lg">
+                <h3 class="font-extrabold text-xl"><i class="fas fa-receipt mr-2"></i> Konfirmasi Pembayaran</h3>
+                <button onclick="closeModal('modal-pembayaran')" class="text-white/80 hover:text-white transition text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="form-pembayaran" class="p-8 space-y-6">
+                <input type="hidden" id="bayar-id-pendaftaran" name="id_pendaftaran">
+
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <p class="text-xs font-bold text-slate-500 uppercase">Pasien & Layanan</p>
+                    <h4 id="bayar-pasien-nama" class="font-extrabold text-lg text-slate-800"></h4>
+                    <p id="bayar-pasien-info" class="text-sm text-slate-600"></p>
+                </div>
+
+                <!-- Detail Tagihan Utama -->
+                <div class="space-y-3 p-4 bg-harmony-kasir_light rounded-xl border border-harmony-kasir/30">
+                    <p class="font-extrabold text-slate-900 uppercase text-xs pb-1 border-b border-slate-200">Rincian Biaya</p>
+                    
+                    <div class="flex justify-between text-sm">
+                        <span class="text-slate-600">Biaya Layanan Medis (Dokter)</span>
+                        <strong id="bayar-biaya-medis" class="text-slate-800">Rp 0</strong>
+                    </div>
+                    
+                    <!-- Detail Resep (NEW SECTION FOR LIST OF DRUGS) -->
+                    <div id="bayar-detail-resep-container" class="space-y-1">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-slate-600">Biaya Obat Total (Farmasi)</span>
+                            <strong id="bayar-biaya-obat" class="text-slate-800">Rp 0</strong>
+                        </div>
+                        <p class="text-xs font-semibold text-slate-500 mb-1 pl-2">Detail Obat:</p>
+                        <div id="bayar-detail-resep" class="pl-4 text-xs space-y-0.5 text-slate-700">
+                            <!-- Detail resep akan di-inject di sini -->
+                            <p class="text-slate-400">Memuat detail obat...</p>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-between text-xl font-extrabold text-harmony-kasir pt-2 border-t border-slate-300">
+                        <span>TOTAL TAGIHAN</span>
+                        <strong id="bayar-total-tagihan">Rp 0</strong>
+                    </div>
+                </div>
+
+                <!-- Form Pembayaran -->
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Jumlah Bayar</label>
+                    <input type="number" id="input-jumlah-bayar" name="jumlah_bayar" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-kasir outline-none text-xl font-bold" required min="0" placeholder="Rp 0">
+                </div>
+                
+                <div class="flex justify-between text-lg font-bold">
+                    <span class="text-slate-600">Kembalian</span>
+                    <strong id="bayar-kembalian" class="text-harmony-accent">Rp 0</strong>
+                </div>
+
+                <div class="flex gap-4 justify-end pt-4 border-t">
+                    <button type="button" onclick="closeModal('modal-pembayaran')" class="px-6 py-3 rounded-xl border border-slate-300 text-slate-600 font-semibold hover:bg-slate-50 transition">Batal</button>
+                    <!-- Button Kasir (Indigo) -->
+                    <button type="submit" id="btn-proses-bayar" class="px-6 py-3 rounded-xl bg-harmony-kasir text-white font-bold hover:bg-harmony-kasir/90 shadow-lg shadow-harmony-kasir/30 transition transform hover:scale-[1.02] active:scale-95">Proses Pembayaran</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- MODAL STRUK PEMBAYARAN BARU -->
+    <div id="modal-struk-pembayaran" class="fixed inset-0 bg-black/60 z-[120] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 transition-transform duration-300 glass-card">
+            <div class="p-6 bg-harmony-kasir text-white flex justify-center items-center rounded-t-3xl shadow-lg">
+                <h3 class="font-extrabold text-xl"><i class="fas fa-receipt mr-2"></i> STRUK PEMBAYARAN</h3>
+            </div>
+            
+            <!-- Isi Struk -->
+            <div id="struk-content" class="p-6 text-sm text-slate-700 space-y-4">
+                <div class="text-center pb-2 border-b border-dashed border-slate-300">
+                    <h4 class="font-extrabold text-lg text-slate-900">RS FiveCare</h4>
+                    <p>Jl. Kesehatan No. 123, Surabaya</p>
+                    <p class="text-xs mt-2" id="struk-tgl-lunas"></p>
+                </div>
+
+                <!-- Info Pasien -->
+                <div class="border-b border-dashed border-slate-300 pb-2 space-y-1">
+                    <p><span class="font-bold">No. Transaksi:</span> <span id="struk-id-pendaftaran"></span></p>
+                    <p><span class="font-bold">Pasien:</span> <span id="struk-nama-pasien"></span> (<span id="struk-no-rm"></span>)</p>
+                    <p><span class="font-bold">Layanan:</span> <span id="struk-layanan"></span></p>
+                </div>
+
+                <!-- Rincian Biaya -->
+                <div class="space-y-1">
+                    <p class="font-extrabold text-slate-900 uppercase text-xs pb-1 border-b border-slate-200">Rincian Tagihan</p>
+                    
+                    <div class="flex justify-between">
+                        <span>Biaya Layanan Medis</span>
+                        <span id="struk-biaya-medis">Rp 0</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>Biaya Obat (Resep)</span>
+                        <span id="struk-biaya-obat">Rp 0</span>
+                    </div>
+
+                    <!-- Detail Resep (jika ada) -->
+                    <div id="struk-detail-resep-container" class="mt-2 pt-2 border-t border-dashed border-slate-300">
+                        <p class="text-xs font-semibold text-slate-500 mb-1">Rincian Obat:</p>
+                        <div id="struk-detail-resep" class="pl-2 text-xs space-y-0.5">
+                            <!-- Detail resep akan di-inject di sini -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Total -->
+                <div class="pt-2 border-t border-dashed border-slate-300 space-y-1">
+                    <div class="flex justify-between font-bold text-base text-slate-900">
+                        <span>TOTAL TAGIHAN</span>
+                        <span id="struk-total-tagihan">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Dibayar</span>
+                        <span id="struk-jumlah-bayar">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-base text-harmony-accent">
+                        <span>KEMBALIAN</span>
+                        <span id="struk-kembalian">Rp 0</span>
+                    </div>
+                </div>
+
+                <!-- Footer Struk -->
+                <div class="pt-4 text-center text-xs text-slate-500">
+                    <p>Terima kasih atas kunjungan Anda.</p>
+                    <p>Simpan struk ini sebagai bukti pembayaran.</p>
+                    <p class="mt-2 font-bold">Kasir: <span id="struk-nama-kasir"></span></p>
+                </div>
+            </div>
+            
+            <div class="p-6 pt-0 flex justify-center">
+                <button onclick="closeModal('modal-struk-pembayaran')" class="px-6 py-2.5 rounded-xl bg-harmony-kasir text-white font-bold hover:bg-harmony-kasir/90 shadow-lg shadow-harmony-kasir/30 transition transform active:scale-95"><i class="fas fa-check mr-2"></i> Tutup & Lanjutkan</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex h-screen">
+        <!-- SIDEBAR: Dark Blue/Navy Theme -->
+        <aside class="w-64 bg-harmony-primary_dark text-white flex-shrink-0 flex flex-col shadow-2xl z-20">
+            <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                <!-- Logo Kasir Color (Indigo) + Primary Blue Gradient -->
+                <div class="w-10 h-10 bg-gradient-to-br from-harmony-kasir to-harmony-secondary rounded-xl flex items-center justify-center shadow-lg shadow-harmony-kasir/30"><i class="fas fa-hospital text-white text-lg"></i></div>
+                <div><h2 class="text-xl font-extrabold tracking-tight">FiveCare</h2><p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">KASIR PORTAL</p></div>
+            </div>
+            
+            <nav class="flex-1 px-2 py-6 space-y-1 overflow-y-auto custom-scroll">
+                <div id="menu-kasir" class="space-y-2">
+                    <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">MENU UTAMA</p>
+                    <!-- Nav Item Highlight: Kasir Indigo -->
+                    <button id="nav-dash-kasir" onclick="showPage('dash-kasir')" class="nav-item active w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-tachometer-alt w-5 text-center group-hover:text-harmony-kasir"></i> Dashboard</button>
+                    <button id="nav-antrian-bayar" onclick="showPage('antrian-bayar')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-hand-holding-usd w-5 text-center group-hover:text-harmony-accent"></i> Antrian Pembayaran</button>
+                    <button id="nav-riwayat-bayar" onclick="showPage('riwayat-bayar')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-history w-5 text-center group-hover:text-harmony-primary"></i> Riwayat Transaksi</button>
+                    
+                    <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">AKUN</p>
+                    <button id="nav-profil-kasir" onclick="showPage('profil-kasir')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-user-cog w-5 text-center group-hover:text-harmony-kasir"></i> Profil Saya</button>
+                </div>
+            </nav>
+            <div class="p-4 border-t border-slate-800 bg-harmony-primary_dark"><button onclick="doLogout()" class="w-full text-left px-4 py-2 text-red-400 hover:text-red-300 flex items-center gap-3 transition hover:bg-slate-800 rounded-lg group"><i class="fas fa-sign-out-alt group-hover:-translate-x-1 transition-transform"></i> Keluar</button></div>
+        </aside>
+
+        <!-- CONTENT -->
+        <main class="flex-1 flex flex-col h-screen overflow-hidden bg-gray-100">
+            <!-- HEADER: Kasir Indigo Accent -->
+            <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-md z-10 sticky top-0">
+                <div><h2 class="text-2xl font-extrabold text-slate-900 tracking-tight" id="page-title">Dashboard</h2><p class="text-sm text-slate-500">Panel Kasir & Transaksi</p></div>
+                <div class="flex items-center gap-3 bg-harmony-kasir_light px-4 py-2 rounded-full border border-harmony-kasir/30 transition-all duration-300 hover:shadow-lg hover:shadow-harmony-kasir/10 cursor-pointer">
+                    <div class="text-right">
+                        <p class="font-extrabold text-sm text-slate-800" id="user-name">Kasir User</p>
+                        <p class="text-[10px] text-harmony-kasir uppercase font-extrabold tracking-widest">KASIR</p>
+                    </div>
+                    <div class="w-10 h-10 bg-harmony-kasir/20 rounded-full flex items-center justify-center text-harmony-kasir font-bold border-2 border-white shadow-inner"><i class="fas fa-cash-register"></i></div>
+                </div>
+            </header>
+
+            <!-- KONTEN HALAMAN -->
+            <div class="flex-1 overflow-y-auto p-8 custom-scroll">
+                
+                <!-- DASHBOARD KASIR -->
+                <div id="page-dash-kasir" class="page-content">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                        <!-- Stat Total Tagihan Menunggu (Kasir Indigo) -->
+                        <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-kasir hover:shadow-harmony-kasir/10 transition duration-300 transform hover:scale-[1.02] animate-soft-pulse">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="w-10 h-10 bg-harmony-kasir_light rounded-xl flex items-center justify-center text-xl text-harmony-kasir"><i class="fas fa-hand-holding-usd"></i></div>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium">Tagihan Menunggu</p>
+                            <h3 class="text-4xl font-extrabold text-harmony-kasir mt-2" id="kasir-stat-menunggu">0</h3>
+                        </div>
+                        
+                        <!-- Stat Total Tagihan Lunas Hari Ini (Accent Green) -->
+                        <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-accent hover:shadow-harmony-accent/10 transition duration-300 transform hover:scale-[1.02] animate-soft-pulse" style="animation-delay: 0.1s;">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="w-10 h-10 bg-harmony-accent_light rounded-xl flex items-center justify-center text-xl text-harmony-accent"><i class="fas fa-check-double"></i></div>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium">Transaksi Lunas Hari Ini</p>
+                            <h3 class="4xl font-extrabold text-harmony-accent mt-2" id="kasir-stat-lunas-count">0</h3>
+                        </div>
+                        
+                        <!-- Stat Total Pemasukan Hari Ini (Primary Blue) -->
+                        <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-primary hover:shadow-harmony-primary/10 transition duration-300 transform hover:scale-[1.02] animate-soft-pulse" style="animation-delay: 0.2s;">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="w-10 h-10 bg-harmony-primary_light rounded-xl flex items-center justify-center text-xl text-harmony-primary"><i class="fas fa-wallet"></i></div>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium">Total Pemasukan (Hari Ini)</p>
+                            <h3 class="2xl font-extrabold text-harmony-primary mt-2" id="kasir-stat-pemasukan">Rp 0</h3>
+                        </div>
+                        
+                        <!-- Stat Kunjungan Selesai Hari Ini (Violet Secondary) -->
+                        <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-secondary hover:shadow-harmony-secondary/10 transition duration-300 transform hover:scale-[1.02] animate-soft-pulse" style="animation-delay: 0.3s;">
+                            <div class="flex justify-between items-center mb-2">
+                                <div class="w-10 h-10 bg-harmony-secondary_light rounded-xl flex items-center justify-center text-xl text-harmony-secondary"><i class="fas fa-user-check"></i></div>
+                            </div>
+                            <p class="text-sm text-slate-500 font-medium">Pasien Selesai Layanan (Hari Ini)</p>
+                            <h3 class="4xl font-extrabold text-harmony-secondary mt-2" id="kasir-stat-selesai-layanan">0</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-xl border border-slate-100 h-96 glass-card">
+                         <h3 class="text-lg font-bold text-slate-800 mb-4">Grafik Transaksi Harian (7 Hari Terakhir)</h3>
+                         <canvas id="chartTransaksi"></canvas>
+                    </div>
+                </div>
+
+                <!-- ANTRIAN PEMBAYARAN -->
+                <div id="page-antrian-bayar" class="page-content hidden">
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden glass-card">
+                        <div class="p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50">
+                            <h3 class="font-extrabold text-xl text-slate-900">Pasien Menunggu Pembayaran</h3>
+                            <div class="relative w-full sm:w-64">
+                                <i class="fas fa-search absolute left-3 top-3.5 text-slate-400 text-sm"></i>
+                                <input type="text" id="search-tagihan" placeholder="Cari No. RM / Nama..." class="input-glow-focus pl-10 pr-4 py-2.5 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-harmony-kasir outline-none w-full" onkeyup="loadAntrianPembayaran(this.value)">
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold border-b">
+                                    <tr>
+                                        <!-- KOLOM BARU UNTUK DETAIL TAGIHAN -->
+                                        <th class="p-4">No. RM</th>
+                                        <th class="p-4">Pasien</th>
+                                        <th class="p-4">Layanan</th>
+                                        <th class="p-4 text-right">Medis</th>
+                                        <th class="p-4 text-right">Obat</th>
+                                        <th class="p-4 text-right">Tagihan Final</th>
+                                        <th class="p-4 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-antrian-bayar-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIWAYAT TRANSAKSI -->
+                <div id="page-riwayat-bayar" class="page-content hidden">
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden glass-card">
+                         <div class="p-6 border-b bg-slate-50"><h3 class="font-extrabold text-xl text-slate-900">Riwayat Transaksi Pembayaran Lunas</h3><p class="text-sm text-slate-500">Daftar semua transaksi yang telah lunas hari ini.</p></div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold border-b">
+                                    <tr>
+                                        <th class="p-4">Waktu Lunas</th>
+                                        <th class="p-4">No. RM</th>
+                                        <th class="p-4">Pasien</th>
+                                        <th class="p-4">Poli & Dokter</th>
+                                        <th class="p-4 text-right">Total Bayar</th>
+                                        <th class="p-4 text-center">Struk</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-riwayat-bayar-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- PROFIL SAYA -->
+                <div id="page-profil-kasir" class="page-content hidden">
+                    <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-200 text-center glass-card">
+                         <!-- Icon: Kasir Color Mist BG (Indigo) -->
+                         <div class="w-24 h-24 bg-harmony-kasir_light text-harmony-kasir rounded-full flex items-center justify-center text-4xl mx-auto mb-4 border-4 border-white shadow-lg shadow-harmony-kasir/20"><i class="fas fa-cash-register"></i></div>
+                         <h3 class="text-xl font-extrabold text-slate-800" id="prof-nama">Kasir</h3>
+                         <p class="text-harmony-kasir font-bold mb-6">Staf Administrasi Keuangan</p>
+                         <div class="mt-6 text-left bg-slate-50 p-6 rounded-xl space-y-3 text-sm border border-slate-200">
+                             <div class="flex justify-between"><span>Username:</span> <strong id="prof-username">-</strong></div>
+                         </div>
+                         <div class="flex gap-4 justify-center mt-6">
+                            <!-- Button Dark Slate -->
+                            <button onclick="openModalPassword()" class="bg-slate-700 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-slate-800 transition shadow-md shadow-slate-300 transform active:scale-95"><i class="fas fa-key mr-2"></i>Ubah Password</button>
+                            <!-- Button Primary Blue -->
+                            <button onclick="openModalUsername()" class="bg-harmony-primary text-white px-6 py-2.5 rounded-xl font-bold hover:bg-harmony-primary/90 transition shadow-md shadow-harmony-primary/30 transform active:scale-95"><i class="fas fa-user-edit mr-2"></i>Ubah Username</button>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- MODAL UBAH PASSWORD -->
+    <div id="modal-password" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 space-y-4 glass-card">
+            <h3 class="font-extrabold text-xl text-slate-800"><i class="fas fa-key mr-2 text-harmony-error"></i> Ubah Password Akun</h3>
+            <form id="form-change-password">
+                <!-- Input field glow tetap Rose (Error) karena sensitif -->
+                <input type="password" name="old_password" placeholder="Password Lama" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-error" required>
+                <input type="password" name="new_password" placeholder="Password Baru (min 8 karakter)" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-error" required minlength="8">
+                <input type="password" name="confirm_password" placeholder="Konfirmasi Password Baru" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-5 focus:ring-2 focus:ring-harmony-error" required>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="closeModal('modal-password')" class="px-4 py-2 border border-slate-300 rounded-xl font-semibold hover:bg-slate-100 transition">Batal</button>
+                    <!-- Button Error/Rose -->
+                    <button type="submit" class="px-4 py-2 bg-harmony-error text-white rounded-xl font-bold hover:bg-harmony-error/90 transition shadow-md shadow-harmony-error/30">Ubah Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL UBAH USERNAME -->
+    <div id="modal-username" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 space-y-4 glass-card">
+            <h3 class="font-extrabold text-xl text-slate-800"><i class="fas fa-user-edit mr-2 text-harmony-primary"></i> Ubah Username Akun</h3>
+            <form id="form-change-username">
+                <!-- Input field glow Primary Blue -->
+                <input type="text" name="new_username" placeholder="Username Baru" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-primary" required>
+                <input type="password" name="password" placeholder="Verifikasi Password Anda" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-5 focus:ring-2 focus:ring-harmony-primary" required>
+                <p class="text-slate-500 text-xs mb-3"><i class="fas fa-info-circle mr-1"></i> Anda akan otomatis logout setelah mengganti username.</p>
+                <div class="flex justify-end gap-3">
+                    <button type="button" onclick="closeModal('modal-username')" class="px-4 py-2 border border-slate-300 rounded-xl font-semibold hover:bg-slate-100 transition">Batal</button>
+                    <!-- Button Primary Blue -->
+                    <button type="submit" class="px-4 py-2 bg-harmony-primary text-white rounded-xl font-bold hover:bg-harmony-primary/90 transition shadow-md shadow-harmony-primary/30">Ubah Username</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Placeholder API URLs (assumed to be correct from previous version)
+        const API_ADMIN = './backend_admin.php'; 
+        const API_KASIR = './backend_kasir.php'; // Digunakan Kasir Portal
+        const API_AUTH = './backend_staff.php'; 
+        let currentStaff = null;
+        let confirmCallback = null;
+
+        // Mendeklarasikan fungsi formatRupiah agar bisa diakses di manapun
+        function formatRupiah(angka) {
+            const num = parseFloat(angka);
+            if (isNaN(num)) return 'Rp 0';
+            return 'Rp ' + num.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        window.formatRupiah = formatRupiah; // Akses global
+
+        // FUNGSI TOAST (Sama seperti yang lain)
+        function showToast(msg, type='success') { 
+            const container = document.getElementById('toast-container');
+            const el = document.createElement('div');
+            
+            let bgColor, iconClass, borderClass, iconColorClass;
+            
+            if (type === 'success') {
+                bgColor = 'bg-harmony-accent'; 
+                iconClass = 'fa-check-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else if (type === 'error') {
+                // Notifikasi Error menggunakan Rose/Pink Soft
+                bgColor = 'bg-harmony-error'; 
+                iconClass = 'fa-times-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else { // warning / info
+                // Info menggunakan warna Kasir (Indigo)
+                bgColor = 'bg-harmony-kasir'; 
+                iconClass = 'fa-exclamation-triangle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            }
+
+            el.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 min-w-[300px] transform transition-all pointer-events-auto animate-pop-in ${borderClass}`;
+            el.innerHTML = `<i class="fas ${iconClass} text-xl flex-shrink-0 ${iconColorClass}"></i><div class="flex-1 text-sm font-medium leading-relaxed">${msg}</div>`;
+            container.appendChild(el);
+            
+            setTimeout(() => {
+                el.classList.remove('animate-pop-in'); 
+                el.classList.add('animate-fade-out-up');
+                setTimeout(() => el.remove(), 500); 
+            }, 4500);
+        }
+        
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+
+        function checkSession() {
+            const s = localStorage.getItem('staff_fivecare');
+            const BASE_PATH = window.location.pathname.replace(/\/kasir_portal\.html$/, ''); 
+
+            if(!s) {
+                 if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) { showToast("Sesi tidak ditemukan (Mode Preview). Silakan login via staff.html", "error"); return; }
+                window.location.href = BASE_PATH + '/staff.html'; return;
+            }
+            currentStaff = JSON.parse(s);
+            if (currentStaff.role !== 'Kasir') { 
+                showToast('Akses Ditolak. Anda bukan Kasir.', 'error'); 
+                if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) { return; }
+                setTimeout(()=>window.location.href=BASE_PATH + '/staff.html', 1500); 
+                return;
+            }
+            document.getElementById('user-name').textContent = currentStaff.nama_lengkap;
+            showPage('dash-kasir');
+        }
+
+        function doLogout() { 
+            localStorage.removeItem('staff_fivecare'); 
+            const BASE_PATH = window.location.pathname.replace(/\/kasir_portal\.html$/, ''); 
+            if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) { showToast("Logout Berhasil", "success"); setTimeout(()=>location.reload(), 1500); return; }
+            window.location.href = BASE_PATH + '/staff.html'; 
+        }
+
+        function setActiveNavItem(pageId) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            const navItem = document.getElementById('nav-' + pageId);
+            if (navItem) navItem.classList.add('active');
+        }
+
+        function showPage(id) {
+            setActiveNavItem(id); 
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('page-' + id).classList.remove('hidden');
+            let title = id.replace('kasir', '').replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            if (title.trim() === 'Dash') title = 'Dashboard';
+            document.getElementById('page-title').textContent = title;
+            
+            if(id==='dash-kasir') loadKasirDashboard(); 
+            if(id==='antrian-bayar') loadAntrianPembayaran();
+            if(id==='riwayat-bayar') loadRiwayatTransaksi();
+            if(id==='profil-kasir') loadProfilKasir(); 
+        }
+
+        // --- DASHBOARD KASIR ---
+        async function loadKasirDashboard() {
+            try {
+                // Fetch menggunakan konstanta API_KASIR
+                const res = await fetch(`${API_KASIR}?action=kasir_dashboard_stats`);
+                const d = await res.json();
+                
+                document.getElementById('kasir-stat-menunggu').textContent = d.tagihan_menunggu || 0; 
+                document.getElementById('kasir-stat-lunas-count').textContent = d.transaksi_lunas_count || 0; 
+                document.getElementById('kasir-stat-pemasukan').textContent = formatRupiah(d.total_pemasukan_hari_ini) || 'Rp 0';
+                document.getElementById('kasir-stat-selesai-layanan').textContent = d.selesai_layanan_count || 0; 
+
+                // Chart
+                const ctx = document.getElementById('chartTransaksi');
+                if (window.myChartKasir) window.myChartKasir.destroy();
+                
+                const labels = d.trend.map(t=>t.date);
+                const data = d.trend.map(t=>t.pemasukan);
+
+                window.myChartKasir = new Chart(ctx, { 
+                    type: 'bar', 
+                    data: { 
+                        labels: labels, 
+                        datasets: [{ 
+                            label: 'Total Pemasukan (Rp)', 
+                            data: data, 
+                            backgroundColor: '#6366f1', // harmony-kasir (Indigo)
+                            borderColor: '#4338ca',
+                            borderWidth: 1
+                        }] 
+                    }, 
+                    options: { 
+                        responsive: true, 
+                        maintainAspectRatio: false, 
+                        scales: { 
+                            y: { 
+                                beginAtZero: true, 
+                                grid: { color: '#e2e8f0' },
+                                ticks: {
+                                    callback: function(value) {
+                                        return formatRupiah(value);
+                                    }
+                                }
+                            }, 
+                            x: { 
+                                grid: { display: false } 
+                            } 
+                        }, 
+                        plugins: { 
+                            legend: { display: false } 
+                        } 
+                    } 
+                });
+            } catch (e) {
+                console.error("Error loading kasir dashboard:", e);
+                showToast('Gagal memuat dashboard (Koneksi ke backend Kasir bermasalah)', 'error');
+            }
+        }
+
+
+        // --- ANTRIAN PEMBAYARAN ---
+        async function loadAntrianPembayaran(search = '') {
+            const tbody = document.getElementById('table-antrian-bayar-body');
+            tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-400"><i class="fas fa-circle-notch fa-spin mr-2"></i> Memuat data...</td></tr>';
+
+            try {
+                // Fetch menggunakan konstanta API_KASIR
+                const res = await fetch(`${API_KASIR}?action=kasir_get_antrian_tagihan&search=${search}`);
+                const data = await res.json();
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-slate-500">Tidak ada tagihan yang menunggu pembayaran.</td></tr>';
+                    return;
+                }
+
+                let html = '';
+                data.forEach(t => {
+                    const totalTagihan = parseFloat(t.total_biaya_final || 0);
+                    
+                    html += `
+                        <tr class="border-b hover:bg-harmony-kasir_light/50 transition">
+                            <td class="p-4 font-mono font-bold text-slate-800">${t.no_rm}</td>
+                            <td class="p-4 font-bold text-slate-700">${t.nama_pasien}</td>
+                            <td class="p-4 text-sm text-slate-600">${t.nama_poli} / ${t.nama_dokter}</td>
+                            <!-- Detail Biaya Medis -->
+                            <td class="p-4 text-right text-sm text-slate-600">${formatRupiah(t.biaya_medis_dasar)}</td>
+                            <!-- Detail Biaya Obat -->
+                            <td class="p-4 text-right text-sm text-slate-600">${formatRupiah(t.total_harga_resep)}</td>
+                            <!-- Total Tagihan Final -->
+                            <td class="p-4 text-right font-extrabold text-lg text-harmony-kasir">${formatRupiah(totalTagihan)}</td>
+                            <td class="p-4 text-center">
+                                <button onclick='openModalBayar(${JSON.stringify(t)})' class="bg-harmony-kasir text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-harmony-kasir/90 shadow-md shadow-harmony-kasir/30 transform active:scale-95">
+                                    <i class="fas fa-cash-register mr-1"></i> Bayar
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+            } catch (e) {
+                console.error("Error loading antrian pembayaran:", e);
+                tbody.innerHTML = '<tr><td colspan="7" class="p-8 text-center text-harmony-error">Gagal memuat antrian (Koneksi Error)</td></tr>';
+            }
+        }
+        
+        // --- MODAL PEMBAYARAN LOGIC ---
+        let currentTagihan = {};
+        let currentResep = []; // Menyimpan detail resep yang dimuat
+
+        async function openModalBayar(tagihan) {
+            currentTagihan = tagihan;
+            const totalTagihan = parseFloat(tagihan.total_biaya_final || 0);
+            const id_pendaftaran = tagihan.id;
+            
+            // Set data pasien & layanan
+            document.getElementById('bayar-pasien-nama').textContent = tagihan.nama_pasien;
+            document.getElementById('bayar-pasien-info').textContent = `${tagihan.nama_poli} (${tagihan.nama_dokter}) | No. RM: ${tagihan.no_rm}`;
+
+            // Set detail tagihan
+            document.getElementById('bayar-biaya-medis').textContent = formatRupiah(tagihan.biaya_medis_dasar);
+            document.getElementById('bayar-biaya-obat').textContent = formatRupiah(tagihan.total_harga_resep);
+            document.getElementById('bayar-total-tagihan').textContent = formatRupiah(totalTagihan);
+
+            // Tampilkan loading state untuk detail resep
+            const resepDetailContainer = document.getElementById('bayar-detail-resep');
+            resepDetailContainer.innerHTML = '<p class="text-slate-400"><i class="fas fa-spinner fa-spin mr-1"></i> Memuat detail obat...</p>';
+            
+            // 1. Fetch Detail Resep dari backend
+            try {
+                const res = await fetch(`${API_KASIR}?action=kasir_get_resep_detail&id=${id_pendaftaran}`);
+                const d = await res.json();
+
+                currentResep = d.resep_detail || [];
+                resepDetailContainer.innerHTML = '';
+                
+                if (currentResep.length > 0) {
+                    currentResep.forEach(item => {
+                        const itemEl = document.createElement('p');
+                        const satuan = item.satuan || 'Unit';
+                        // Menampilkan Obat (Nama, Jumlah, Satuan, Harga per unit)
+                        itemEl.innerHTML = `<span class="font-semibold">${item.nama}</span> x${item.jumlah} (${satuan})`;
+                        resepDetailContainer.appendChild(itemEl);
+                    });
+                } else {
+                    resepDetailContainer.innerHTML = '<p>- Tidak ada resep obat terkait / Resep kosong.</p>';
+                }
+
+            } catch (e) {
+                resepDetailContainer.innerHTML = '<p class="text-harmony-error/80">Gagal memuat detail obat.</p>';
+                console.error("Error fetching resep detail:", e);
+            }
+
+            // 2. Lanjutkan dengan setup pembayaran
+            const inputBayar = document.getElementById('input-jumlah-bayar');
+            inputBayar.value = totalTagihan; // Default bayar pas
+            document.getElementById('bayar-kembalian').textContent = formatRupiah(0);
+            document.getElementById('bayar-id-pendaftaran').value = id_pendaftaran;
+            
+            // Update kembalian saat input berubah
+            inputBayar.oninput = () => updateKembalian(totalTagihan);
+            
+            openModal('modal-pembayaran');
+        }
+        
+        function updateKembalian(totalTagihan) {
+            const jumlahBayar = parseFloat(document.getElementById('input-jumlah-bayar').value || 0);
+            const kembalian = jumlahBayar - totalTagihan;
+            
+            document.getElementById('bayar-kembalian').textContent = formatRupiah(kembalian);
+            
+            const btn = document.getElementById('btn-proses-bayar');
+            btn.disabled = jumlahBayar < totalTagihan;
+            btn.classList.toggle('opacity-50', jumlahBayar < totalTagihan);
+        }
+        
+        document.getElementById('form-pembayaran').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const totalTagihan = parseFloat(currentTagihan.total_biaya_final || 0);
+            const jumlahBayar = parseFloat(this.elements['jumlah_bayar'].value);
+            
+            if (jumlahBayar < totalTagihan) {
+                showToast('Jumlah bayar kurang dari total tagihan!', 'error');
+                return;
+            }
+            
+            const btn = e.submitter;
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+            
+            const fd = new FormData();
+            fd.append('id_pendaftaran', currentTagihan.id);
+            fd.append('id_kasir', currentStaff.id);
+            fd.append('jumlah_bayar', jumlahBayar);
+            
+            try {
+                const res = await fetch(`${API_KASIR}?action=kasir_proses_pembayaran`, { method: 'POST', body: fd });
+                const d = await res.json();
+                
+                showToast(d.message, d.status);
+                
+                if (d.status === 'success') {
+                    closeModal('modal-pembayaran');
+                    loadAntrianPembayaran();
+                    loadKasirDashboard();
+                    
+                    // Tampilkan Struk Pembayaran
+                    if (d.struk_data) {
+                        displayStruk(d.struk_data);
+                    }
+                }
+            } catch (e) {
+                showToast('Gagal memproses pembayaran (Koneksi Error)', 'error');
+                console.error("Payment Error:", e);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        });
+        
+        /**
+         * Fungsi Baru: Menampilkan modal struk pembayaran
+         * @param {object} data - Data lengkap transaksi dari backend (sudah termasuk jumlah_bayar_input & kembalian).
+         */
+        function displayStruk(data) {
+            
+            // 1. Set Info Umum
+            document.getElementById('struk-tgl-lunas').textContent = new Date(data.tgl_selesai).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            document.getElementById('struk-id-pendaftaran').textContent = data.id;
+            document.getElementById('struk-nama-pasien').textContent = data.nama_pasien;
+            document.getElementById('struk-no-rm').textContent = data.no_rm;
+            document.getElementById('struk-layanan').textContent = `${data.nama_poli} (${data.nama_dokter})`;
+            // Menggunakan id_kasir dari DB, perlu dicek apakah Kasir Portal punya list user
+            // Untuk saat ini, kita hanya menampilkan Kasir User.
+            document.getElementById('struk-nama-kasir').textContent = currentStaff.nama_lengkap;
+            
+            // 2. Set Rincian Biaya
+            document.getElementById('struk-biaya-medis').textContent = formatRupiah(data.biaya_medis_dasar);
+            document.getElementById('struk-biaya-obat').textContent = formatRupiah(data.total_harga_resep);
+
+            // 3. Set Detail Resep
+            const resepContainer = document.getElementById('struk-detail-resep');
+            resepContainer.innerHTML = '';
+            
+            if (data.resep_detail && data.resep_detail.length > 0) {
+                data.resep_detail.forEach(resep => {
+                    const itemEl = document.createElement('p');
+                    const satuan = resep.satuan || 'Unit';
+                    itemEl.textContent = `- ${resep.nama} (${resep.jumlah} ${satuan})`; 
+                    resepContainer.appendChild(itemEl);
+                });
+                document.getElementById('struk-detail-resep-container').classList.remove('hidden');
+            } else {
+                 const itemEl = document.createElement('p');
+                 itemEl.textContent = `- Tidak ada resep obat`;
+                 resepContainer.appendChild(itemEl);
+                 // document.getElementById('struk-detail-resep-container').classList.add('hidden');
+            }
+
+            // 4. Set Total dan Pembayaran (Menggunakan data dari DB/Result Proses)
+            document.getElementById('struk-total-tagihan').textContent = formatRupiah(data.total_biaya_final);
+            document.getElementById('struk-jumlah-bayar').textContent = formatRupiah(data.jumlah_bayar_input);
+            document.getElementById('struk-kembalian').textContent = formatRupiah(data.kembalian);
+
+            // 5. Tampilkan Modal
+            openModal('modal-struk-pembayaran');
+        }
+
+
+        // --- RIWAYAT TRANSAKSI ---
+        async function loadRiwayatTransaksi() {
+            const tbody = document.getElementById('table-riwayat-bayar-body');
+            tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-slate-400"><i class="fas fa-circle-notch fa-spin mr-2"></i> Memuat data...</td></tr>';
+            
+            try {
+                // Fetch menggunakan konstanta API_KASIR
+                const res = await fetch(`${API_KASIR}?action=kasir_get_riwayat_lunas_hari_ini`);
+                const data = await res.json();
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-slate-500">Belum ada transaksi yang lunas hari ini.</td></tr>';
+                    return;
+                }
+
+                let html = '';
+                data.forEach(t => {
+                    const waktuLunas = new Date(t.tgl_lunas).toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+                    
+                    html += `
+                        <tr class="border-b hover:bg-harmony-accent_light/50 transition">
+                            <td class="p-4 text-xs font-mono font-bold text-slate-600">${waktuLunas}</td>
+                            <td class="p-4 font-mono text-slate-700">${t.no_rm}</td>
+                            <td class="p-4 font-bold text-slate-800">${t.nama_pasien}</td>
+                            <td class="p-4 text-sm text-slate-600">${t.nama_poli} / ${t.nama_dokter}</td>
+                            <td class="p-4 text-right font-extrabold text-lg text-harmony-accent">${formatRupiah(t.total_biaya_final)}</td>
+                            <td class="p-4 text-center">
+                                <button onclick='viewStruk(${t.id})' class="bg-slate-300 text-slate-700 px-3 py-1.5 rounded-xl text-xs font-bold hover:bg-slate-400 transition transform active:scale-95">
+                                    <i class="fas fa-file-invoice-dollar mr-1"></i> Struk
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                });
+                tbody.innerHTML = html;
+
+            } catch (e) {
+                console.error("Error loading riwayat pembayaran:", e);
+                tbody.innerHTML = '<tr><td colspan="6" class="p-8 text-center text-harmony-error">Gagal memuat riwayat transaksi.</td></tr>';
+            }
+        }
+        
+        /**
+         * Fungsi Baru: Ambil detail struk dari riwayat untuk dilihat kembali.
+         * @param {number} id_pendaftaran - ID Pendaftaran yang sudah lunas.
+         */
+        async function viewStruk(id_pendaftaran) {
+            showToast('Memuat detail struk...', 'info');
+            try {
+                // Menggunakan endpoint kasir_get_detail_struk di backend_kasir.php
+                const res = await fetch(`${API_KASIR}?action=kasir_get_detail_struk&id=${id_pendaftaran}`);
+                const d = await res.json();
+                
+                if (d.status === 'success' && d.data) {
+                    displayStruk(d.data);
+                } else {
+                    showToast(d.message || 'Gagal memuat data struk.', 'error');
+                }
+
+            } catch (e) {
+                console.error("Error viewing struk:", e);
+                showToast('Gagal terhubung ke server saat memuat struk.', 'error');
+            }
+        }
+        
+        // --- PROFIL KASIR ---
+        async function loadProfilKasir() {
+             document.getElementById('prof-nama').textContent = currentStaff.nama_lengkap;
+             document.getElementById('prof-username').textContent = currentStaff.username;
+        }
+
+        // --- HANDLERS PROFIL (Implementasi mirip Farmasi/Dokter) ---
+
+        function openModalPassword() { 
+            openModal('modal-password'); 
+            document.getElementById('form-change-password').reset();
+        }
+        function openModalUsername() { 
+            openModal('modal-username'); 
+            document.getElementById('form-change-username').reset();
+        }
+
+        // Form Ubah Password
+        document.getElementById('form-change-password').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            const newPwd = fd.get('new_password');
+            const confirmPwd = fd.get('confirm_password');
+            
+            if (newPwd !== confirmPwd) {
+                showToast('Konfirmasi password baru tidak cocok!', 'error');
+                return;
+            }
+            if (newPwd.length < 8) {
+                 showToast('Password minimal 8 karakter.', 'error');
+                 return;
+            }
+
+            fd.append('id_user', currentStaff.id);
+            
+            // Re-using general profile endpoint if available, otherwise use KASIR specific (we assume Kasir specific for security)
+            fetch(`${API_KASIR}?action=kasir_change_password`, { method: 'POST', body: fd })
+            .then(r => r.json())
+            .then(d => {
+                showToast(d.message, d.status);
+                if (d.status === 'success') {
+                    closeModal('modal-password');
+                    setTimeout(() => {
+                        showToast("Password berhasil diubah. Silakan login kembali.", "success");
+                        doLogout();
+                    }, 1500);
+                }
+            })
+            .catch(error => showToast('Gagal terhubung ke server saat ubah password.', 'error'));
+        });
+
+        // Form Ubah Username
+        document.getElementById('form-change-username').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const fd = new FormData(form);
+            const newUsername = fd.get('new_username');
+            const password = fd.get('password');
+            
+            if (newUsername.trim() === '' || password.trim() === '') {
+                 showToast('Semua field wajib diisi.', 'error');
+                 return;
+            }
+
+            const updateFd = new FormData();
+            updateFd.append('id_user', currentStaff.id);
+            updateFd.append('username', newUsername);
+            updateFd.append('old_password', password); // Password sebagai verifikasi
+            updateFd.append('nama_lengkap', currentStaff.nama_lengkap);
+
+            // Re-using general profile endpoint if available, otherwise use KASIR specific
+            fetch(`${API_KASIR}?action=kasir_update_username_only`, { method: 'POST', body: updateFd })
+            .then(r => r.json())
+            .then(d => {
+                showToast(d.message, d.status);
+                if (d.status === 'success' || d.status === 'warning') {
+                    closeModal('modal-username');
+                    if (d.user_data) {
+                        localStorage.setItem('staff_fivecare', JSON.stringify(d.user_data));
+                        currentStaff = d.user_data; 
+                    }
+                    setTimeout(() => {
+                        showToast("Silakan login kembali dengan username baru Anda.", "success");
+                        doLogout();
+                    }, 1500);
+                }
+            })
+            .catch(error => showToast('Gagal terhubung ke server saat ubah username.', 'error'));
+        });
+
+        // Panggilan awal
+        window.addEventListener('load', checkSession);
+    </script>
+</body>
+</html>

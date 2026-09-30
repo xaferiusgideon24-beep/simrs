@@ -1,0 +1,404 @@
+
+====================
+2026-09-09 17:23:15
+METHOD: NIK
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+}
+
+====================
+2026-09-09 17:23:16
+METHOD: NIK_NAME_BIRTH
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002",
+    "name": "dr. Yoga Yandika, Sp.A",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02"
+}
+
+====================
+2026-09-09 17:23:16
+METHOD: NAME_GENDER_BIRTH
+PARAM:
+{
+    "name": "dr. Yoga Yandika, Sp.A",
+    "gender": "male",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "entry": [],
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "next",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZsf7-DAJEEQsBb-I2QbJbpOL6z1d6rUt4mr0BPPNMKmBUtn8USWIO5wP1ysJAsnjSoSB1iLTYaUUh35jIhkO101wdvBRb8M_HLFbwTl_13fhyvYyyNGl9ES1hBf9LZR0Xn0zopUxCtLEWCY4mRNQXsiX6BgizuRv8t780ynl8l04Z7VKqDy3zt16a_Qg-DVcSc3Kf0Phgkl62AMafifdHl1f8343LVxOL9ZtdxdiHdIflPc1Xc-00-aeOjaLn9g0gKuWdlkyoNRIXYXgfVU_4VWTu_SPbaLsx7lAgqSeD11HQ%3D%3D"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset"
+    },
+    "raw": "{\"entry\":[],\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"next\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZsf7-DAJEEQsBb-I2QbJbpOL6z1d6rUt4mr0BPPNMKmBUtn8USWIO5wP1ysJAsnjSoSB1iLTYaUUh35jIhkO101wdvBRb8M_HLFbwTl_13fhyvYyyNGl9ES1hBf9LZR0Xn0zopUxCtLEWCY4mRNQXsiX6BgizuRv8t780ynl8l04Z7VKqDy3zt16a_Qg-DVcSc3Kf0Phgkl62AMafifdHl1f8343LVxOL9ZtdxdiHdIflPc1Xc-00-aeOjaLn9g0gKuWdlkyoNRIXYXgfVU_4VWTu_SPbaLsx7lAgqSeD11HQ%3D%3D\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\"}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02"
+}
+
+====================
+2026-09-09 17:24:24
+METHOD: NIK
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+}
+====================
+2026-09-09 17:24:25
+METHOD: NIK_NAME
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002",
+    "name": "dr. Yoga Yandika, Sp.A"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A"
+}
+====================
+2026-09-09 17:24:25
+METHOD: NIK_NAME_BIRTH
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002",
+    "name": "dr. Yoga Yandika, Sp.A",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02"
+}
+====================
+2026-09-09 17:24:26
+METHOD: NAME_GENDER_BIRTH
+PARAM:
+{
+    "name": "dr. Yoga Yandika, Sp.A",
+    "gender": "male",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "entry": [],
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "next",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZvzf5rCcNOjHxrHgS9mvutfm6tb0Igky-RyRdQFLtskECdEjGOGmq5sE_RBXmO11wWzx9LkFI2vyMBPbxsrV4BTwcQ4evsosbPZbd82rT3YSPuZYRlxo0PDOiTc2mmBwgRVtnIWuFgRdwqrrHszgVQ9znVcN5YsfpdMy5JKttVybxbpIR3RamjRCulO4KSK9IVae7AbE8hMKHbHGzh6wAlWtgSpTW-OZ0-8GLgZqJ12ig28cOq4uo525Ao8tHXGHj52Yy1PCH1JbHqgLBMxiMYALEJEYkt2pSbDlVpyvKTEeA%3D%3D"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset"
+    },
+    "raw": "{\"entry\":[],\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"next\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZvzf5rCcNOjHxrHgS9mvutfm6tb0Igky-RyRdQFLtskECdEjGOGmq5sE_RBXmO11wWzx9LkFI2vyMBPbxsrV4BTwcQ4evsosbPZbd82rT3YSPuZYRlxo0PDOiTc2mmBwgRVtnIWuFgRdwqrrHszgVQ9znVcN5YsfpdMy5JKttVybxbpIR3RamjRCulO4KSK9IVae7AbE8hMKHbHGzh6wAlWtgSpTW-OZ0-8GLgZqJ12ig28cOq4uo525Ao8tHXGHj52Yy1PCH1JbHqgLBMxiMYALEJEYkt2pSbDlVpyvKTEeA%3D%3D\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\"}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02"
+}
+====================
+2026-09-09 17:27:00
+METHOD: NIK
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+}
+====================
+2026-09-09 17:27:00
+METHOD: NIK_NAME
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002",
+    "name": "dr. Yoga Yandika, Sp.A"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A"
+}
+====================
+2026-09-09 17:27:01
+METHOD: NIK_NAME_BIRTH
+PARAM:
+{
+    "identifier": "https:\/\/fhir.kemkes.go.id\/id\/nik|3322071302900002",
+    "name": "dr. Yoga Yandika, Sp.A",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02"
+}
+====================
+2026-09-09 17:27:01
+METHOD: NAME_GENDER_BIRTH
+PARAM:
+{
+    "name": "dr. Yoga Yandika, Sp.A",
+    "gender": "male",
+    "birthdate": "1995-02-02"
+}
+RESULT:
+{
+    "http_code": 200,
+    "data": {
+        "entry": [],
+        "link": [
+            {
+                "relation": "search",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "next",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZtzKkyQTKOswdN-hUs5zRYPKrnU2V3EkD_8xRZC6SltqliM3JAmX8tQYgxv06v4l4Q6-1zBWSj3d6PZy9TMZFUnvEgPAxxP1psxwTgPED-dc7UGvpTzsMEsQQDrsxwlHfArBvp8VthDDRZ5vRszWM_PaZxI8F86XvpAfRKhm9vD9fw6V80GLhjmAKP-Px0B7odCVgpGbDlDp75Lb9RqxvPPrqM3n-0LtfEQtq-nZclwWwoWJsp1wwHS1yH4Eq8qMaKDSGJO8lz_9bUxdYwxKBKs-_hCy2JbX5D7VIzj7T66pA%3D%3D"
+            },
+            {
+                "relation": "first",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset"
+    },
+    "raw": "{\"entry\":[],\"link\":[{\"relation\":\"search\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"next\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZtzKkyQTKOswdN-hUs5zRYPKrnU2V3EkD_8xRZC6SltqliM3JAmX8tQYgxv06v4l4Q6-1zBWSj3d6PZy9TMZFUnvEgPAxxP1psxwTgPED-dc7UGvpTzsMEsQQDrsxwlHfArBvp8VthDDRZ5vRszWM_PaZxI8F86XvpAfRKhm9vD9fw6V80GLhjmAKP-Px0B7odCVgpGbDlDp75Lb9RqxvPPrqM3n-0LtfEQtq-nZclwWwoWJsp1wwHS1yH4Eq8qMaKDSGJO8lz_9bUxdYwxKBKs-_hCy2JbX5D7VIzj7T66pA%3D%3D\"},{\"relation\":\"first\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner\/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\"}",
+    "curl_error": "",
+    "request_url": "https:\/\/api-satusehat-stg.dto.kemkes.go.id\/fhir-r4\/v1\/Practitioner?name=dr.%20Yoga%20Yandika%2C%20Sp.A&gender=male&birthdate=1995-02-02"
+}

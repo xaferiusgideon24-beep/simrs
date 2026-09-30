@@ -1,0 +1,1468 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokter Portal - RS FiveCare</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Konfigurasi Tailwind CSS untuk tema Prismatic Harmony (Vibrant yet Soft)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        harmony: {
+                            // Warna Utama: Blue (Primary - Admin, Pendaftaran)
+                            primary: '#3b82f6',   // Blue 500
+                            primary_dark: '#1e3a8a', // Blue 900 
+                            primary_light: '#eff6ff', // Blue 50
+                            
+                            // Warna Sekunder: Violet (Dokter - KUNCI UTAMA)
+                            secondary: '#8b5cf6', // Violet 500 (Soft Purple)
+                            secondary_dark: '#6d28d9', // Violet 700
+                            secondary_light: '#f5f3ff', // Violet 50
+                            
+                            // Warna Accent: Emerald (Farmasi, Success)
+                            accent: '#10b981',    // Emerald 500
+                            accent_light: '#e6fffa', // Emerald 50
+                            
+                            // Warna Warning/Menunggu: Amber
+                            warning: '#facc15',   // Amber 500
+                            warning_light: '#fffceb', // Amber 50
+                            
+                            // Warna Error/Laporkan (Soft Rose/Pink)
+                            error: '#f43f5e',     // Rose 500
+                            error_light: '#ffe4e6', // Rose 100
+                            
+                            // NEW ROLE COLOR: Kasir (Orange/Red)
+                            kasir: '#f97316', // Orange 600
+                            kasir_light: '#fff7ed', // Orange 50
+                            
+                            // Custom Colors for Dashboard Stats/Text
+                            stat_user: '#3b82f6', // Primary Blue
+                            stat_doctor: '#8b5cf6', // Secondary Violet
+                            stat_kunjungan: '#10b981', // Accent Emerald
+                            stat_laporan: '#f43f5e', // Error Rose
+                            
+                            // Custom Colors for Text/Shadows (seperti di Farmasi)
+                            custom_red_dark: '#991b1b', // RED-900 (for expired data)
+                            custom_yellow_dark: '#d97706', // YELLOW-600 (for low stock data)
+                        },
+                    },
+                    keyframes: {
+                        'pop-in': { 
+                            '0%': { transform: 'scale(0.8) translateY(-20px)', opacity: 0 }, 
+                            '80%': { transform: 'scale(1.05) translateY(0)', opacity: 1 },
+                            '100%': { transform: 'scale(1) translateY(0)', opacity: 1 } 
+                        },
+                        'fade-out-up': {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' }
+                        },
+                        'soft-pulse': {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.95, transform: 'scale(0.99)' }
+                        },
+                    },
+                    animation: {
+                        'pop-in': 'pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', 
+                        'fade-out-up': 'fade-out-up 0.5s ease-out forwards',
+                        'soft-pulse': 'soft-pulse 4s infinite ease-in-out',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Background Joyful & Peaceful (Light Blue/Violet Tint) */
+            background: linear-gradient(135deg, #f0f4f8 0%, #f5f3ff 100%); 
+        }
+        .page-content { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Sidebar Nav Item Active State */
+        .nav-item.active {
+            background-color: #2b3a55 !important; 
+            color: #fff !important;
+            border-left: 4px solid #8b5cf6; /* harmony-secondary indicator */
+            padding-left: 1rem !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Input Focus Glow */
+        .input-glow-focus:focus {
+            /* Ring color akan diambil dari class Tailwind yang mendefinisikannya */
+            box-shadow: 0 0 0 4px var(--tw-ring-color); 
+            border-color: var(--tw-border-color); 
+        }
+        
+        /* Glass Card (Glassmorphism Cards) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px); 
+            border: 1px solid rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Card Stats Hover Effect (Dinamis & Interaktif) */
+        .card-stat { 
+            transition: all 0.3s; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+            animation: soft-pulse 4s infinite ease-in-out;
+        }
+        .card-stat:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+        }
+        
+        /* Style untuk Autocomplete */
+        .autocomplete-container { position: relative; }
+        .autocomplete-list { position: absolute; z-index: 20; width: 100%; max-height: 200px; overflow-y: auto; background-color: #fff; border: 1px solid #ccc; border-top: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 0 0 1rem 1rem; }
+        .autocomplete-item { padding: 12px; cursor: pointer; border-bottom: 1px solid #eee; font-size: 0.875rem; }
+        .autocomplete-item:hover { background-color: #f5f3ff; /* harmony-secondary_light */ }
+        
+        /* Style untuk E-Resep Dinamis */
+        .resep-row { background-color: #f5f3ff; /* harmony-secondary_light */ border-radius: 12px; padding: 12px; margin-bottom: 8px; border: 1px solid #ede9fe; }
+        
+        /* Style untuk tombol filter aktif di Jadwal */
+        .filter-btn-active {
+            background-color: #8b5cf6; /* harmony-secondary */
+            color: white;
+            border-color: #8b5cf6;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(139, 92, 246, 0.3);
+        }
+        
+        /* Toast Animation */
+        .toast-enter {
+            animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .toast-exit {
+            animation: fade-out-up 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased overflow-hidden">
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- SIDEBAR: Dark Blue/Navy Theme (harmony-primary_dark) -->
+        <aside class="w-64 bg-harmony-primary_dark text-white flex-shrink-0 flex flex-col shadow-2xl z-20">
+            <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+                <!-- Logo Accent Green + Primary Blue -->
+                <div class="w-10 h-10 bg-gradient-to-br from-harmony-accent to-harmony-primary rounded-xl flex items-center justify-center shadow-lg shadow-harmony-accent/30"><i class="fas fa-hospital text-white text-lg"></i></div>
+                <div><h2 class="text-xl font-extrabold tracking-tight">FiveCare</h2><p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">DOKTER PORTAL</p></div>
+            </div>
+            
+            <nav class="flex-1 px-2 py-6 space-y-1 overflow-y-auto">
+                 <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">MENU DOKTER</p>
+                <!-- Nav Item Highlight: Secondary Violet -->
+                <button onclick="showPage('dash-dokter')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-tachometer-alt w-5 text-center group-hover:text-harmony-secondary"></i> Dashboard</button>
+                <button onclick="showPage('antrian-pasien')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-user-injured w-5 text-center group-hover:text-harmony-primary"></i> Antrian Pasien</button>
+                <button onclick="showPage('jadwal-dokter')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-calendar-alt w-5 text-center group-hover:text-harmony-accent"></i> Jadwal Pemeriksaan</button>
+                <button onclick="showPage('rekam-medis')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-file-medical-alt w-5 text-center group-hover:text-harmony-warning"></i> Rekam Medis</button>
+                <button onclick="showPage('lapor-dokter')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-exclamation-triangle w-5 text-center group-hover:text-harmony-error"></i> Laporkan</button>
+                <button onclick="showPage('profil-dokter')" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white flex gap-3 items-center group transition-all duration-200"><i class="fas fa-user-cog w-5 text-center group-hover:text-slate-400"></i> Profil Dokter</button>
+            </nav>
+            
+            <div class="p-4 border-t border-slate-800 bg-harmony-primary_dark">
+                <button onclick="doLogout()" class="w-full text-left px-4 py-2 text-red-400 hover:text-red-300 flex items-center gap-3 transition hover:bg-slate-800 rounded-lg group">
+                    <i class="fas fa-sign-out-alt group-hover:-translate-x-1 transition-transform"></i> Keluar
+                </button>
+            </div>
+        </aside>
+
+        <!-- CONTENT AREA -->
+        <main class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-50">
+            <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-md z-10 sticky top-0">
+                <div><h2 class="text-2xl font-extrabold text-slate-900 tracking-tight" id="page-title">Dashboard</h2><p class="text-sm text-slate-500">Panel Praktik Dokter</p></div>
+                <!-- Header Profil dengan Secondary Violet Accent -->
+                <div class="flex items-center gap-3 bg-harmony-secondary_light px-4 py-2 rounded-full border border-harmony-secondary/30 transition-all duration-300 hover:shadow-lg hover:shadow-harmony-secondary/10 cursor-pointer">
+                    <div class="text-right"><p class="font-extrabold text-sm text-slate-800" id="user-name">Dr. User</p><p class="text-[10px] text-harmony-secondary uppercase font-extrabold tracking-widest" id="user-poli">Spesialis</p></div>
+                    <div class="w-10 h-10 bg-harmony-secondary/20 rounded-full flex items-center justify-center text-harmony-secondary font-bold border-2 border-white shadow-inner"><i class="fas fa-user-md"></i></div>
+                </div>
+            </header>
+
+            <div class="flex-1 overflow-y-auto p-8">
+                
+                <!-- ALERT JIKA ID DOKTER NULL -->
+                <div id="alert-no-link" class="hidden mb-6 bg-harmony-error_light border-l-4 border-harmony-error p-4 rounded-xl shadow-md">
+                    <div class="flex">
+                        <div class="flex-shrink-0"><i class="fas fa-exclamation-circle text-harmony-error text-xl"></i></div>
+                        <div class="ml-3">
+                            <p class="text-sm text-slate-800 font-bold">Akun Belum Terhubung!</p>
+                            <p class="text-sm text-slate-600">Akun user ini belum ditautkan dengan data Dokter. Silahkan hubungi Admin untuk melakukan pembaruan user (Role Dokter).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1. DASHBOARD -->
+                <div id="page-dash-dokter" class="page-content">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <!-- Total Pasien Hari Ini (Primary Blue) -->
+                        <div class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-primary hover:shadow-harmony-primary/10">
+                            <div class="flex justify-between items-center mb-2"><div class="p-2 bg-harmony-primary_light rounded-xl text-harmony-primary text-xl"><i class="fas fa-user-injured"></i></div></div>
+                            <p class="text-sm text-slate-500 mb-1">Total Pasien Hari Ini</p>
+                            <h3 class="text-4xl font-extrabold text-slate-800" id="stat-total">-</h3>
+                        </div>
+                        <!-- Menunggu Diperiksa (Secondary Violet) -->
+                        <div class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-secondary hover:shadow-harmony-secondary/10">
+                            <div class="flex justify-between items-center mb-2"><div class="p-2 bg-harmony-secondary_light rounded-xl text-harmony-secondary text-xl"><i class="fas fa-hourglass-half"></i></div></div>
+                            <p class="text-sm text-slate-500 mb-1">Menunggu Diperiksa</p>
+                            <h3 class="text-4xl font-extrabold text-harmony-secondary" id="stat-wait">-</h3>
+                        </div>
+                        <!-- Selesai Diperiksa (Accent Emerald) -->
+                        <div class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-100 border-l-4 border-harmony-accent hover:shadow-harmony-accent/10">
+                            <div class="flex justify-between items-center mb-2"><div class="p-2 bg-harmony-accent_light rounded-xl text-harmony-accent text-xl"><i class="fas fa-check-circle"></i></div></div>
+                            <p class="text-sm text-slate-500 mb-1">Selesai Diperiksa</p>
+                            <h3 class="text-4xl font-extrabold text-harmony-accent" id="stat-done">-</h3>
+                        </div>
+                    </div>
+                    <!-- Banner Mulai Praktik (Secondary Violet Background) -->
+                    <div class="bg-harmony-secondary rounded-2xl p-8 text-white flex justify-between items-center shadow-lg shadow-harmony-secondary/30">
+                        <div><h3 class="text-xl font-extrabold mb-2">Mulai Praktik Hari Ini</h3><p class="text-harmony-secondary_light">Lihat daftar antrian pasien di poli Anda.</p></div>
+                        <button onclick="showPage('antrian-pasien')" class="bg-white text-harmony-secondary px-6 py-3 rounded-xl font-bold hover:bg-harmony-secondary_light transition shadow-md shadow-slate-900/10 transform active:scale-95">Lihat Antrian <i class="fas fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+
+                <!-- 2. ANTRIAN -->
+                <div id="page-antrian-pasien" class="page-content hidden">
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden glass-card">
+                        <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                            <h3 class="font-extrabold text-xl">Daftar Pasien Menunggu</h3>
+                            <button onclick="loadAntrianDokter()" class="text-sm text-harmony-primary hover:text-harmony-primary/80 font-bold hover:underline"><i class="fas fa-sync-alt mr-1"></i> Refresh</button>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold">
+                                    <tr>
+                                        <th class="p-4">No. Antrian</th>
+                                        <th class="p-4">Nama Pasien</th>
+                                        <th class="p-4">L/P - Umur</th>
+                                        <th class="p-4">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-antrian-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. JADWAL PEMERIKSAAN -->
+                <div id="page-jadwal-dokter" class="page-content hidden">
+                    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden glass-card">
+                        <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50">
+                            <h3 class="font-extrabold text-xl">Jadwal Booking Mendatang</h3>
+                            <div class="flex gap-2">
+                                <button id="filter-all" onclick="loadJadwalBooking('all')" class="px-4 py-2 rounded-xl border border-slate-300 text-sm hover:bg-slate-50 filter-btn">Semua</button>
+                                <button id="filter-minggu" onclick="loadJadwalBooking('minggu')" class="px-4 py-2 rounded-xl border border-slate-300 text-sm hover:bg-slate-50 filter-btn">Minggu Ini</button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold">
+                                    <tr>
+                                        <th class="p-4">Tanggal</th>
+                                        <th class="p-4">Pasien</th>
+                                        <th class="p-4">Jam</th>
+                                        <th class="p-4">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-jadwal-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. REKAM MEDIS -->
+                <div id="page-rekam-medis" class="page-content hidden">
+                     <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden glass-card">
+                        <div class="p-6 border-b border-slate-100 flex justify-between items-center">
+                            <h3 class="font-extrabold text-xl">Riwayat Pemeriksaan</h3>
+                            <div class="relative w-64">
+                                <i class="fas fa-search absolute left-3 top-3.5 text-slate-400 text-sm"></i>
+                                <input type="text" id="search-rm" placeholder="Cari Nama/RM..." class="input-glow-focus border border-slate-300 rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-harmony-primary outline-none w-full" onkeyup="loadRekamMedis(this.value)">
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left">
+                                <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold">
+                                    <tr>
+                                        <th class="p-4 w-1/12">Tgl</th>
+                                        <th class="p-4 w-2/12">Pasien</th>
+                                        <th class="p-4 w-3/12">Diagnosa</th>
+                                        <th class="p-4 w-4/12">Resep (Ringkas)</th>
+                                        <th class="p-4 w-2/12 text-center">Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-rm-body" class="divide-y divide-slate-100 text-sm"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. LAPOR -->
+                <div id="page-lapor-dokter" class="page-content hidden">
+                    <div class="max-w-2xl mx-auto">
+                         <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200 mb-8 glass-card">
+                            <h3 class="font-extrabold text-xl mb-4 text-slate-800">Laporkan Masalah</h3>
+                            <form id="form-lapor-dokter" class="space-y-4">
+                                <div><label class="text-xs font-bold text-slate-500 uppercase">Kategori</label><select name="jenis_masalah" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-error outline-none"><option value="Aplikasi">Aplikasi</option><option value="Fasilitas">Fasilitas</option><option value="Lainnya">Lainnya</option></select></div>
+                                <div><label class="text-xs font-bold text-slate-500 uppercase">Keterangan</label><textarea name="keterangan" rows="4" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-error outline-none" placeholder="Deskripsi masalah..." required></textarea></div>
+                                <button type="submit" class="w-full bg-harmony-error text-white py-3 rounded-xl font-bold hover:bg-harmony-error/90 shadow-lg shadow-harmony-error/30 transition transform active:scale-95">Kirim Laporan</button>
+                            </form>
+                        </div>
+
+                        <!-- Riwayat Laporan -->
+                        <h4 class="font-extrabold text-lg text-slate-700 mb-4 px-1">Riwayat Laporan Saya</h4>
+                        <div id="list-laporan-dokter-container" class="space-y-4">
+                            <p class="text-center text-slate-400 italic py-4">Memuat riwayat...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. PROFIL -->
+                <div id="page-profil-dokter" class="page-content hidden">
+                    <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-slate-200 text-center glass-card">
+                         <!-- Icon: Secondary Violet Mist BG -->
+                         <div class="w-24 h-24 bg-harmony-secondary_light text-harmony-secondary rounded-full flex items-center justify-center text-4xl mx-auto mb-4 border-4 border-white shadow-lg shadow-harmony-secondary/20"><i class="fas fa-user-md"></i></div>
+                         <h3 class="text-xl font-extrabold text-slate-800" id="prof-nama">Dr. Nama</h3>
+                         <p class="text-harmony-secondary font-bold mb-6" id="prof-spesialis">Spesialis</p>
+                         <div class="mt-6 text-left bg-slate-50 p-6 rounded-xl space-y-3 text-sm border border-slate-200">
+                             <div class="flex justify-between"><span>Username:</span> <strong id="prof-username">-</strong></div>
+                             <div class="flex justify-between"><span>Poli:</span> <strong id="prof-poli">-</strong></div>
+                             <div class="flex justify-between"><span>Jadwal:</span> <strong id="prof-jadwal">-</strong></div>
+                             <div class="flex justify-between"><span>Kuota:</span> <strong id="prof-kuota">-</strong></div>
+                         </div>
+                         <div class="flex gap-4 justify-center mt-6">
+                            <!-- Button Dark Slate -->
+                            <button onclick="openModalPassword()" class="bg-slate-700 text-white px-6 py-2.5 rounded-xl font-bold hover:bg-slate-800 transition shadow-md shadow-slate-300 transform active:scale-95"><i class="fas fa-key mr-2"></i>Ubah Password</button>
+                            <!-- Button Primary Blue -->
+                            <button onclick="openModalUsername()" class="bg-harmony-primary text-white px-6 py-2.5 rounded-xl font-bold hover:bg-harmony-primary/90 transition shadow-md shadow-harmony-primary/30 transform active:scale-95"><i class="fas fa-user-edit mr-2"></i>Ubah Username</button>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- MODAL PERIKSA (FORM LENGKAP) -->
+            <div id="modal-periksa" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl overflow-hidden glass-card">
+                    <div class="p-6 bg-harmony-secondary text-white flex justify-between items-center rounded-t-3xl shadow-lg">
+                        <h3 class="font-extrabold text-xl">Pemeriksaan Medis Pasien</h3>
+                        <!-- UPDATE: Tombol X memanggil cancelPemeriksaan -->
+                        <button onclick="cancelPemeriksaan()" class="text-white hover:text-harmony-secondary_light transition text-xl"><i class="fas fa-times"></i></button>
+                    </div>
+                    <form id="form-periksa" class="p-8 space-y-6">
+                        <input type="hidden" name="id_pendaftaran" id="input-id-daftar">
+                        
+                        <!-- 1. DATA PASIEN (Otomatis) -->
+                        <div class="bg-harmony-secondary_light p-4 rounded-xl border border-harmony-secondary/30">
+                            <h4 class="font-extrabold text-harmony-secondary_dark mb-3 text-sm flex items-center gap-2"><i class="fas fa-user-injured"></i> Data Pasien</h4>
+                            <div class="grid grid-cols-4 text-sm gap-y-2">
+                                <div><span class="text-slate-500 block text-xs">Nama/Antrian</span><strong id="modal-pasien-nama-antrian">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">RM/Poli</span><strong id="modal-pasien-rm-poli">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">L/P - Umur</span><strong id="modal-pasien-jk-umur">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">Tgl Lahir</span><strong id="modal-pasien-tgl-lahir">-</strong></div>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- KIRI: KELUHAN & FISIK -->
+                            <div>
+                                <!-- 2. KELUHAN UTAMA -->
+                                <div><label class="text-xs font-bold text-slate-500 uppercase">Keluhan Utama <span class="text-harmony-error">*</span></label><textarea name="keluhan_utama" rows="2" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-secondary bg-white transition" required placeholder="Contoh: Demam sejak 2 hari, batuk kering, nyeri tenggorokan."></textarea></div>
+                                
+                                <!-- 3. PEMERIKSAAN FISIK -->
+                                <div class="mt-4"><label class="text-xs font-bold text-slate-500 uppercase">Pemeriksaan Fisik (TTV & Temuan)</label><textarea name="pemeriksaan_fisik" rows="4" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-secondary bg-white transition" placeholder="Contoh: TD: 120/80 mmHg, N: 80x/mnt, Tonsil hiperemis, Ronki halus paru kanan."></textarea></div>
+
+                                <!-- VITAL SIGN TERSTRUKTUR UNTUK SATUSEHAT OBSERVATION -->
+                                <div class="mt-4 bg-harmony-primary_light p-4 rounded-xl border border-harmony-primary/20">
+                                    <h4 class="text-xs font-extrabold text-harmony-primary_dark uppercase mb-3 flex items-center gap-2">
+                                        <i class="fas fa-heartbeat"></i> Vital Sign
+                                    </h4>
+
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Suhu (°C)</label>
+                                            <input type="number" step="0.1" name="suhu" 
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="36.5">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Nadi (x/menit)</label>
+                                            <input type="number" name="nadi"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="80">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Sistolik (mmHg)</label>
+                                            <input type="number" name="sistolik"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="120">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Diastolik (mmHg)</label>
+                                            <input type="number" name="diastolik"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="80">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Respiratory Rate</label>
+                                            <input type="number" name="respiratory_rate"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="20">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Berat Badan (kg)</label>
+                                            <input type="number" step="0.01" name="berat_badan"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="70">
+                                        </div>
+
+                                        <div>
+                                            <label class="text-xs font-bold text-slate-500">Tinggi Badan (cm)</label>
+                                            <input type="number" step="0.01" name="tinggi_badan"
+                                            class="w-full border border-slate-300 p-2 rounded-xl mt-1"
+                                            placeholder="170">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- KANAN: DIAGNOSA & TERAPI -->
+                            <div>
+                                <!-- 4. DIAGNOSA (ICD-10) -->
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-bold text-slate-500 uppercase">Diagnosa (ICD-10)</h4>
+                                    <!-- DIAGNOSA UTAMA -->
+                                    <div class="autocomplete-container">
+                                        <label class="text-xs font-bold text-slate-700">Diagnosa Utama <span class="text-harmony-error">*</span></label>
+                                        <input type="text" id="icd-utama-input" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-secondary" placeholder="Ketik kode atau nama..." onkeyup="searchIcd(this.value, 'utama')" required>
+                                        <input type="hidden" name="diagnosa_utama_kode" id="icd-utama-kode" required>
+                                        <div id="icd-utama-list" class="autocomplete-list hidden"></div>
+                                    </div>
+                                    <!-- DIAGNOSA SEKUNDER (Opsional) -->
+                                    <div class="autocomplete-container">
+                                        <label class="text-xs font-bold text-slate-700">Diagnosa Sekunder (Opsional)</label>
+                                        <input type="text" id="icd-sekunder-input" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-secondary" placeholder="Ketik kode atau nama..." onkeyup="searchIcd(this.value, 'sekunder')">
+                                        <input type="hidden" name="diagnosa_sekunder_kode" id="icd-sekunder-kode">
+                                        <div id="icd-sekunder-list" class="autocomplete-list hidden"></div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. TINDAKAN / RENCANA TERAPI -->
+                                <div class="mt-4"><label class="text-xs font-bold text-slate-500 uppercase">Tindakan / Rencana Terapi</label><textarea name="rencana_terapi" rows="2" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-secondary" placeholder="Contoh: Nasehat istirahat, Kontrol 3 hari"></textarea></div>
+                            </div>
+                        </div>
+                        
+                        <!-- REMOVED: INPUT BIAYA LAYANAN DOKTER -->
+                        <!-- Biaya sudah diisi otomatis saat start_examination -->
+                        <input type="hidden" name="biaya_medis_dasar" id="input-biaya-medis" value="0">
+                        <!-- END REMOVED -->
+
+                        <!-- 6. E-RESEP SEDERHANA (Diubah menjadi input dinamis) -->
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-500 uppercase border-b pb-2 mb-3 flex items-center justify-between">
+                                <span class="flex items-center gap-2"><i class="fas fa-pills text-harmony-accent"></i> E-Resep</span>
+                                <button type="button" onclick="addResepRow()" class="text-harmony-accent text-sm font-semibold hover:text-harmony-accent/80"><i class="fas fa-plus mr-1"></i> Tambah Obat</button>
+                            </h4>
+                            <div id="resep-list" class="space-y-3">
+                                <!-- Baris Resep akan ditambahkan di sini -->
+                                <div id="no-resep-placeholder" class="text-center text-slate-400 italic text-sm py-4 border rounded-xl bg-slate-50">Tekan "Tambah Obat" untuk meresepkan.</div>
+                            </div>
+                            <input type="hidden" name="resep_data_json" id="resep-data-json">
+                        </div>
+                        
+                        <!-- 7. INSTRUKSI PASIEN -->
+                        <div><label class="text-xs font-bold text-slate-500 uppercase">Instruksi Pasien (Opsional)</label><textarea name="instruksi_pasien" rows="2" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-secondary" placeholder="Contoh: Minum air hangat, Kembali jika demam > 38.5°C"></textarea></div>
+
+
+                        <!-- 8. TOMBOL -->
+                        <div class="pt-4 border-t border-slate-100 flex justify-end gap-3">
+                            <!-- UPDATE: Tombol Batal memanggil cancelPemeriksaan -->
+                            <button type="button" onclick="cancelPemeriksaan()" class="px-5 py-2.5 border border-slate-300 rounded-xl text-slate-600 font-bold hover:bg-slate-100 transition">Batal</button>
+                            <!-- Button Accent Green (Success) -->
+                            <button type="submit" class="px-5 py-2.5 bg-harmony-accent text-white rounded-xl font-bold hover:bg-harmony-accent/90 shadow-lg shadow-harmony-accent/30 transition transform active:scale-95">Selesai Pemeriksaan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MODAL UBAH PASSWORD -->
+            <div id="modal-password" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 space-y-4 glass-card">
+                    <h3 class="font-extrabold text-xl text-slate-800"><i class="fas fa-key mr-2 text-harmony-error"></i> Ubah Password Akun</h3>
+                    <form id="form-change-password">
+                        <input type="password" name="old_password" placeholder="Password Lama" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-error" required>
+                        <input type="password" name="new_password" placeholder="Password Baru (min 8 karakter)" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-error" required minlength="8">
+                        <input type="password" name="confirm_password" placeholder="Konfirmasi Password Baru" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-5 focus:ring-2 focus:ring-harmony-error" required>
+                        <div class="flex justify-end gap-3">
+                            <button type="button" onclick="closeModal('modal-password')" class="px-4 py-2 border border-slate-300 rounded-xl font-semibold hover:bg-slate-100 transition">Batal</button>
+                            <button type="submit" class="px-4 py-2 bg-harmony-error text-white rounded-xl font-bold hover:bg-harmony-error/90 transition shadow-md shadow-harmony-error/30">Ubah Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- MODAL UBAH USERNAME -->
+            <div id="modal-username" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 space-y-4 glass-card">
+                    <h3 class="font-extrabold text-xl text-slate-800"><i class="fas fa-user-edit mr-2 text-harmony-primary"></i> Ubah Username Akun</h3>
+                    <form id="form-change-username">
+                        <input type="text" name="new_username" placeholder="Username Baru" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-3 focus:ring-2 focus:ring-harmony-primary" required>
+                        <input type="password" name="password" placeholder="Verifikasi Password Anda" class="input-glow-focus w-full border border-slate-300 p-3 rounded-xl mb-5 focus:ring-2 focus:ring-harmony-primary" required>
+                        <p class="text-slate-500 text-xs mb-3"><i class="fas fa-info-circle mr-1"></i> Anda akan otomatis logout setelah mengganti username.</p>
+                        <div class="flex justify-end gap-3">
+                            <button type="button" onclick="closeModal('modal-username')" class="px-4 py-2 border border-slate-300 rounded-xl font-semibold hover:bg-slate-100 transition">Batal</button>
+                            <button type="submit" class="px-4 py-2 bg-harmony-primary text-white rounded-xl font-bold hover:bg-harmony-primary/90 transition shadow-md shadow-harmony-primary/30">Ubah Username</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- MODAL REKAM MEDIS DETAIL (READ ONLY) -->
+            <div id="modal-rm-detail" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center p-4 z-50 backdrop-blur-sm">
+                <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl overflow-y-auto max-h-[90vh] glass-card">
+                    <div class="p-6 bg-harmony-secondary text-white flex justify-between items-center sticky top-0 z-10 rounded-t-3xl shadow-lg">
+                        <h3 class="font-extrabold text-xl">Detail Rekam Medis - <span id="rm-detail-pasien"></span></h3>
+                        <button onclick="closeModal('modal-rm-detail')" class="text-white hover:text-harmony-secondary_light text-xl"><i class="fas fa-times"></i></button>
+                    </div>
+                    <div class="p-8 overflow-y-auto bg-slate-50 flex-1 space-y-6">
+                        
+                        <!-- Header Informasi Pasien -->
+                        <div class="bg-harmony-primary_light p-4 rounded-xl border border-harmony-primary/30 text-sm">
+                            <div class="grid grid-cols-4 gap-y-2">
+                                <div><span class="text-slate-500 block text-xs">Tgl Kunjungan</span><strong id="rm-detail-tgl">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">No. RM</span><strong id="rm-detail-rm">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">Poli/Dokter</span><strong id="rm-detail-poli-dr">-</strong></div>
+                                <div><span class="text-slate-500 block text-xs">Status</span><strong id="rm-detail-status">-</strong></div>
+                            </div>
+                        </div>
+
+                        <!-- Detail Pemeriksaan -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <!-- SISI KIRI -->
+                            <div>
+                                <h4 class="text-sm font-extrabold text-slate-600 uppercase mb-3 border-b pb-1 border-slate-200">Anamnesa & Fisik</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                        <p class="text-xs text-slate-500 font-bold mb-1">Keluhan Utama:</p>
+                                        <p id="rm-detail-keluhan" class="text-sm text-slate-800">-</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm">
+                                        <p class="text-xs text-slate-500 font-bold mb-1">Pemeriksaan Fisik:</p>
+                                        <p id="rm-detail-fisik" class="text-sm text-slate-800 whitespace-pre-wrap">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SISI KANAN -->
+                            <div>
+                                <h4 class="text-sm font-extrabold text-slate-600 uppercase mb-3 border-b pb-1 border-slate-200">Diagnosa & Terapi</h4>
+                                <div class="space-y-4">
+                                    <div class="bg-harmony-warning_light p-4 rounded-xl border border-harmony-warning/30 shadow-sm">
+                                        <p class="text-xs text-slate-700 font-bold mb-1">Diagnosa Utama (ICD-10):</p>
+                                        <p id="rm-detail-diag-utama" class="font-extrabold text-sm text-slate-800">-</p>
+                                        <p class="text-xs text-slate-700 font-bold mt-2 mb-1">Diagnosa Sekunder:</p>
+                                        <p id="rm-detail-diag-sekunder" class="text-sm text-slate-700">-</p>
+                                    </div>
+                                    <div class="bg-harmony-secondary_light p-4 rounded-xl border border-harmony-secondary/30 shadow-sm">
+                                        <p class="text-xs text-slate-700 font-bold mb-1">Tindakan / Rencana Terapi:</p>
+                                        <p id="rm-detail-rencana" class="text-sm text-slate-800 whitespace-pre-wrap">-</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- E-RESEP & INSTRUKSI -->
+                        <div>
+                             <h4 class="text-sm font-extrabold text-slate-600 uppercase mb-3 border-b pb-1 border-slate-200">E-Resep & Instruksi</h4>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="space-y-3">
+                             <p class="text-xs text-slate-500 font-bold">Instruksi Pasien:</p>
+                             <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm"><p id="rm-detail-instruksi" class="text-sm text-slate-800 whitespace-pre-wrap italic">-</p></div>
+                        </div>
+                        <div class="space-y-3">
+                             <p class="text-xs text-slate-500 font-bold">E-Resep Diberikan:</p>
+                             <div id="rm-detail-resep-list" class="space-y-2">
+                                 <!-- Resep List will be populated here -->
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const API_DOKTER = 'backend_dokter.php';
+        let currentStaff = null;
+        let currentPoliData = {}; // Untuk menyimpan data poli saat ini
+        let resepCounter = 0; // Untuk ID unik baris resep
+
+        // FUNGSI TOAST BARU DENGAN POP-IN (SOFT ROSE ERROR)
+        function showToast(msg, type='success') { 
+            const container = document.getElementById('toast-container');
+            const el = document.createElement('div');
+            
+            let bgColor, iconClass, borderClass, iconColorClass;
+            
+            if (type === 'success') {
+                bgColor = 'bg-harmony-accent'; 
+                iconClass = 'fa-check-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else if (type === 'error') {
+                // Soft Rose/Pink
+                bgColor = 'bg-harmony-error'; 
+                iconClass = 'fa-times-circle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            } else { // warning
+                bgColor = 'bg-harmony-warning'; 
+                iconClass = 'fa-exclamation-triangle';
+                borderClass = 'border-l-4 border-white';
+                iconColorClass = 'text-white';
+            }
+
+            el.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 min-w-[300px] transform transition-all pointer-events-auto toast-enter ${borderClass}`;
+            el.innerHTML = `<i class="fas ${iconClass} text-xl flex-shrink-0 ${iconColorClass}"></i><div class="flex-1 text-sm font-medium leading-relaxed">${msg}</div>`;
+            container.appendChild(el);
+            
+            setTimeout(() => {
+                el.classList.remove('toast-enter'); 
+                el.classList.add('toast-exit');
+                setTimeout(() => el.remove(), 500); 
+            }, 4500);
+        }
+        
+        function closeModal(id) { 
+            document.getElementById(id).classList.add('hidden'); 
+            document.getElementById(id).classList.remove('flex');
+        }
+
+        function openModal(id) { 
+            document.getElementById(id).classList.remove('hidden'); 
+            document.getElementById(id).classList.add('flex');
+        }
+
+        function checkSession() {
+            const s = localStorage.getItem('staff_fivecare');
+            const BASE_PATH = window.location.pathname.replace(/\/dokter_portal\.html$/, ''); 
+
+            if(!s) {
+                if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) { showToast("Sesi habis. Silakan login via staff.html", "error"); return; }
+                window.location.href = BASE_PATH + '/staff.html'; return;
+            }
+            currentStaff = JSON.parse(s);
+
+            if (currentStaff.role !== 'Dokter') {
+                showToast('Akses ditolak. Anda bukan Dokter.', 'error');
+                if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) return;
+                setTimeout(()=>window.location.href=BASE_PATH + '/staff.html', 1500); return;
+            }
+            
+            document.getElementById('user-name').textContent = currentStaff.nama_lengkap;
+            
+            // CEK APAKAH ID DOKTER TERHUBUNG?
+            if (!currentStaff.id_dokter) {
+                document.getElementById('alert-no-link').classList.remove('hidden');
+                document.getElementById('stat-total').textContent = "-";
+                document.getElementById('stat-wait').textContent = "-";
+                document.getElementById('stat-done').textContent = "-";
+                return; // Stop here, jangan load data
+            }
+            showPage('dash-dokter');
+        }
+
+        function doLogout() { 
+            localStorage.removeItem('staff_fivecare'); 
+            const BASE_PATH = window.location.pathname.replace(/\/dokter_portal\.html$/, '');
+            if (window.location.protocol === 'blob:' || window.location.href.includes('scf.usercontent.goog')) { showToast("Logout Berhasil", "success"); setTimeout(()=>location.reload(), 1000); return; }
+            window.location.href = BASE_PATH + '/staff.html'; 
+        }
+
+        function setActiveNavItem(pageId) {
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            const navItem = document.querySelector(`button[onclick="showPage('${pageId}')"]`);
+            if (navItem) navItem.classList.add('active');
+        }
+
+        function showPage(id) {
+            setActiveNavItem(id); // Set item navigasi yang aktif
+            document.querySelectorAll('.page-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById('page-' + id).classList.remove('hidden');
+            let title = id.replace('dokter', '').replace(/-/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            if (title.trim() === 'Dash') title = 'Dashboard';
+            document.getElementById('page-title').textContent = title;
+            
+            // FIX: Tambahkan pengecekan null untuk currentStaff
+            if (!currentStaff || !currentStaff.id_dokter) return; 
+
+            if(id==='dash-dokter') loadStatsDokter();
+            if(id==='antrian-pasien') loadAntrianDokter();
+            if(id==='jadwal-dokter') loadJadwalBooking('all'); // Panggil dengan filter default
+            if(id==='rekam-medis') loadRekamMedis();
+            if(id==='profil-dokter') loadProfilDokter();
+            if(id==='lapor-dokter') loadLaporanSayaDokter(); // New Function Call
+        }
+
+        function loadStatsDokter() { 
+            fetch(`${API_DOKTER}?action=get_dashboard&id_dokter=${currentStaff.id_dokter}`)
+            .then(r=>r.json())
+            .then(d => { 
+                document.getElementById('stat-total').textContent = d.total; 
+                document.getElementById('stat-wait').textContent = d.menunggu; 
+                document.getElementById('stat-done').textContent = d.selesai; 
+            }); 
+        }
+
+        function loadAntrianDokter() {
+            fetch(`${API_DOKTER}?action=get_antrian&id_dokter=${currentStaff.id_dokter}`)
+            .then(r=>r.json())
+            .then(data => { 
+
+                console.log("ID DOKTER:", currentStaff.id_dokter);
+                console.log("DATA ANTRIAN:", data);
+
+                let html = ''; 
+                // Antrian Pasien
+                if(data.length === 0) html='<tr><td colspan="4" class="p-12 text-center text-slate-400 italic">Tidak ada antrian.</td></tr>'; // colspan 4 karena 4 kolom (No, Nama, Umur, Aksi)
+                else data.forEach(r => { 
+                    // Simpan data poli untuk ditampilkan di modal pemeriksaan
+                    currentPoliData[r.id] = r; 
+                    
+                    let aksiButton = '';
+                    let rowClass = 'hover:bg-slate-50';
+
+                    if (r.status === 'Menunggu Pemeriksaan') {
+                        // Tombol Mulai Periksa - Primary Blue
+                        aksiButton = `<button onclick='startExamination(${r.id}, ${JSON.stringify(r)})' class="bg-harmony-primary text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-harmony-primary/90 shadow-md shadow-harmony-primary/30 transform active:scale-95">Mulai Periksa</button>`;
+                    } else if (r.status === 'Sedang Pemeriksaan') {
+                         // Tombol Lanjutkan Periksa - Accent Green
+                         aksiButton = `<button onclick='openPemeriksaan(${JSON.stringify(r)})' class="bg-harmony-accent text-white px-4 py-2 rounded-xl text-sm font-bold hover:bg-harmony-accent/90 shadow-md shadow-harmony-accent/30 transform active:scale-95">Lanjutkan Periksa</button>`;
+                         rowClass = 'bg-harmony-warning_light border-l-4 border-harmony-warning'; // Menandai pasien yang sedang diperiksa (Amber)
+                    }
+
+                    // --- PERBAIKAN: Menambahkan No RM di bawah Nama ---
+                    html += `<tr class="${rowClass} border-b">
+                                <td class="p-4 font-extrabold text-harmony-secondary">
+                                    ${r.no_antrian ? r.no_antrian : '-'}
+                                </td>
+                                <td class="p-4">
+                                    <div class="font-bold text-slate-800">${r.nama_lengkap}</div>
+                                    <div class="text-xs text-slate-500 font-mono">${r.no_rm || '-'}</div>
+                                </td>
+                                <td class="p-4 text-sm">${r.jenis_kelamin[0]} / ${r.umur} Th</td>
+                                <td class="p-4">${aksiButton}</td>
+                            </tr>`; 
+                });
+
+                console.log("HTML HASIL:", html);
+
+                document.getElementById('table-antrian-body').innerHTML = html; 
+            });
+        }
+        
+        function startExamination(id_pendaftaran, p_data) {
+             const fd = new FormData();
+             fd.append('id_pendaftaran', id_pendaftaran);
+
+             fetch(API_DOKTER + '?action=start_examination', { method:'POST', body:fd })
+             .then(r => r.json())
+             .then(d => {
+                 showToast(d.message, d.status);
+                 if (d.status === 'success') {
+                     // Setelah status berubah, muat ulang antrian dan buka form
+                     loadAntrianDokter(); 
+                     loadStatsDokter();
+                     // Cara yang lebih aman: langsung buka modal dengan data yang kita miliki, karena status sudah pasti berubah
+                     p_data.status = 'Sedang Pemeriksaan';
+                     openPemeriksaan(p_data);
+                 }
+             });
+        }
+
+        // --- FUNGSI BARU: LOAD JADWAL BOOKING ---
+        function loadJadwalBooking(filter='all') {
+            const btnAll = document.getElementById('filter-all');
+            const btnMinggu = document.getElementById('filter-minggu');
+            const tableBody = document.getElementById('table-jadwal-body');
+
+            // Update visual state
+            [btnAll, btnMinggu].forEach(btn => btn.classList.remove('filter-btn-active'));
+            if (filter === 'all') {
+                btnAll.classList.add('filter-btn-active');
+            } else {
+                btnMinggu.classList.add('filter-btn-active');
+            }
+            
+            // Colspan diubah jadi 4 karena kolom RM dihapus
+            tableBody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-slate-500"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat jadwal...</td></tr>';
+
+            fetch(`${API_DOKTER}?action=get_jadwal_booking&id_dokter=${currentStaff.id_dokter}&filter=${filter}`)
+            .then(r => r.json())
+            .then(d => {
+                const data = d.data || [];
+                
+                if (d.status === 'error' || data.length === 0) {
+                    // Colspan diubah jadi 4
+                    tableBody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-slate-400">Tidak ada jadwal booking mendatang.</td></tr>';
+                    return;
+                }
+
+                let html = '';
+                data.forEach(r => {
+                    // Logic rmStatus dihapus karena tidak ditampilkan lagi
+                    
+                    const statusText = r.status === 'Menunggu Pemeriksaan' ? 'Menunggu' : r.status;
+                    let statusColorClass = 'text-harmony-secondary';
+                    if (r.status === 'Selesai') statusColorClass = 'text-harmony-accent font-bold';
+                    else if (r.status === 'Menunggu Obat') statusColorClass = 'text-harmony-warning';
+                    else if (r.tgl_kunjungan > new Date().toISOString().split('T')[0]) statusColorClass = 'text-harmony-primary';
+
+
+                    // HTML Row Diupdate: Menghapus kolom rmStatus
+                    html += `<tr class="border-b hover:bg-slate-50">
+                                <td class="p-4 font-semibold text-slate-700">${r.tgl_kunjungan}</td>
+                                <td class="p-4">${r.nama_lengkap}<br><span class="text-xs text-slate-400">${r.no_rm}</span></td>
+                                <td class="p-4 text-slate-600">${r.jam_kunjungan || '-'}</td>
+                                <td class="p-4 font-medium ${statusColorClass}">${statusText}</td>
+                            </tr>`;
+                });
+                tableBody.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error loading schedule:', error);
+                showToast('Gagal memuat jadwal dari server.', 'error');
+                tableBody.innerHTML = '<tr><td colspan="4" class="p-8 text-center text-red-500">Gagal memuat jadwal dari server.</td></tr>';
+            });
+        }
+        // --- END FUNGSI BARU: LOAD JADWAL BOOKING ---
+
+
+        function loadRekamMedis(search='') {
+            fetch(`${API_DOKTER}?action=get_rekam_medis&id_dokter=${currentStaff.id_dokter}&search=${search}`).then(r=>r.json()).then(data => {
+                let html = ''; 
+                if(data.length === 0) html='<tr><td colspan="5" class="p-8 text-center text-slate-400 italic">Data tidak ditemukan.</td></tr>';
+                else data.forEach(r => { 
+                    // Parsing Resep
+                    const resepRingkas = r.resep_obat && r.resep_obat !== '[]' && JSON.parse(r.resep_obat).length > 0 ? `${JSON.parse(r.resep_obat).length} Jenis Obat` : 'Tidak Ada Resep';
+
+                    html += `<tr class="border-b hover:bg-slate-50"><td class="p-4 text-xs">${r.tgl_kunjungan}</td><td class="p-4 font-bold text-slate-700">${r.nama_lengkap}<br><span class="text-xs text-slate-400">${r.no_rm}</span></td><td class="p-4 text-sm">${r.diagnosa_utama || '-'}</td><td class="p-4 text-sm italic text-slate-600">${resepRingkas}</td><td class="p-4 text-center"><button onclick="openRekamMedisDetail(${r.id})" class="text-harmony-primary hover:text-harmony-primary/80"><i class="fas fa-eye mr-1"></i> Detail</button></td></tr>`; 
+                });
+                document.getElementById('table-rm-body').innerHTML = html;
+            });
+        }
+
+        // --- NEW: DETAIL REKAM MEDIS ---
+        function openRekamMedisDetail(id_rm) {
+            // id_rm di sini adalah ID dari tabel rekam_medis
+            fetch(`${API_DOKTER}?action=get_rekam_medis_detail&id_rm=${id_rm}`)
+            .then(r => r.json())
+            .then(d => {
+                if (d.status === 'error') {
+                    showToast(d.message, 'error');
+                    return;
+                }
+                const rm = d.data;
+                const detail = rm.diagnosa_detail;
+                const resep = rm.resep_data;
+                
+                // Header
+                document.getElementById('rm-detail-pasien').textContent = `${rm.nama_lengkap} (${rm.no_rm})`;
+                document.getElementById('rm-detail-tgl').textContent = rm.tgl_kunjungan;
+                document.getElementById('rm-detail-rm').textContent = rm.no_rm;
+                document.getElementById('rm-detail-poli-dr').textContent = `${rm.nama_poli} / ${rm.dokter_nama}`; // Menggunakan rm.dokter_nama
+                document.getElementById('rm-detail-status').textContent = rm.status;
+
+                // Anamnesa & Fisik
+                document.getElementById('rm-detail-keluhan').textContent = detail.keluhan_utama || '-';
+                document.getElementById('rm-detail-fisik').textContent = detail.pemeriksaan_fisik || '-';
+                
+                // Diagnosa & Terapi (Menggunakan Display Name dari backend)
+                document.getElementById('rm-detail-diag-utama').textContent = detail.diagnosa_utama_display || '-';
+                document.getElementById('rm-detail-diag-sekunder').textContent = detail.diagnosa_sekunder_display || '-';
+                document.getElementById('rm-detail-rencana').textContent = detail.rencana_terapi || '-';
+
+                // Resep & Instruksi
+                document.getElementById('rm-detail-instruksi').textContent = detail.instruksi_pasien || '-';
+                
+                let resepHtml = '';
+                if (resep && resep.length > 0) {
+                    resep.forEach(r => {
+                        // Perbaikan tampilan resep detail
+                        resepHtml += `<div class="bg-white p-3 border border-slate-200 rounded-xl text-sm shadow-sm">
+                            <strong class="text-harmony-accent">${r.nama}</strong> - Dosis: ${r.dosis} (${r.jumlah} item)
+                            <p class="text-xs text-slate-500 italic">Aturan: ${r.aturan} | Durasi: ${r.durasi} hari</p>
+                        </div>`;
+                    });
+                } else {
+                    resepHtml = '<p class="text-center text-slate-400 italic text-xs">Tidak ada resep diberikan.</p>';
+                }
+                document.getElementById('rm-detail-resep-list').innerHTML = resepHtml;
+
+                closeModal('modal-periksa'); // Pastikan form pemeriksaan tertutup
+                openModal('modal-rm-detail');
+
+            });
+        }
+        // --- END: DETAIL REKAM MEDIS ---
+
+
+        function loadProfilDokter() {
+             // Default / Fallback values
+             const fallbackNama = currentStaff.nama_lengkap;
+             const fallbackSpesialis = 'Spesialis Umum';
+             const fallbackPoli = 'N/A (Hubungi Admin)';
+             const fallbackJadwal = 'N/A';
+             const fallbackKuota = 'N/A';
+             
+             // Isi data nama dan username dari sesi lokal (dijamin ada)
+             document.getElementById('prof-nama').textContent = fallbackNama;
+             document.getElementById('prof-username').textContent = currentStaff.username;
+             document.getElementById('user-poli').textContent = fallbackSpesialis;
+             
+             // Atur placeholder awal
+             document.getElementById('prof-spesialis').textContent = fallbackSpesialis;
+             document.getElementById('prof-poli').textContent = 'Memuat...';
+             document.getElementById('prof-jadwal').textContent = 'Memuat...';
+             document.getElementById('prof-kuota').textContent = 'Memuat...';
+
+
+             fetch(`${API_DOKTER}?action=get_doctor_profile_detail&id_dokter=${currentStaff.id_dokter}`)
+             .then(r => {
+                 if (!r.ok) throw new Error('API server error or unknown action.');
+                 return r.json();
+             })
+             .then(d => {
+                 if(d.status === 'success' && d.data) {
+                     const doc = d.data;
+                     document.getElementById('prof-nama').textContent = doc.nama_dokter || fallbackNama;
+                     document.getElementById('prof-spesialis').textContent = doc.spesialis || fallbackSpesialis;
+                     document.getElementById('prof-poli').textContent = doc.nama_poli || fallbackPoli;
+                     document.getElementById('prof-jadwal').textContent = doc.jadwal_praktik || fallbackJadwal;
+                     document.getElementById('prof-kuota').textContent = doc.kuota || fallbackKuota;
+                     document.getElementById('user-poli').textContent = doc.nama_poli || fallbackSpesialis;
+                 } else {
+                     showToast(d.message || 'Gagal memuat detail dokter. (Data API tidak valid)', 'error');
+                     // Tetap tampilkan fallback jika API merespons error atau status non-sukses
+                     document.getElementById('prof-poli').textContent = fallbackPoli;
+                     document.getElementById('prof-jadwal').textContent = fallbackJadwal;
+                     document.getElementById('prof-kuota').textContent = fallbackKuota;
+                 }
+             })
+             .catch(error => {
+                 console.error('Error fetching doctor profile:', error);
+                 showToast('Gagal memuat detail profil (Kesalahan koneksi/action tidak dikenal).', 'error');
+                 // Pastikan elemen tetap menunjukkan nilai fallback setelah error
+                 document.getElementById('prof-poli').textContent = fallbackPoli;
+                 document.getElementById('prof-jadwal').textContent = fallbackJadwal;
+                 document.getElementById('prof-kuota').textContent = fallbackKuota;
+             });
+        }
+
+        
+        // =====================================================
+        // SATUSEHAT CLINICAL SYNC
+        // =====================================================
+        function syncClinicalVisit(id_pendaftaran) {
+
+            if (!id_pendaftaran) {
+                showToast('ID pendaftaran tidak ditemukan.', 'error');
+                return;
+            }
+
+            fetch(`backend_satusehat.php?action=sync_clinical_visit&pendaftaran_id=${id_pendaftaran}`)
+            .then(r => r.json())
+            .then(d => {
+                if (d.status === 'success') {
+                    showToast('Sync SATUSEHAT berhasil.', 'success');
+                } else {
+                    showToast(d.message || 'Sync gagal.', 'error');
+                }
+            })
+            .catch(() => {
+                showToast('Gagal koneksi backend SATUSEHAT.', 'error');
+            });
+        }
+
+// --- PEMERIKSAAN LOGIC ---
+        let currentPatientData = {};
+        
+        // Memuat data pasien dan pre-fill RM yang sudah ada (jika status Sedang Pemeriksaan)
+        function openPemeriksaan(p) { 
+             const getPoliName = fetch(`${API_DOKTER}?action=get_poli_name&id_poli=${p.id_poli}`).then(r => r.json());
+             
+             // Tambahkan fetch data RM yang sudah ada jika statusnya 'Sedang Pemeriksaan'
+             const getExistingRm = p.status === 'Sedang Pemeriksaan' 
+                ? fetch(`${API_DOKTER}?action=get_existing_rm&id_pendaftaran=${p.id}`).then(r => r.json())
+                : Promise.resolve({});
+
+             Promise.all([getPoliName, getExistingRm]).then(([poli, existingRm]) => {
+                currentPatientData = p; // Simpan data pasien global
+
+                // 1. Isi data pasien ke modal display
+                document.getElementById('input-id-daftar').value = p.id; 
+                document.getElementById('modal-pasien-nama-antrian').innerHTML = `${p.nama_lengkap} <span class="text-harmony-secondary font-mono">(#${p.no_antrian})</span>`;
+                document.getElementById('modal-pasien-rm-poli').innerHTML = `${p.no_rm || p.nik_pasien} / ${poli.nama_poli}`;
+                document.getElementById('modal-pasien-jk-umur').innerHTML = `${p.jenis_kelamin[0]} / ${p.umur} Thn`;
+                document.getElementById('modal-pasien-tgl-lahir').textContent = p.tgl_lahir;
+                
+                // 2. Reset form pemeriksaan
+                const form = document.getElementById('form-periksa');
+                form.reset();
+                document.getElementById('icd-utama-input').value = ''; 
+                document.getElementById('icd-sekunder-input').value = '';
+                document.getElementById('icd-utama-kode').value = '';
+                document.getElementById('icd-sekunder-kode').value = '';
+                document.getElementById('icd-utama-list').classList.add('hidden');
+                document.getElementById('icd-sekunder-list').classList.add('hidden');
+                
+                // 3. Pre-fill data jika RM sudah ada
+                document.getElementById('resep-list').innerHTML = ''; // Clear resep list
+                resepCounter = 0; // Reset counter resep
+                document.getElementById('input-biaya-medis').value = p.biaya_medis_dasar || 0; // Load existing BLM/0
+
+                if (existingRm && existingRm.status === 'success' && existingRm.data) {
+                    const rm = existingRm.data;
+                    form.elements['keluhan_utama'].value = rm.keluhan_utama || '';
+                    form.elements['pemeriksaan_fisik'].value = rm.pemeriksaan_fisik || '';
+                    form.elements['rencana_terapi'].value = rm.rencana_terapi || '';
+                    form.elements['instruksi_pasien'].value = rm.instruksi_pasien || '';
+                    
+                    // Biaya Medis
+                    document.getElementById('input-biaya-medis').value = rm.biaya_medis_dasar || p.biaya_medis_dasar || 0;
+
+                    // Diagnosa Utama
+                    if (rm.diagnosa_utama_display) {
+                        document.getElementById('icd-utama-input').value = rm.diagnosa_utama_display;
+                        document.getElementById('icd-utama-kode').value = rm.diagnosa_utama;
+                    }
+                    // Diagnosa Sekunder
+                    if (rm.diagnosa_sekunder_display) {
+                        document.getElementById('icd-sekunder-input').value = rm.diagnosa_sekunder_display;
+                        document.getElementById('icd-sekunder-kode').value = rm.diagnosa_sekunder;
+                    }
+
+                    // E-Resep
+                    const resepData = JSON.parse(rm.resep_obat || '[]');
+                    if (resepData.length > 0) {
+                        resepData.forEach(r => addResepRow(r));
+                    } else {
+                        document.getElementById('resep-list').innerHTML = `<div id="no-resep-placeholder" class="text-center text-slate-400 italic text-sm py-4 border rounded-xl bg-slate-50">Tekan "Tambah Obat" untuk meresepkan.</div>`;
+                    }
+                } else {
+                    // Jika tidak ada data RM yang ada, tampilkan placeholder resep default
+                     document.getElementById('resep-list').innerHTML = `<div id="no-resep-placeholder" class="text-center text-slate-400 italic text-sm py-4 border rounded-xl bg-slate-50">Tekan "Tambah Obat" untuk meresepkan.</div>`;
+                }
+
+                openModal('modal-periksa');
+            });
+        }
+
+        function closeModalPeriksa() { 
+            closeModal('modal-periksa');
+            document.getElementById('form-periksa').reset(); 
+        }
+
+        // --- FUNGSI BARU: BATALKAN PEMERIKSAAN ---
+        function cancelPemeriksaan() {
+            const id = document.getElementById('input-id-daftar').value;
+            
+            if(!id) {
+                closeModalPeriksa();
+                return;
+            }
+
+            // Panggil API untuk mengembalikan status ke 'Menunggu Pemeriksaan'
+            const fd = new FormData();
+            fd.append('id_pendaftaran', id);
+
+            fetch(API_DOKTER + '?action=cancel_examination', { method:'POST', body:fd })
+            .then(r => r.json())
+            .then(d => {
+                if (d.status === 'success') {
+                    // Optional: Tampilkan pesan feedback
+                    // showToast('Pemeriksaan dibatalkan.', 'warning');
+                }
+                // Tutup modal dan refresh data agar pasien kembali ke list "Menunggu"
+                closeModalPeriksa();
+                loadAntrianDokter();
+                loadStatsDokter();
+            })
+            .catch(err => {
+                console.error(err);
+                closeModalPeriksa();
+            });
+        }
+        
+        // --- LOGIC E-RESEP DINAMIS ---
+        function addResepRow(prefill = {}) {
+            resepCounter++;
+            document.getElementById('no-resep-placeholder')?.remove(); // Hapus placeholder jika ada
+            
+            const listEl = document.getElementById('resep-list');
+            const newRow = document.createElement('div');
+            newRow.id = `resep-row-${resepCounter}`;
+            newRow.className = 'resep-row grid grid-cols-12 gap-3 items-center';
+            
+            newRow.innerHTML = `
+                <div class="col-span-12 md:col-span-4 autocomplete-container">
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Nama Obat</label>
+                    <input type="text" id="obat-nama-input-${resepCounter}" data-resep-id="${resepCounter}" name="obat_nama_${resepCounter}" placeholder="Nama Obat (Cek Stok)" class="input-glow-focus w-full border border-slate-300 p-2 rounded-xl text-sm focus:ring-2 focus:ring-harmony-accent" onkeyup="searchObat(this.value, ${resepCounter})" required value="${prefill.nama || ''}">
+                    <input type="hidden" name="obat_id_${resepCounter}" id="obat-id-${resepCounter}" value="${prefill.id_obat || ''}">
+                    <div id="obat-list-${resepCounter}" class="autocomplete-list hidden"></div>
+                </div>
+                <div class="col-span-3 md:col-span-1">
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Dosis</label>
+                    <input type="text" name="obat_dosis_${resepCounter}" placeholder="500mg" class="w-full border border-slate-300 p-2 rounded-xl text-sm focus:ring-2 focus:ring-harmony-accent" required value="${prefill.dosis || ''}">
+                </div>
+                <div class="col-span-9 md:col-span-3">
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Aturan Pakai</label>
+                    <input type="text" name="obat_aturan_${resepCounter}" placeholder="3x1 sesudah makan" class="w-full border border-slate-300 p-2 rounded-xl text-sm focus:ring-2 focus:ring-harmony-accent" required value="${prefill.aturan || ''}">
+                </div>
+                <div class="col-span-6 md:col-span-2">
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Durasi (Hari)</label>
+                    <input type="number" name="obat_durasi_${resepCounter}" value="${prefill.durasi || 1}" min="1" class="w-full border border-slate-300 p-2 rounded-xl text-sm focus:ring-2 focus:ring-harmony-accent" required>
+                </div>
+                <div class="col-span-4 md:col-span-1">
+                    <label class="text-xs font-bold text-slate-500 block mb-1">Jml</label>
+                    <input type="number" name="obat_jumlah_${resepCounter}" value="${prefill.jumlah || 1}" min="1" class="w-full border border-slate-300 p-2 rounded-xl text-sm focus:ring-2 focus:ring-harmony-accent" required>
+                </div>
+                <div class="col-span-2 md:col-span-1 text-right">
+                    <button type="button" onclick="removeResepRow(${resepCounter})" class="text-harmony-error p-2 hover:bg-harmony-error_light rounded-full transition">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            `;
+            listEl.appendChild(newRow);
+        }
+
+        function removeResepRow(id) {
+            document.getElementById(`resep-row-${id}`).remove();
+            // Tampilkan placeholder jika tidak ada baris resep tersisa
+            if (document.querySelectorAll('.resep-row').length === 0) {
+                 document.getElementById('resep-list').innerHTML = `<div id="no-resep-placeholder" class="text-center text-slate-400 italic text-sm py-4 border rounded-xl bg-slate-50">Tekan "Tambah Obat" untuk meresepkan.</div>`;
+            }
+        }
+        
+        // Autocomplete Obat
+        let searchObatTimer;
+        window.searchObat = function(keyword, resepId) {
+            clearTimeout(searchObatTimer);
+            const listEl = document.getElementById(`obat-list-${resepId}`);
+            
+            if (keyword.length < 1) {
+                listEl.classList.add('hidden');
+                return;
+            }
+
+            searchObatTimer = setTimeout(() => {
+                fetch(`${API_DOKTER}?action=search_obat&keyword=${keyword}`)
+                .then(r => r.json())
+                .then(data => {
+                    let html = '';
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            // Escape quotes in item.nama_obat for usage in selectObat function
+                            const nama = item.nama_obat.replace(/'/g, "\\'");
+                            html += `<div class="autocomplete-item" onclick="selectObat('${item.id}', '${nama}', '${resepId}')">
+                                <strong>${item.nama_obat}</strong> - <span class="text-harmony-accent">${item.stok} ${item.satuan} tersedia</span>
+                            </div>`;
+                        });
+                        listEl.innerHTML = html;
+                        listEl.classList.remove('hidden');
+                    } else {
+                        listEl.innerHTML = `<div class="autocomplete-item text-slate-500">Obat tidak ditemukan</div>`;
+                        listEl.classList.remove('hidden');
+                    }
+                });
+            }, 50); // Debounce lebih cepat (50ms)
+        };
+        
+        window.selectObat = function(id, nama, resepId) {
+            document.getElementById(`obat-nama-input-${resepId}`).value = nama;
+            document.getElementById(`obat-id-${resepId}`).value = id;
+            document.getElementById(`obat-list-${resepId}`).classList.add('hidden');
+        };
+        // --- END LOGIC E-RESEP DINAMIS ---
+
+
+        // Autocomplete ICD-10
+        let searchTimer;
+        window.searchIcd = function(keyword, type) {
+            clearTimeout(searchTimer);
+            const listEl = document.getElementById(`icd-${type}-list`);
+            
+            // FIX: Mulai pencarian sejak karakter pertama
+            if (keyword.length < 1) {
+                listEl.classList.add('hidden');
+                return;
+            }
+
+            searchTimer = setTimeout(() => {
+                fetch(`${API_DOKTER}?action=search_icd&keyword=${keyword}`)
+                .then(r => r.json())
+                .then(data => {
+                    let html = '';
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            html += `<div class="autocomplete-item" onclick="selectIcd('${item.code}', '${item.display.replace(/'/g, "\\'")}', '${type}')">
+                                <strong>${item.code}</strong> - ${item.display}
+                            </div>`;
+                        });
+                        listEl.innerHTML = html;
+                        listEl.classList.remove('hidden');
+                    } else {
+                        listEl.innerHTML = `<div class="autocomplete-item text-slate-500">Tidak ditemukan</div>`;
+                        listEl.classList.remove('hidden');
+                    }
+                });
+            }, 50); // Debounce lebih cepat (50ms)
+        };
+
+        window.selectIcd = function(code, display, type) {
+            document.getElementById(`icd-${type}-input`).value = `${code} - ${display}`;
+            document.getElementById(`icd-${type}-kode`).value = code;
+            document.getElementById(`icd-${type}-list`).classList.add('hidden');
+        };
+
+        // Form Submit Pemeriksaan
+        document.getElementById('form-periksa').addEventListener('submit', function(e){ 
+            e.preventDefault(); 
+            const fd = new FormData(this); 
+            
+            // 1. Validasi Diagnosa Utama
+            if (!fd.get('diagnosa_utama_kode')) {
+                showToast("Diagnosa Utama wajib dipilih dari daftar ICD-10.", "error");
+                return;
+            }
+            
+            // 2. Kumpulkan data resep menjadi JSON string
+            const resepRows = document.querySelectorAll('.resep-row');
+            let resepArray = [];
+            
+            resepRows.forEach(row => {
+                const id = row.id.split('-')[2];
+                // Cek apakah obat sudah dipilih (memiliki ID Obat)
+                if (fd.get(`obat_id_${id}`)) { 
+                     resepArray.push({
+                        id_obat: fd.get(`obat_id_${id}`),
+                        nama: fd.get(`obat_nama_${id}`),
+                        dosis: fd.get(`obat_dosis_${id}`),
+                        aturan: fd.get(`obat_aturan_${id}`),
+                        durasi: fd.get(`obat_durasi_${id}`),
+                        jumlah: fd.get(`obat_jumlah_${id}`),
+                    });
+                }
+            });
+
+            // Timpa field 'resep' lama dengan JSON string resep baru
+            fd.set('resep', JSON.stringify(resepArray));
+            fd.append('id_dokter', currentStaff.id_dokter); // Tambahkan ID Dokter
+
+
+            fetch(API_DOKTER + '?action=periksa_pasien', { method:'POST', body:fd })
+            .then(r=>r.json())
+            .then(d=>{ 
+                showToast(d.message, d.status); 
+                if(d.status==='success'){ closeModalPeriksa(); loadAntrianDokter(); loadStatsDokter(); } 
+            }); 
+        });
+        
+        // FIX: Mengganti simulasi dengan panggilan API ke backend
+        document.getElementById('form-lapor-dokter').addEventListener('submit', function(e){ 
+            e.preventDefault(); 
+            const fd = new FormData(this); 
+            // Mengirim ID User yang sedang login ke backend
+            // Pastikan currentStaff.id (ID dari tabel users) terkirim
+            fd.append('id_user', currentStaff.id); 
+            
+            fetch(API_DOKTER + '?action=lapor_masalah', { method:'POST', body:fd })
+            .then(r => r.json())
+            .then(d => {
+                showToast(d.message, d.status); 
+                if (d.status === 'success') {
+                    this.reset();
+                    loadLaporanSayaDokter(); // Reload history
+                }
+            })
+            .catch(error => {
+                showToast('Terjadi kesalahan koneksi saat mengirim laporan.', 'error');
+                console.error('Laporan Error:', error);
+            });
+        });
+
+        // --- NEW: Load Report History for Doctor ---
+        function loadLaporanSayaDokter() {
+            const container = document.getElementById('list-laporan-dokter-container');
+            container.innerHTML = '<p class="text-center text-slate-400 italic py-4">Memuat...</p>';
+            
+            fetch(`${API_DOKTER}?action=dokter_get_laporan_saya&id_user=${currentStaff.id}`)
+            .then(r => r.json())
+            .then(resp => {
+                if(resp.status === 'success') {
+                    const data = resp.data;
+                    if(data.length === 0) {
+                        container.innerHTML = '<p class="text-center text-slate-400 italic py-4 border border-dashed rounded-xl">Belum ada laporan yang dikirim.</p>';
+                        return;
+                    }
+                    
+                    let html = '';
+                    data.forEach(l => {
+                        let statusBadge = l.status === 'Baru' ? 'bg-harmony-error_light text-harmony-error' : (l.status === 'Diproses' ? 'bg-harmony-warning_light text-harmony-warning' : 'bg-harmony-accent_light text-harmony-accent');
+                        let tanggapanHtml = l.tanggapan ? `<div class="mt-3 pt-3 border-t border-slate-100 text-sm bg-harmony-primary_light p-3 rounded-xl text-harmony-primary"><strong class="block text-xs uppercase text-harmony-primary_dark mb-1">Tanggapan Admin:</strong>${l.tanggapan}</div>` : '';
+                        
+                        html += `
+                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <span class="font-bold text-slate-800 block">${l.jenis_masalah}</span>
+                                    <span class="text-xs text-slate-400">${l.tgl_lapor}</span>
+                                </div>
+                                <span class="px-3 py-1 rounded-full text-xs font-bold ${statusBadge}">${l.status}</span>
+                            </div>
+                            <p class="text-sm text-slate-600 italic">"${l.keterangan}"</p>
+                            ${tanggapanHtml}
+                        </div>`;
+                    });
+                    container.innerHTML = html;
+                } else {
+                    container.innerHTML = '<p class="text-center text-red-400 italic">Gagal memuat riwayat.</p>';
+                }
+            })
+            .catch(e => { 
+                console.error(e);
+                container.innerHTML = '<p class="text-center text-red-400 italic">Error koneksi.</p>';
+            });
+        }
+
+        // --- PROFILE MODAL HANDLERS ---
+        function openModalPassword() { 
+            openModal('modal-password'); 
+            document.getElementById('form-change-password').reset();
+        }
+        function openModalUsername() { 
+            openModal('modal-username'); 
+            document.getElementById('form-change-username').reset();
+        }
+        
+        // Form Ubah Password (Diperbarui)
+        document.getElementById('form-change-password').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const fd = new FormData(this);
+            const newPwd = fd.get('new_password');
+            const confirmPwd = fd.get('confirm_password');
+            
+            if (newPwd !== confirmPwd) {
+                showToast('Konfirmasi password baru tidak cocok!', 'error');
+                return;
+            }
+            
+            if (newPwd.length < 8) {
+                 showToast('Password minimal 8 karakter.', 'error');
+                 return;
+            }
+
+            fd.append('id_user', currentStaff.id);
+            
+            fetch(API_DOKTER + '?action=dokter_change_password', { method: 'POST', body: fd })
+            .then(r => r.json())
+            .then(d => {
+                showToast(d.message, d.status);
+                if (d.status === 'success') {
+                    closeModal('modal-password');
+                    
+                    // PAKSA LOGOUT
+                    setTimeout(() => {
+                        showToast("Password berhasil diubah. Silakan login kembali.", "success");
+                        doLogout();
+                    }, 1500);
+                }
+            })
+            .catch(error => {
+                showToast('Gagal terhubung ke server saat ubah password.', 'error');
+                console.error('Ubah Password Error:', error);
+            });
+        });
+
+        // Form Ubah Username (Diperbarui untuk Stabilitas Error Handling)
+        document.getElementById('form-change-username').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = this;
+            const fd = new FormData(form);
+            const newUsername = fd.get('new_username');
+            const password = fd.get('password');
+            
+            if (newUsername.trim() === '') {
+                 showToast('Username baru tidak boleh kosong.', 'error');
+                 return;
+            }
+
+            if (password.trim() === '') {
+                 showToast('Verifikasi Password Anda diperlukan.', 'error');
+                 return;
+            }
+            
+            // Siapkan FormData untuk update (backend akan melakukan verifikasi password dan update)
+            const updateFd = new FormData();
+            updateFd.append('id_user', currentStaff.id);
+            updateFd.append('new_username', newUsername);
+            updateFd.append('old_password', password); // Gunakan field 'password' sebagai verifikasi old_password
+
+            // 1. Kirim permintaan update
+            fetch(API_DOKTER + '?action=dokter_update_username_only', { method: 'POST', body: updateFd })
+            .then(r => r.json())
+            .then(d => {
+                showToast(d.message, d.status);
+                if (d.status === 'success' || d.status === 'warning') {
+                    closeModal('modal-username');
+                    
+                    // Update localStorage dengan data baru
+                    if (d.user_data) {
+                        localStorage.setItem('staff_fivecare', JSON.stringify(d.user_data));
+                        currentStaff = d.user_data; // Perbarui variabel global
+                    }
+                    
+                    // PAKSA LOGOUT
+                    setTimeout(() => {
+                        showToast("Silakan login kembali dengan username baru Anda.", "success");
+                        doLogout();
+                    }, 1500);
+                }
+            })
+            .catch(error => {
+                const errorMsg = error.message.includes('SyntaxError') 
+                    ? 'Gagal terhubung ke server atau server mengirim respons tidak valid.' 
+                    : error.message;
+                
+                showToast(errorMsg, 'error');
+                console.error('Ubah Username Error:', error);
+            });
+        });
+
+        checkSession();
+    </script>
+</body>
+</html>

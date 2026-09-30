@@ -1,0 +1,59 @@
+
+====================
+2026-09-09 15:12:00
+SEARCH NIK
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "first",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            },
+            {
+                "relation": "self",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"first\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"},{\"relation\":\"self\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"
+}
+====================
+2026-09-09 15:12:01
+SEARCH NIK NAME BIRTHDATE
+{
+    "http_code": 200,
+    "data": {
+        "link": [
+            {
+                "relation": "search",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "first",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            },
+            {
+                "relation": "self",
+                "url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"
+            }
+        ],
+        "resourceType": "Bundle",
+        "total": 0,
+        "type": "searchset",
+        "entry": []
+    },
+    "raw": "{\"link\":[{\"relation\":\"search\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"first\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"},{\"relation\":\"self\",\"url\":\"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A\"}],\"resourceType\":\"Bundle\",\"total\":0,\"type\":\"searchset\",\"entry\":[]}",
+    "curl_error": "",
+    "request_url": "https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.%20Yoga%20Yandika%2C%20Sp.A&birthdate=1995-02-02"
+}

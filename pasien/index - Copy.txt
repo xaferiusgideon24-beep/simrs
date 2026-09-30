@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasien Portal - RS FiveCare</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        // Konfigurasi Tailwind CSS untuk tema Prismatic Harmony (Vibrant yet Soft)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        harmony: {
+                            // Warna Utama: Blue (Primary - KUNCI UTAMA Pasien/Pendaftaran)
+                            primary: '#3b82f6',   // Blue 500
+                            primary_dark: '#1e3a8a', // Blue 900 (Used for deep shadows/accents)
+                            primary_light: '#eff6ff', // Blue 50
+                            
+                            // Warna Sekunder: Violet (Dokter)
+                            secondary: '#8b5cf6', // Violet 500
+                            secondary_light: '#f5f3ff', // Violet 50
+                            
+                            // Warna Accent: Emerald (Farmasi, Success, Register)
+                            accent: '#10b981',    // Emerald 500
+                            accent_light: '#e6fffa', // Emerald 50
+                            
+                            // Warna Warning/Menunggu: Amber
+                            warning: '#facc15',   // Amber 500
+                            warning_light: '#fffceb', // Amber 50
+                            
+                            // Warna Error/Lapor/Pink (Soft Rose)
+                            error: '#f43f5e',     // Rose 500
+                            error_light: '#ffe4e6', // Rose 100
+                        },
+                    },
+                    keyframes: {
+                        'pop-in': { 
+                            '0%': { transform: 'scale(0.8) translateY(-20px)', opacity: 0 }, 
+                            '80%': { transform: 'scale(1.05) translateY(0)', opacity: 1 },
+                            '100%': { transform: 'scale(1) translateY(0)', opacity: 1 } 
+                        },
+                        'fade-out-up': {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' }
+                        },
+                        'slide-in': { '0%': { transform: 'translateX(-20px)', opacity: 0 }, '100%': { transform: 'translateX(0)', opacity: 1 } },
+                        'fade-up': { '0%': { transform: 'translateY(10px)', opacity: 0 }, '100%': { transform: 'translateY(0)', opacity: 1 } }
+                    },
+                    animation: {
+                        'pop-in': 'pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', 
+                        'fade-out-up': 'fade-out-up 0.5s ease-out forwards',
+                        'slide-in': 'slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                        'fade-up': 'fade-up 0.6s ease-out'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            /* Background Joyful & Peaceful (Light Blue Tint) */
+            background: linear-gradient(135deg, #f0f4f8 0%, #eff6ff 100%); 
+            font-family: 'Inter', sans-serif;
+            color: #1e293b; /* slate-800 */
+        }
+        
+        /* Glass Card Style (Transparent & Blurred) */
+        .glass-card { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.7); 
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Sidebar Navigation Active */
+        .nav-active { 
+            background: linear-gradient(90deg, #eff6ff 0%, #ffffff 100%); 
+            border-right: 4px solid #3b82f6; /* harmony-primary */
+            color: #3b82f6; 
+            font-weight: 700;
+        }
+
+        /* Input Focus Glow (Biru Primary) */
+        .input-glow-focus:focus {
+            box-shadow: 0 0 0 4px #eff6ff; /* harmony-primary_light glow */
+            border-color: #3b82f6; /* harmony-primary */
+        }
+
+        /* Animasi Tombol/Card Hover */
+        .interactive-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.15); /* Soft Primary Shadow */
+        }
+        
+        /* Toast Styles */
+        .toast-enter { animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        .toast-exit { animation: fade-out-up 0.5s ease-out forwards; }
+
+        /* Estetika Background (Placeholder Icon) */
+        .login-image-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.05; /* Sangat transparan */
+            color: #3b82f6; /* Harmony Primary */
+            font-size: 35vw;
+            pointer-events: none;
+            z-index: -1;
+        }
+        /* Style Tambahan untuk 2-Kolom Auth Layout (Diperbarui) */
+        #auth-container {
+            display: flex;
+            width: 100%;
+            max-width: 1000px; /* Lebar lebih kecil agar lebih elegan */
+            height: 90vh;
+            max-height: 700px;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+        .auth-col-visual {
+            background: linear-gradient(45deg, #1e3a8a, #3b82f6); /* Dark Blue to Primary */
+            color: white;
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .auth-col-form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Responsive Fix: Stack columns on smaller screens */
+        @media (max-width: 768px) {
+            #auth-container {
+                height: auto;
+                max-width: 95vw;
+                flex-direction: column;
+            }
+            .auth-col-visual {
+                display: none; /* Hide visual column on mobile */
+            }
+            .auth-col-form {
+                border-radius: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen flex overflow-hidden selection:bg-harmony-primary_light selection:text-harmony-primary">
+
+    <!-- Toast Container -->
+    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- MODAL CONFIRM (Diperlukan untuk hapus antrian) -->
+    <div id="modal-confirm" class="fixed inset-0 bg-black/60 z-[110] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden glass-card">
+            <div class="p-8 text-center">
+                <div class="w-16 h-16 bg-harmony-error_light text-harmony-error rounded-full flex items-center justify-center mx-auto mb-5 border-4 border-white shadow-lg shadow-harmony-error/20"><i class="fas fa-exclamation-triangle text-3xl"></i></div>
+                <h3 class="text-xl font-extrabold text-slate-900 mb-2">Konfirmasi Tindakan</h3>
+                <p class="text-slate-500 text-sm mb-8" id="confirm-message">Tindakan ini tidak dapat dibatalkan.</p>
+                <div class="flex gap-4 justify-center">
+                    <button onclick="closeModal('modal-confirm')" class="flex-1 px-6 py-3 rounded-xl border border-slate-300 text-slate-600 font-semibold hover:bg-slate-50 transition">Batal</button>
+                    <button id="btn-confirm-yes" class="flex-1 px-6 py-3 rounded-xl bg-harmony-error text-white font-bold hover:bg-harmony-error/90 shadow-lg shadow-harmony-error/30 transition transform active:scale-95">Ya, Lanjutkan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MODAL DETAIL REKAM MEDIS -->
+    <div id="modal-rm-pasien" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[60] transition-opacity">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col overflow-hidden animate-fade-up glass-card">
+            <div class="bg-harmony-primary p-6 flex justify-between items-center text-white shrink-0 rounded-t-3xl">
+                <div><h3 class="font-bold text-xl">Detail Pemeriksaan</h3><p class="text-harmony-primary_light text-xs" id="modal-rm-tgl">-</p></div>
+                <button onclick="closeModal('modal-rm-pasien')" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="p-8 overflow-y-auto bg-slate-50 flex-1 space-y-6">
+                <!-- Info Dokter -->
+                <div class="flex items-center gap-4 bg-white p-4 rounded-2xl shadow-sm border border-slate-200 interactive-card">
+                    <div class="w-12 h-12 bg-harmony-secondary_light text-harmony-secondary rounded-full flex items-center justify-center text-xl"><i class="fas fa-user-md"></i></div>
+                    <div><p class="text-xs font-bold text-slate-400 uppercase">Dokter</p><h4 class="font-bold text-slate-800" id="modal-rm-dokter">-</h4><p class="text-sm text-harmony-secondary" id="modal-rm-poli">-</p></div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 interactive-card">
+                        <h4 class="text-sm font-bold text-harmony-error uppercase mb-3 border-b pb-2 border-slate-100"><i class="fas fa-comment-medical mr-2"></i> Keluhan & Fisik</h4>
+                        <div class="mb-4"><span class="text-xs text-slate-500 font-bold block">Keluhan Utama</span><p class="text-slate-800" id="modal-rm-keluhan">-</p></div>
+                        <div><span class="text-xs text-slate-500 font-bold block">Pemeriksaan Fisik</span><p class="text-slate-800 whitespace-pre-line" id="modal-rm-fisik">-</p></div>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 interactive-card">
+                        <h4 class="text-sm font-bold text-harmony-primary uppercase mb-3 border-b pb-2 border-slate-100"><i class="fas fa-file-medical-alt mr-2"></i> Diagnosa & Terapi</h4>
+                        <div class="mb-4"><span class="text-xs text-slate-500 font-bold block">Diagnosa Utama</span><p class="text-harmony-primary_dark font-extrabold text-lg" id="modal-rm-diagnosa-utama">-</p></div>
+                        <div class="mb-4"><span class="text-xs text-slate-500 font-bold block">Diagnosa Sekunder</span><p class="text-slate-800" id="modal-rm-diagnosa-sekunder">-</p></div>
+                        <div><span class="text-xs text-slate-500 font-bold block">Instruksi Dokter</span><p class="text-slate-800 italic whitespace-pre-line" id="modal-rm-instruksi">-</p></div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 interactive-card">
+                    <h4 class="text-sm font-bold text-harmony-accent uppercase mb-4 border-b pb-2 border-slate-100"><i class="fas fa-pills mr-2"></i> Resep Obat</h4>
+                    <div id="modal-rm-resep-list" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL STRUK PEMBAYARAN (BARU UNTUK PASIEN) -->
+    <div id="modal-struk-pasien" class="fixed inset-0 bg-black/60 z-[70] hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform scale-95 transition-transform duration-300 glass-card">
+            <div class="p-6 bg-harmony-primary text-white flex justify-center items-center rounded-t-3xl shadow-lg">
+                <h3 class="font-extrabold text-xl"><i class="fas fa-file-invoice-dollar mr-2"></i> STRUK PEMBAYARAN</h3>
+            </div>
+            
+            <!-- Isi Struk -->
+            <div id="struk-content-pasien" class="p-6 text-sm text-slate-700 space-y-4">
+                <div class="text-center pb-2 border-b border-dashed border-slate-300">
+                    <h4 class="font-extrabold text-lg text-slate-900">RS FiveCare</h4>
+                    <p>Jl. Kesehatan No. 123, Surabaya</p>
+                    <p class="text-xs mt-2" id="struk-pasien-tgl-lunas"></p>
+                </div>
+
+                <!-- Info Kunjungan -->
+                <div class="border-b border-dashed border-slate-300 pb-2 space-y-1">
+                    <p><span class="font-bold">No. Transaksi:</span> <span id="struk-pasien-id-pendaftaran"></span></p>
+                    <p><span class="font-bold">Pasien:</span> <span id="struk-pasien-nama-pasien"></span> (<span id="struk-pasien-no-rm"></span>)</p>
+                    <p><span class="font-bold">Layanan:</span> <span id="struk-pasien-layanan"></span></p>
+                </div>
+
+                <!-- Rincian Biaya -->
+                <div class="space-y-1">
+                    <p class="font-extrabold text-slate-900 uppercase text-xs pb-1 border-b border-slate-200">Rincian Tagihan</p>
+                    
+                    <div class="flex justify-between">
+                        <span>Biaya Layanan Medis</span>
+                        <span id="struk-pasien-biaya-medis">Rp 0</span>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <span>Biaya Obat (Resep)</span>
+                        <span id="struk-pasien-biaya-obat">Rp 0</span>
+                    </div>
+
+                    <!-- Detail Resep (jika ada) -->
+                    <div id="struk-pasien-detail-resep-container" class="mt-2 pt-2 border-t border-dashed border-slate-300">
+                        <p class="text-xs font-semibold text-slate-500 mb-1">Rincian Obat:</p>
+                        <div id="struk-pasien-detail-resep" class="pl-2 text-xs space-y-0.5">
+                            <!-- Detail resep akan di-inject di sini -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary Total -->
+                <div class="pt-2 border-t border-dashed border-slate-300 space-y-1">
+                    <div class="flex justify-between font-bold text-base text-slate-900">
+                        <span>TOTAL TAGIHAN</span>
+                        <span id="struk-pasien-total-tagihan">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>Dibayar</span>
+                        <span id="struk-pasien-jumlah-bayar" class="text-slate-500">Rp 0</span>
+                    </div>
+                    <div class="flex justify-between font-bold text-base text-harmony-accent">
+                        <span>KEMBALIAN</span>
+                        <span id="struk-pasien-kembalian">Rp 0</span>
+                    </div>
+                </div>
+
+                <!-- Footer Struk -->
+                <div class="pt-4 text-center text-xs text-slate-500">
+                    <p>Terima kasih. Lunas tercatat pada sistem.</p>
+                </div>
+            </div>
+            
+            <div class="p-6 pt-0 flex justify-center">
+                <button onclick="closeModal('modal-struk-pasien')" class="px-6 py-2.5 rounded-xl bg-harmony-primary text-white font-bold hover:bg-harmony-primary/90 shadow-lg shadow-harmony-primary/30 transition transform active:scale-95"><i class="fas fa-check mr-2"></i> Tutup</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- MODAL UBAH PASSWORD (Di Profil) -->
+    <div id="modal-change-password" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[70] transition-opacity">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg flex flex-col overflow-hidden animate-fade-up glass-card">
+            <div class="bg-harmony-error p-6 flex justify-between items-center text-white shrink-0 rounded-t-3xl">
+                <div><h3 class="font-bold text-xl">Ubah Password Akun</h3></div>
+                <button onclick="closeModal('modal-change-password')" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="form-change-password" class="p-8 space-y-5">
+                <p class="text-sm text-slate-600">Anda harus memasukkan password lama Anda untuk mengganti password.</p>
+                <input type="password" name="old_password" placeholder="Password Lama" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-error outline-none" required>
+                <!-- PERUBAHAN: minlength diubah dari 6 menjadi 8 -->
+                <input type="password" name="new_password" placeholder="Password Baru (min 8 karakter)" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-error outline-none" required minlength="8">
+                <button type="submit" class="w-full bg-harmony-error text-white p-4 rounded-xl font-bold text-lg hover:bg-harmony-error/90 transition shadow-lg shadow-harmony-error/30 transform active:scale-95">Simpan Password Baru</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL LUPA PASSWORD (di atas auth screen) -->
+    <div id="modal-forgot-password" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-[210] transition-opacity">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg flex flex-col overflow-hidden animate-fade-up glass-card">
+            <div class="bg-harmony-error p-6 flex justify-between items-center text-white shrink-0 rounded-t-3xl">
+                <div><h3 class="font-bold text-xl">Lupa Password</h3><p class="text-harmony-error_light text-xs">Konfirmasi Identitas untuk Atur Ulang Password</p></div>
+                <!-- PERBAIKAN: Tombol tutup yang bisa diakses -->
+                <button onclick="closeModal('modal-forgot-password')" class="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+            </div>
+            <form id="form-forgot-password" class="p-8 space-y-5">
+                <p class="text-sm text-slate-600">Masukkan NIK, Tanggal Lahir, dan Nomor HP yang terdaftar untuk membuat password baru.</p>
+                <input type="text" name="nik" placeholder="NIK (Nomor KTP)" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary outline-none" required>
+                <input type="date" name="tgl_lahir" placeholder="Tanggal Lahir" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary outline-none" required>
+                <input type="text" name="no_telp" placeholder="Nomor HP Terdaftar" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary outline-none" required>
+                <!-- PERUBAHAN: minlength diubah dari 6 menjadi 8 -->
+                <input type="password" name="new_password" placeholder="Password Baru (min 8 karakter)" class="input-glow-focus w-full p-4 bg-slate-50 border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary outline-none" required minlength="8">
+                <button type="submit" class="w-full bg-harmony-error text-white p-4 rounded-xl font-bold text-lg hover:bg-harmony-error/90 transition shadow-lg shadow-harmony-error/30 transform active:scale-95">Atur Ulang Password</button>
+            </form>
+        </div>
+    </div>
+
+
+    <!-- 1. SIDEBAR (Primary Blue Accent) -->
+    <aside class="w-64 bg-white border-r border-slate-200 flex-shrink-0 flex flex-col h-full z-20 transition-all duration-300 relative">
+        <!-- Logo -->
+        <div class="h-20 flex items-center px-8 border-b border-slate-100">
+            <div class="w-10 h-10 bg-harmony-primary rounded-xl flex items-center justify-center text-white mr-3 shadow-lg shadow-harmony-primary/30">
+                <i class="fas fa-plus text-lg"></i>
+            </div>
+            <div>
+                <h1 class="font-bold text-xl text-slate-800 tracking-tight">FiveCare</h1>
+                <p class="text-[10px] uppercase font-bold text-slate-400 tracking-widest">Portal Pasien</p>
+            </div>
+        </div>
+
+        <!-- Menu -->
+        <nav class="flex-1 overflow-y-auto py-6 px-4 space-y-1">
+            <p class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 mt-2">Menu Utama</p>
+            
+            <button onclick="showPage('home')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all hover:bg-slate-50 hover:text-harmony-primary group">
+                <i class="fas fa-th-large w-5 text-center transition group-hover:scale-110"></i> Dashboard
+            </button>
+            
+            <button onclick="showPage('rekam_medis')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all hover:bg-slate-50 hover:text-harmony-primary group">
+                <i class="fas fa-notes-medical w-5 text-center transition group-hover:scale-110"></i> Riwayat Medis
+            </button>
+            
+            <button onclick="showPage('daftar_poli')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all hover:bg-slate-50 hover:text-harmony-primary group">
+                <i class="fas fa-calendar-plus w-5 text-center transition group-hover:scale-110"></i> Pendaftaran
+            </button>
+
+            <p class="px-4 text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 mt-6">Akun & Bantuan</p>
+            
+            <button onclick="showPage('profil')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all hover:bg-slate-50 hover:text-harmony-primary group">
+                <i class="fas fa-user-circle w-5 text-center transition group-hover:scale-110"></i> Profil Saya
+            </button>
+            
+            <button onclick="showPage('lapor')" class="nav-item w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all hover:bg-slate-50 hover:text-harmony-primary group">
+                <i class="fas fa-headset w-5 text-center transition group-hover:scale-110"></i> Bantuan & Lapor
+            </button>
+        </nav>
+
+        <!-- User Logout -->
+        <div class="p-4 border-t border-slate-100">
+            <button onclick="doLogout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium text-harmony-error hover:bg-harmony-error_light transition-colors">
+                <i class="fas fa-sign-out-alt"></i> Keluar
+            </button>
+        </div>
+    </aside>
+
+    <!-- 2. MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col h-full overflow-hidden relative">
+        
+        <!-- Top Bar (Header) -->
+        <header class="h-20 bg-white/90 backdrop-blur-sm border-b border-slate-200 flex items-center justify-between px-8 z-10 sticky top-0 shadow-sm">
+            <div>
+                <h2 class="text-lg font-bold text-slate-800" id="page-title">Dashboard Overview</h2>
+                <p class="text-xs text-slate-500">Selamat datang kembali di RS FiveCare</p>
+            </div>
+            <div class="flex items-center gap-4 bg-harmony-primary_light px-4 py-2 rounded-full border border-harmony-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-harmony-primary/10 cursor-pointer">
+                <div class="hidden md:flex flex-col text-right">
+                    <span class="text-sm font-extrabold text-slate-800" id="header-user-name">Loading...</span>
+                    <span class="text-xs text-harmony-primary" id="header-user-rm">RM-...</span>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-harmony-primary/20 flex items-center justify-center text-harmony-primary font-bold border-2 border-white shadow-inner">
+                    <i class="fas fa-user text-xl"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Scrollable Area -->
+        <div class="flex-1 overflow-y-auto p-8 scroll-smooth">
+            
+            <!-- PAGE: DASHBOARD -->
+            <div id="page-home" class="page-content animate-fade-up max-w-6xl mx-auto">
+                <div class="flex flex-col gap-6">
+                    <!-- Welcome Banner (Primary Blue Gradient) -->
+                    <div class="bg-gradient-to-r from-harmony-primary to-harmony-primary_dark rounded-3xl p-8 text-white shadow-xl shadow-harmony-primary_dark/30 relative overflow-hidden interactive-card">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+                        <div class="relative z-10">
+                            <h2 class="text-3xl font-extrabold mb-2">Halo, <span id="dash-nama">Pasien</span> 👋</h2>
+                            <p class="text-harmony-primary_light mb-6 max-w-md">Jaga kesehatan Anda. Jangan lupa untuk selalu memeriksa jadwal kontrol rutin Anda.</p>
+                            <button onclick="showAllQueuesFromDashboard()" class="bg-white text-harmony-primary px-6 py-2.5 rounded-full font-bold text-sm hover:bg-harmony-primary_light transition shadow-lg inline-flex items-center gap-2 transform active:scale-95">
+                                <i class="fas fa-calendar"></i> Cek Antrian Saya
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Next Queue Card (Glassmorphism) -->
+                    <div id="next-queue-widget" class="glass-card border border-slate-200 rounded-3xl p-6 shadow-sm transition interactive-card">
+                        <h3 class="font-bold text-lg text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-clock text-harmony-warning"></i> Antrian Selanjutnya Anda
+                        </h3>
+                        <!-- Konten diisi oleh JS -->
+                        <div id="next-queue-content">
+                            <div class="text-center py-4 text-slate-400 italic">Tidak ada antrian aktif/booking terdekat.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAGE: REKAM MEDIS (Timeline Layout) -->
+            <div id="page-rekam_medis" class="page-content hidden animate-fade-up max-w-5xl mx-auto">
+                <!-- Filter Bar Sticky -->
+                <div class="sticky top-0 z-10 bg-slate-50/95 backdrop-blur-sm py-2 mb-6">
+                    <div class="glass-card p-2 rounded-2xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-2">
+                        <div class="relative flex-1">
+                            <i class="fas fa-search absolute left-4 top-3.5 text-slate-400"></i>
+                            <input type="text" id="filter-search" placeholder="Cari Dokter, Poli, atau Diagnosa..." class="w-full pl-10 pr-4 py-3 bg-transparent outline-none text-sm font-medium" onkeyup="loadRiwayat()">
+                        </div>
+                        <div class="h-px w-full md:w-px md:h-auto bg-slate-200"></div>
+                        <input type="date" id="filter-date" class="bg-transparent px-4 py-3 outline-none text-sm font-medium text-slate-600 cursor-pointer hover:bg-slate-50 rounded-xl transition" onchange="loadRiwayat()">
+                        <button onclick="resetFilter()" class="p-3 w-12 flex items-center justify-center bg-slate-100 rounded-xl text-slate-500 hover:bg-slate-200 transition transform active:scale-95"><i class="fas fa-sync-alt"></i></button>
+                    </div>
+                </div>
+
+                <!-- Timeline Container -->
+                <div class="relative pl-8 border-l-2 border-slate-200 space-y-8" id="rm-list-container">
+                    <!-- Items rendered here -->
+                </div>
+                
+                <!-- Empty State -->
+                <div id="empty-history" class="hidden flex flex-col items-center justify-center py-20 opacity-50">
+                    <i class="fas fa-folder-open text-6xl text-slate-300 mb-4"></i>
+                    <p class="text-slate-500 font-medium">Tidak ada riwayat ditemukan</p>
+                </div>
+            </div>
+
+            <!-- PAGE: PENDAFTARAN -->
+            <div id="page-daftar_poli" class="page-content hidden animate-fade-up max-w-6xl mx-auto">
+                 
+                <!-- TABS: Form Pendaftaran & Daftar Antrian -->
+                <div class="flex mb-6 space-x-4">
+                    <button onclick="toggleDaftarTab('form')" id="tab-form" class="tab-btn bg-harmony-primary text-white px-6 py-3 rounded-xl font-bold transition shadow-md shadow-harmony-primary/30">Buat Pendaftaran Baru</button>
+                    <button onclick="toggleDaftarTab('list')" id="tab-list" class="tab-btn bg-white text-slate-600 border border-slate-300 px-6 py-3 rounded-xl font-bold transition hover:bg-slate-50">Antrian & Booking Saya</button>
+                </div>
+
+                <!-- 1. FORM PENDAFTARAN BARU -->
+                <div id="daftar-form-section" class="max-w-4xl">
+                    <div class="glass-card rounded-3xl shadow-soft border border-slate-200 overflow-hidden">
+                        <div class="bg-slate-50/50 p-8 border-b border-slate-100 text-center">
+                            <h2 class="text-2xl font-bold text-slate-800">Pendaftaran Baru</h2>
+                            <p class="text-slate-500 mt-1">Ikuti langkah mudah untuk bertemu dokter.</p>
+                        </div>
+                        <form id="form-daftar-poli" class="p-8 lg:p-10 space-y-8">
+                            <!-- Step 1 -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">1. Pilih Poli</label>
+                                    <div class="relative">
+                                        <select id="poli-select" name="id_poli" class="input-glow-focus w-full p-4 pl-12 bg-white border border-slate-300 rounded-xl font-bold text-slate-700 outline-none focus:ring-2 focus:ring-harmony-primary/30 transition cursor-pointer appearance-none" required onchange="loadDokter(this.value)">
+                                            <option value="">-- Pilih Poli --</option>
+                                        </select>
+                                        <i class="fas fa-hospital absolute left-4 top-4 text-slate-400"></i>
+                                        <i class="fas fa-chevron-down absolute right-4 top-4 text-slate-400 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                                <div class="group opacity-50 transition-opacity" id="step-dokter">
+                                    <label class="block text-xs font-bold text-slate-500 uppercase mb-2">2. Pilih Dokter</label>
+                                    <div class="relative">
+                                        <select id="dokter-select" name="id_dokter" class="input-glow-focus w-full p-4 pl-12 bg-white border border-slate-300 rounded-xl font-bold text-slate-700 outline-none focus:ring-2 focus:ring-harmony-secondary/30 transition cursor-pointer appearance-none" required disabled onchange="onDokterSelected()">
+                                            <option value="">-- Menunggu Poli --</option>
+                                        </select>
+                                        <i class="fas fa-user-md absolute left-4 top-4 text-slate-400"></i>
+                                        <i class="fas fa-chevron-down absolute right-4 top-4 text-slate-400 pointer-events-none"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Step 3 -->
+                            <div id="step-tanggal" class="opacity-50 transition-opacity border-t border-slate-100 pt-8">
+                                <label class="block text-xs font-bold text-slate-500 uppercase mb-4">3. Pilih Jadwal Praktik</label>
+                                <div id="day-buttons-container" class="flex flex-wrap gap-3 mb-6">
+                                    <div class="w-full text-center py-6 text-slate-400 italic bg-slate-50 rounded-xl border border-dashed border-slate-200">Silahkan pilih dokter terlebih dahulu</div>
+                                </div>
+                                <input type="hidden" name="tgl_kunjungan" id="tgl-kunjungan-input" required>
+                                
+                                <!-- Result Selection -->
+                                <div id="result-info" class="hidden bg-harmony-primary_light border border-harmony-primary/30 p-6 rounded-2xl flex items-center gap-4 animate-slide-in">
+                                    <div class="w-12 h-12 bg-white text-harmony-primary rounded-xl flex items-center justify-center text-xl shadow-sm"><i class="fas fa-check"></i></div>
+                                    <div>
+                                        <p class="text-xs font-bold text-harmony-primary uppercase">Jadwal Terpilih</p>
+                                        <h4 class="font-bold text-lg text-slate-800" id="result-date">-</h4>
+                                        <p class="text-sm text-harmony-primary_dark font-medium" id="result-shift">-</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" id="btn-daftar" class="w-full bg-harmony-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-harmony-primary/90 hover:shadow-harmony-primary/30 transition-all transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                Ambil Nomor Antrian
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- 2. DAFTAR ANTRIAN AKTIF / BOOKING -->
+                <div id="daftar-list-section" class="hidden">
+                    <div class="glass-card rounded-3xl shadow-soft border border-slate-200 overflow-hidden p-6">
+                        <h2 class="text-xl font-extrabold text-slate-800 mb-4">Antrian Aktif & Booking Mendatang</h2>
+                        
+                        <!-- Filter Bar -->
+                        <div class="flex flex-col sm:flex-row gap-3 mb-6 p-4 rounded-xl bg-slate-50 border border-slate-200">
+                            <input type="date" id="queue-filter-date" class="bg-white border border-slate-300 px-4 py-2 rounded-xl text-sm cursor-pointer input-glow-focus focus:ring-harmony-primary/30" onchange="loadAllQueues()">
+                            <select id="queue-filter-status" class="bg-white border border-slate-300 px-4 py-2 rounded-xl text-sm input-glow-focus focus:ring-harmony-primary/30" onchange="loadAllQueues()">
+                                <option value="">-- Semua Status --</option>
+                                <option value="Menunggu Pemeriksaan">Menunggu Pemeriksaan</option>
+                                <option value="Sedang Pemeriksaan">Sedang Pemeriksaan</option>
+                                <option value="Menunggu Obat">Menunggu Obat</option>
+                                <option value="Booking">Booking (Antrian Masa Depan)</option>
+                            </select>
+                            <button onclick="resetQueueFilter()" class="bg-slate-200 text-slate-600 px-4 py-2 rounded-xl font-bold text-sm hover:bg-slate-300 transition transform active:scale-95">Reset Filter</button>
+                        </div>
+                        
+                        <!-- Antrian List -->
+                        <div id="all-queues-container" class="space-y-4">
+                            <!-- Antrian akan dirender di sini -->
+                            <p class="text-slate-400 text-sm italic text-center py-4">Memuat data antrian...</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PAGE: PROFIL -->
+            <div id="page-profil" class="page-content hidden max-w-4xl mx-auto animate-fade-up">
+                <div class="glass-card rounded-3xl shadow-soft border border-slate-200 p-8">
+                    <div class="flex justify-between items-center mb-6 border-b pb-4">
+                        <h3 class="font-bold text-xl text-slate-800">Informasi Profil Pasien</h3>
+                        <div class="space-x-2">
+                             <button type="button" onclick="openModalChangePassword()" class="text-sm font-bold text-harmony-error hover:text-harmony-error/80 transition"><i class="fas fa-lock mr-1"></i> Ubah Password</button>
+                             <button type="button" id="btn-toggle-edit" onclick="toggleEditProfile()" class="bg-harmony-primary text-white px-4 py-2 rounded-xl font-bold text-sm hover:bg-harmony-primary/90 transition transform active:scale-95"><i class="fas fa-edit mr-1"></i> Edit Profil</button>
+                        </div>
+                    </div>
+                    
+                    <form id="form-update-profile" class="space-y-5">
+                        <input type="hidden" name="nik" id="prof-nik-hidden">
+                        
+                        <!-- Fixed Data (Readonly) -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 border-b pb-5">
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Nama Lengkap</label><input id="prof-nama" class="w-full p-3 bg-slate-50 border rounded-xl text-slate-700 font-bold" readonly></div>
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">NIK (Nomor KTP)</label><input id="prof-nik" class="w-full p-3 bg-slate-50 border rounded-xl text-slate-700 font-medium" readonly></div>
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">No. Rekam Medis</label><input id="prof-rm" class="w-full p-3 bg-slate-50 border rounded-xl text-harmony-primary font-bold" readonly></div>
+                        </div>
+                        
+                        <!-- Fixed Data 2 (Readonly) -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 border-b pb-5">
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Jenis Kelamin</label><input id="prof-jk" class="w-full p-3 bg-slate-50 border rounded-xl text-slate-700 font-medium" readonly></div>
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Tanggal Lahir</label><input id="prof-tgl-lahir" class="w-full p-3 bg-slate-50 border rounded-xl text-slate-700 font-medium" readonly></div>
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Tempat Lahir</label><input id="prof-tempat-lahir" class="w-full p-3 bg-slate-50 border rounded-xl text-slate-700 font-medium" readonly></div>
+                        </div>
+                        
+                        <!-- Editable Data -->
+                        <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Alamat</label><textarea id="prof-alamat" name="alamat" rows="3" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-primary outline-none resize-none" readonly></textarea></div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">No HP</label><input id="prof-telp" name="no_telp" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-primary outline-none" readonly></div>
+                            <div><label class="text-xs font-bold text-slate-500 uppercase block mb-1">Email</label><input id="prof-email" name="email" class="w-full p-3 bg-slate-50 border border-slate-300 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-primary outline-none" readonly></div>
+                        </div>
+                        
+                        <div id="save-button-container" class="pt-4 border-t border-slate-100 hidden">
+                             <button type="submit" id="btn-simpan-profil" class="bg-harmony-accent text-white px-6 py-2.5 rounded-xl font-bold hover:bg-harmony-accent/90 transition shadow-lg shadow-harmony-accent/30 disabled:opacity-50" disabled>Simpan Perubahan</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- PAGE: LAPOR -->
+            <div id="page-lapor" class="page-content hidden max-w-3xl mx-auto">
+                <div class="glass-card rounded-3xl shadow-soft border border-slate-200 p-8">
+                    <h3 class="font-bold text-xl mb-6">Lapor Masalah</h3>
+                    <form id="form-lapor" class="space-y-4">
+                        <select name="jenis_masalah" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-error outline-none">
+                            <option>Aplikasi</option><option>Pelayanan</option><option>Lainnya</option>
+                        </select>
+                        <textarea name="keterangan" rows="4" class="w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-error outline-none" placeholder="Deskripsi masalah..."></textarea>
+                        <button class="bg-harmony-error text-white w-full px-6 py-3 rounded-xl font-bold hover:bg-harmony-error/90 transition shadow-lg shadow-harmony-error/30">Kirim Laporan</button>
+                    </form>
+                    <h4 class="font-bold text-lg text-slate-700 mt-8 mb-4">Riwayat Laporan Saya</h4>
+                    <div id="my-reports-list" class="space-y-3"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+
+    <!-- AUTH SCREEN (Glassmorphism Login - 2 KOLOM BARU) -->
+    <div id="auth-section" class="fixed inset-0 z-[200] bg-slate-100 flex items-center justify-center p-4">
+        
+        <div id="auth-container">
+            <!-- Kolom Kiri: Visual dan Branding -->
+            <div class="auth-col-visual hidden md:flex w-1/2">
+                <div class="relative z-10 text-center">
+                    <div class="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4 border border-white/30">
+                        <i class="fas fa-hospital-alt text-4xl text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-extrabold mb-3">Selamat Datang di FiveCare</h2>
+                    <p class="text-slate-100 font-medium max-w-sm mx-auto">Sistem yang modern, nyaman, dan ramah untuk mengelola kesehatan Anda dan keluarga.</p>
+                    <div class="mt-8 text-sm font-semibold flex justify-center space-x-6">
+                        <span class="flex items-center gap-2"><i class="fas fa-user-md text-harmony-secondary"></i> Dokter Profesional</span>
+                        <span class="flex items-center gap-2"><i class="fas fa-calendar-alt text-harmony-accent"></i> Booking Cepat</span>
+                    </div>
+                    <!-- Ilustrasi Placeholder -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-heartbeat login-image-placeholder"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kolom Kanan: Form Login/Register -->
+            <div class="auth-col-form w-full md:w-1/2">
+                
+                <div id="login-card" class="w-full">
+                    <div class="text-center mb-8">
+                        <div class="w-16 h-16 bg-harmony-primary_light rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-harmony-primary/20 border border-white">
+                            <i class="fas fa-user-circle text-3xl text-harmony-primary"></i>
+                        </div>
+                        <h1 class="text-2xl font-extrabold text-slate-800">Masuk Portal Pasien</h1>
+                        <p class="text-slate-500">Silakan masukkan kredensial Anda.</p>
+                    </div>
+                    <form id="form-login" class="space-y-5">
+                        <input type="text" name="nik" class="input-glow-focus w-full p-4 bg-white border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary/30 outline-none" placeholder="NIK Pasien" required>
+                        <input type="password" name="password" class="input-glow-focus w-full p-4 bg-white border border-slate-300 rounded-xl font-medium focus:ring-2 focus:ring-harmony-primary/30 outline-none" placeholder="Password" required>
+                        <button class="w-full bg-harmony-primary text-white p-4 rounded-xl font-bold text-lg hover:bg-harmony-primary/90 transition shadow-lg shadow-harmony-primary/30 transform active:scale-95">Masuk</button>
+                    </form>
+                    
+                    <p class="mt-4 text-center text-sm">
+                        <a href="#" onclick="openModalForgotPassword()" class="text-harmony-error font-bold hover:underline transition">Lupa Password?</a>
+                    </p>
+                    <p class="mt-6 text-center text-sm text-slate-500">Belum punya akun? <a href="#" onclick="showRegister()" class="text-harmony-accent font-bold hover:underline transition">Daftar</a></p>
+                </div>
+                
+                <div id="register-card" class="hidden w-full">
+                    <h2 class="text-2xl font-extrabold text-slate-800 mb-6 text-center">Pendaftaran Akun Baru</h2>
+                    <form id="form-register" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <input type="text" name="nik" placeholder="NIK (KTP)" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent" required>
+                        <input type="text" name="nama" placeholder="Nama Lengkap" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent" required>
+                        <select name="jk" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent"><option value="Laki-laki">Laki-laki</option><option value="Perempuan">Perempuan</option></select>
+                        <input type="date" name="tgl_lahir" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent" required>
+                        <input type="text" name="tempat_lahir" placeholder="Tempat Lahir" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent">
+                        <input type="text" name="no_telp" placeholder="No HP/WA" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent">
+                        <input type="email" name="email" placeholder="Email" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent">
+                        <input type="password" name="password" placeholder="Password (min 8 karakter)" class="input-glow-focus w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent" required minlength="8">
+                        <textarea name="alamat" placeholder="Alamat Lengkap" class="input-glow-focus md:col-span-2 w-full p-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-harmony-accent"></textarea>
+                        <button class="md:col-span-2 bg-harmony-accent text-white p-4 rounded-xl font-bold hover:bg-harmony-accent/90 transition shadow-lg shadow-harmony-accent/30 transform active:scale-95">Daftar Sekarang</button>
+                    </form>
+                    <p class="mt-4 text-center"><a href="#" onclick="showLogin()" class="text-harmony-primary font-bold hover:underline transition">Kembali Login</a></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const API_URL = './backend_pasien.php'; 
+        // Menggunakan API Kasir untuk mengambil detail struk dari server
+        
+        const API_KASIR = API_URL; // Alihkan ke API Pasien
+
+        let currentUser = null, dokterDataGlobal = [], selectedDoctorSchedule = {}; 
+        let confirmCallback = null;
+
+        // Utility tanggal lokal WIB (hindari pergeseran tanggal karena UTC)
+        function getLocalDate(){
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = String(d.getMonth()+1).padStart(2,'0');
+            const day = String(d.getDate()).padStart(2,'0');
+            return `${year}-${month}-${day}`;
+        }
+
+        function formatLocalDate(date){
+            const year = date.getFullYear();
+            const month = String(date.getMonth()+1).padStart(2,'0');
+            const day = String(date.getDate()).padStart(2,'0');
+            return `${year}-${month}-${day}`;
+        } 
+
+        // Mendeklarasikan fungsi formatRupiah agar bisa diakses di manapun
+        function formatRupiah(angka) {
+            const num = parseFloat(angka);
+            if (isNaN(num)) return 'Rp 0';
+            // Ubah format menjadi 'Rp 150.000'
+            return 'Rp ' + num.toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        }
+        window.formatRupiah = formatRupiah; // Akses global
+        
+        // FUNGSI UTILITY: Tampilkan Dialog Konfirmasi Custom
+        function showConfirmDialog(message, callback) {
+            document.getElementById('confirm-message').textContent = message;
+            document.getElementById('btn-confirm-yes').onclick = () => {
+                closeModal('modal-confirm');
+                if (callback) callback();
+            };
+            openModal('modal-confirm');
+        }
+
+        // --- AUTH & NAV ---
+        function showRegister() { document.getElementById('login-card').classList.add('hidden'); document.getElementById('register-card').classList.remove('hidden'); }
+        function showLogin() { document.getElementById('register-card').classList.add('hidden'); document.getElementById('login-card').classList.remove('hidden'); }
+        
+        function showPage(id) { 
+            document.querySelectorAll('.page-content').forEach(e=>e.classList.add('hidden')); 
+            document.getElementById('page-'+id).classList.remove('hidden'); 
+            
+            const titleMap = {
+                'home': 'Dashboard Overview',
+                'rekam_medis': 'Riwayat Medis Pasien',
+                'daftar_poli': 'Pendaftaran Rawat Jalan',
+                'profil': 'Profil Pengguna',
+                'lapor': 'Bantuan & Laporan'
+            };
+            document.getElementById('page-title').textContent = titleMap[id] || id.replace('_', ' ').toUpperCase();
+            
+            // Highlight Nav
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('nav-active'));
+            const navButton = document.querySelector(`button[onclick="showPage('${id}')"]`);
+            if (navButton) navButton.classList.add('nav-active');
+
+            if(id==='home') loadDashboard();
+            if(id==='rekam_medis') loadRiwayat();
+            if(id==='lapor') loadLaporan();
+            if(id==='profil') loadProfil();
+            
+            if(id==='daftar_poli') {
+                loadPoli(); 
+                if (!document.getElementById('daftar-list-section').classList.contains('hidden')) {
+                     toggleDaftarTab('list', false);
+                } else {
+                     toggleDaftarTab('form', false);
+                }
+            }
+        }
+
+        function showToast(msg, type='success'){ 
+            const container = document.getElementById('toast-container');
+            const el = document.createElement('div');
+            
+            let bgColor, iconClass, borderClass;
+            
+            if (type === 'success') {
+                bgColor = 'bg-harmony-accent'; 
+                iconClass = 'fa-check-circle';
+            } else if (type === 'error') {
+                bgColor = 'bg-harmony-error'; 
+                iconClass = 'fa-times-circle';
+            } else { // warning
+                bgColor = 'bg-harmony-warning'; 
+                iconClass = 'fa-exclamation-triangle';
+            }
+
+            el.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3 min-w-[300px] transform transition-all pointer-events-auto toast-enter border-l-4 border-white`;
+            el.innerHTML = `<i class="fas ${iconClass} text-xl"></i> <span class="font-medium">${msg}</span>`;
+            container.appendChild(el);
+            setTimeout(() => {
+                el.classList.remove('toast-enter'); 
+                el.classList.add('toast-exit');
+                setTimeout(() => el.remove(), 500); 
+            }, 3500);
+        }
+
+        function doLogout(){ localStorage.removeItem('user_fivecare'); location.reload(); }
+        function closeModal(id) { document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+        function openModal(id) { document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+
+
+        // --- LOGIN LOGIC ---
+        document.getElementById('form-login').addEventListener('submit', function(e){
+            e.preventDefault(); 
+            const btn = this.querySelector('button');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Memproses...';
+            
+            fetch(API_URL+'?action=login', {method:'POST', body:new FormData(this)}).then(r=>r.json()).then(d=>{
+                if(d.status==='success'){ 
+                    currentUser=d.data; 
+                    localStorage.setItem('user_fivecare', JSON.stringify(currentUser)); 
+                    initDashboard(); 
+                }
+                else {
+                    let errorMessage = '❌ Login gagal. Silakan periksa kembali kredensial Anda.';
+                    if (d.message && d.message.includes('salah')) {
+                         errorMessage = '❌ Kata sandi salah. Silakan coba lagi.';
+                    } else if (d.message && d.message.includes('ditemukan')) {
+                        errorMessage = 'Username/NIK tidak ditemukan.';
+                    }
+                    showToast(errorMessage, 'error');
+                }
+                btn.disabled = false;
+                btn.innerHTML = 'Masuk';
+            }).catch(() => {
+                 showToast('Gagal terhubung ke server', 'error');
+                 btn.disabled = false;
+                 btn.innerHTML = 'Masuk';
+            });
+        });
+        document.getElementById('form-register').addEventListener('submit', function(e){
+            e.preventDefault(); 
+            fetch(API_URL+'?action=register', {method:'POST', body:new FormData(this)}).then(r=>r.json()).then(d=>{
+                showToast(d.message, d.status); 
+                if(d.status==='success') showLogin();
+            }).catch(() => showToast('Gagal koneksi server saat registrasi', 'error'));
+        });
+
+        function checkSession(){ 
+            const s=localStorage.getItem('user_fivecare'); 
+            if(s){ currentUser=JSON.parse(s); initDashboard(); 
+            } else {
+                 document.getElementById('auth-section').classList.remove('hidden'); 
+            }
+        }
+        
+        function initDashboard(){ 
+            document.getElementById('auth-section').classList.add('hidden'); 
+            document.getElementById('header-user-name').textContent = currentUser.nama_lengkap.split(' ')[0];
+            document.getElementById('dash-nama').textContent = currentUser.nama_lengkap;
+            document.getElementById('header-user-rm').textContent = currentUser.no_rm;
+            showPage('home'); 
+        }
+        
+        // Fungsi untuk merender Kartu Antrian Selanjutnya di Dashboard
+        function renderNextQueueCard(antrianList) {
+            const container = document.getElementById('next-queue-content');
+            
+            if (!antrianList || antrianList.length === 0) {
+                container.innerHTML = '<div class="text-center py-4 text-slate-400 italic">Tidak ada antrian aktif/booking terdekat.</div>';
+                return;
+            }
+
+            const nextQueue = antrianList[0];
+
+            const today = getLocalDate();
+
+            const isBooking = nextQueue.tgl_kunjungan > today;
+            let statusText = isBooking ? 'Booking' : nextQueue.status;
+            let statusColor = 'bg-harmony-primary_light text-harmony-primary';
+            let queueBg = 'bg-white';
+
+            if (isBooking) {
+                 statusColor = 'bg-harmony-accent_light text-harmony-accent';
+                 queueBg = 'bg-harmony-accent_light/50';
+            } else if (nextQueue.status === 'Menunggu Obat') {
+                statusColor = 'bg-harmony-warning_light text-harmony-warning';
+            } else if (nextQueue.status === 'Sedang Pemeriksaan') {
+                statusColor = 'bg-harmony-secondary_light text-harmony-secondary';
+            } else if (nextQueue.status === 'Menunggu Pemeriksaan' && nextQueue.tgl_kunjungan <= today) {
+                 statusColor = 'bg-harmony-primary_light text-harmony-primary';
+                 queueBg = 'bg-harmony-primary_light/50';
+            }
+
+
+            container.innerHTML = `
+                <div class="flex flex-col md:flex-row items-center gap-6 p-4 rounded-xl border border-slate-200 ${queueBg} hover:shadow-md transition duration-300">
+                    <!-- No. Antrian -->
+                    <div class="p-4 rounded-xl w-32 flex-shrink-0 text-center bg-white border border-slate-200 shadow-sm">
+                        <span class="text-xs uppercase tracking-widest text-slate-500 font-bold">${isBooking ? 'Tgl Kunjung' : 'Antrian'}</span>
+                        <span class="text-4xl font-extrabold text-slate-800 block">${isBooking ? nextQueue.tgl_kunjungan.slice(-2) : nextQueue.no_antrian}</span>
+                    </div>
+
+                    <!-- Detail & Status -->
+                    <div class="flex-1 space-y-1">
+                        <div class="flex justify-between items-start">
+                            <h4 class="text-xl font-extrabold text-slate-800">${nextQueue.nama_poli}</h4>
+                            <span class="px-3 py-1 rounded-full text-xs font-bold ${statusColor}">${statusText}</span>
+                        </div>
+                        <p class="text-sm text-slate-600 flex items-center gap-2">
+                            <i class="fas fa-user-md text-harmony-secondary"></i> ${nextQueue.nama_dokter} <span class="text-xs text-slate-400">(${nextQueue.spesialis || '-'})</span>
+                        </p>
+                        <div class="text-sm text-slate-500 pt-1 border-t border-slate-100 mt-2 flex justify-between">
+                            <span class="flex items-center gap-1 font-semibold"><i class="far fa-calendar"></i> ${nextQueue.tgl_kunjungan}</span>
+                            <span class="flex items-center gap-1"><i class="far fa-clock"></i> ${nextQueue.jam_kunjungan || '08:00 - 12:00'} WIB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA -->
+                <div class="mt-6 pt-4 border-t border-slate-100">
+                    <button onclick="showAllQueuesFromDashboard()" class="w-full bg-harmony-secondary text-white py-3 rounded-xl font-bold hover:bg-harmony-secondary/90 transition shadow-md shadow-harmony-secondary/30 transform active:scale-95">
+                        Lihat Semua ${antrianList.length} Antrian Aktif & Booking
+                    </button>
+                </div>
+            `;
+        }
+        
+        window.showAllQueuesFromDashboard = function() {
+            showPage('daftar_poli');
+            toggleDaftarTab('list', true);
+        }
+
+        function loadDashboard(){
+            if(!currentUser) return;
+            fetch(API_URL+'?action=get_dashboard_info&nik='+currentUser.nik).then(r=>r.json()).then(d=>{
+                renderNextQueueCard(d.antrian_aktif);
+            });
+        }
+        
+        // --- QUEUE LIST & FILTER LOGIC ---
+        function toggleDaftarTab(tab, forceLoad = true) {
+            const tabForm = document.getElementById('tab-form');
+            const tabList = document.getElementById('tab-list');
+            const sectionForm = document.getElementById('daftar-form-section');
+            const sectionList = document.getElementById('daftar-list-section');
+
+            tabForm.classList.remove('bg-harmony-primary', 'text-white', 'bg-white', 'text-slate-600', 'border', 'shadow-md', 'shadow-harmony-primary/30');
+            tabList.classList.remove('bg-harmony-primary', 'text-white', 'bg-white', 'text-slate-600', 'border', 'shadow-md', 'shadow-harmony-primary/30');
+            tabForm.classList.add('border', 'border-slate-300');
+            tabList.classList.add('border', 'border-slate-300');
+
+
+            if (tab === 'form') {
+                sectionForm.classList.remove('hidden');
+                sectionList.classList.add('hidden');
+                tabForm.classList.add('bg-harmony-primary', 'text-white', 'shadow-md', 'shadow-harmony-primary/30');
+                tabList.classList.remove('border', 'border-slate-300');
+                tabList.classList.add('bg-white', 'text-slate-600');
+            } else {
+                sectionList.classList.remove('hidden');
+                sectionForm.classList.add('hidden');
+                tabList.classList.add('bg-harmony-primary', 'text-white', 'shadow-md', 'shadow-harmony-primary/30');
+                tabForm.classList.remove('border', 'border-slate-300');
+                tabForm.classList.add('bg-white', 'text-slate-600');
+                if (forceLoad) loadAllQueues();
+            }
+        }
+        
+        function resetQueueFilter() {
+             document.getElementById('queue-filter-date').value = '';
+             document.getElementById('queue-filter-status').value = '';
+             loadAllQueues();
+        }
+
+        function loadAllQueues() {
+            if(!currentUser) return;
+            const container = document.getElementById('all-queues-container');
+            const dateVal = document.getElementById('queue-filter-date').value;
+            const statusVal = document.getElementById('queue-filter-status').value;
+            
+            container.innerHTML = '<p class="text-slate-400 text-sm italic text-center py-4"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat antrian...</p>';
+            
+            let finalStatus = statusVal;
+            let finalDate = dateVal;
+
+            if (statusVal === 'Booking') {
+                finalStatus = 'Menunggu Pemeriksaan'; 
+                finalDate = ''; 
+            }
+
+            fetch(`${API_URL}?action=get_all_active_queues&nik=${currentUser.nik}&date=${finalDate}&status=${finalStatus}`)
+            .then(r => r.json())
+            .then(data => {
+                if (data.length === 0) {
+                    container.innerHTML = '<p class="text-slate-500 text-sm italic text-center py-6">Tidak ada antrian ditemukan untuk filter ini.</p>';
+                    return;
+                }
+
+                const todayISO = getLocalDate();
+                
+                if (statusVal === 'Booking') {
+                    data = data.filter(queue => queue.tgl_kunjungan > todayISO);
+                }
+
+                let html = '';
+                data.forEach(queue => {
+                    
+                    const isBookingFuture = queue.tgl_kunjungan > todayISO;
+                    
+                    let statusColor = 'bg-harmony-primary_light text-harmony-primary';
+                    let statusText = queue.status;
+                    let queueBg = 'bg-white';
+                    
+                    if (isBookingFuture) {
+                         statusText = 'Booking';
+                         statusColor = 'bg-harmony-accent_light text-harmony-accent';
+                         queueBg = 'bg-harmony-accent_light/50';
+                    } else if (queue.status === 'Menunggu Obat') {
+                        statusColor = 'bg-harmony-warning_light text-harmony-warning';
+                    } else if (queue.status === 'Sedang Pemeriksaan') {
+                        statusColor = 'bg-harmony-secondary_light text-harmony-secondary';
+                    } else if (queue.status === 'Menunggu Pemeriksaan' && queue.tgl_kunjungan <= todayISO) {
+                         statusColor = 'bg-harmony-primary_light text-harmony-primary';
+                         queueBg = 'bg-harmony-primary_light/50';
+                    }
+                    
+                    // MENGHAPUS FUNGSIONALITAS PEMBATALAN ANTRIAN (Sesuai Permintaan)
+                    const cancelBtn = `<span class="text-slate-500 px-2 py-1 text-xs font-medium"></span>`;
+
+
+                    html += `
+                        <div class="flex items-start gap-4 p-4 rounded-xl border border-slate-200 ${queueBg} hover:shadow-md transition interactive-card">
+                            <!-- Antrian Number / Tgl -->
+                            <div class="p-3 rounded-lg flex-shrink-0 text-center bg-white border border-slate-200 w-24 shadow-sm">
+                                <span class="text-xs uppercase tracking-widest text-slate-500 font-bold">${isBookingFuture ? 'Tgl' : 'Antrian'}</span>
+                                <span class="text-2xl font-extrabold text-slate-800 block">${isBookingFuture ? queue.tgl_kunjungan.slice(-2) : queue.no_antrian}</span>
+                            </div>
+
+                            <!-- Detail -->
+                            <div class="flex-1 space-y-1">
+                                <div class="flex justify-between items-start">
+                                    <h4 class="text-lg font-bold text-slate-800">${queue.nama_poli}</h4>
+                                    <span class="px-3 py-1 rounded-full text-xs font-bold ${statusColor}">${statusText}</span>
+                                </div>
+                                <p class="text-sm text-slate-600 flex items-center gap-2">
+                                    <i class="fas fa-user-md text-harmony-secondary"></i> ${queue.nama_dokter}
+                                </p>
+                                <div class="text-xs text-slate-500 pt-1 flex gap-4">
+                                    <span class="flex items-center gap-1"><i class="far fa-calendar"></i> ${queue.tgl_kunjungan}</span>
+                                    <span class="flex items-center gap-1"><i class="far fa-clock"></i> ${queue.jam_kunjungan || '-'} WIB</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Aksi (Diganti dengan pesan "Pembatalan Tidak Diizinkan") -->
+                            <div class="self-start">
+                                ${cancelBtn}
+                            </div>
+                        </div>
+                    `;
+                });
+                container.innerHTML = html;
+            }).catch(() => {
+                container.innerHTML = '<p class="text-slate-500 text-sm italic text-center py-6 text-harmony-error">Gagal memuat antrian (Koneksi Error).</p>';
+            });
+        }
+        
+        // FUNGSI confirmCancelQueue TELAH DIHAPUS SESUAI PERMINTAAN
+
+        // --- END QUEUE LIST LOGIC ---
+
+        // --- REKAM MEDIS (TIMELINE STYLE) ---
+        let searchTimer;
+        function loadRiwayat() {
+            if(!currentUser) return;
+            const searchVal = document.getElementById('filter-search').value;
+            const dateVal = document.getElementById('filter-date').value;
+            const container = document.getElementById('rm-list-container');
+            const empty = document.getElementById('empty-history');
+
+            container.innerHTML = '<div class="text-center py-10"><i class="fas fa-spinner fa-spin text-harmony-primary text-3xl"></i><p class="text-sm mt-3 text-slate-500">Memuat riwayat...</p></div>';
+
+            clearTimeout(searchTimer);
+            searchTimer = setTimeout(() => {
+                fetch(`${API_URL}?action=get_riwayat&nik=${currentUser.nik}&search=${searchVal}&date=${dateVal}`)
+                .then(r => r.json())
+                .then(data => {
+                    container.innerHTML = '';
+                    if(data.length === 0) { empty.classList.remove('hidden'); return; }
+                    empty.classList.add('hidden');
+
+                    let html = '';
+                    data.forEach(row => {
+                        const isLunas = row.status_pembayaran === 'Lunas';
+                        
+                        // Tombol Struk hanya muncul jika sudah Lunas
+                        const strukButton = isLunas 
+                            ? `<button onclick="viewStrukPasien(${row.id_pendaftaran})" class="w-full md:w-auto px-5 py-2.5 bg-harmony-accent/10 border border-harmony-accent/50 text-harmony-accent rounded-xl font-bold hover:bg-harmony-accent hover:text-white transition shadow-sm flex items-center justify-center gap-2 transform active:scale-95">
+                                    <i class="fas fa-file-invoice-dollar mr-1"></i> Lihat Struk
+                                </button>`
+                            : `<span class="w-full md:w-auto px-5 py-2.5 text-xs text-slate-500 italic flex items-center justify-center gap-2">Belum Lunas</span>`;
+                        
+                        html += `
+                        <div class="relative pl-8 group">
+                            <!-- Dot Connector -->
+                            <div class="absolute -left-[11px] top-6 w-6 h-6 bg-white border-4 border-harmony-primary_light rounded-full group-hover:border-harmony-primary transition-colors z-10"></div>
+                            
+                            <!-- Card -->
+                            <div class="glass-card rounded-2xl p-6 border border-slate-100 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between items-start gap-4 group-hover:translate-x-1 interactive-card">
+                                
+                                <div class="flex-1 w-full">
+                                    <div class="flex items-center justify-between text-xs font-bold text-slate-400 mb-2">
+                                        <div class="flex items-center gap-3">
+                                            <span class="bg-slate-100 px-2 py-1 rounded-xl text-slate-500"><i class="far fa-calendar mr-1"></i> ${row.tgl_kunjungan}</span>
+                                            <span class="px-2 py-1 rounded-xl ${isLunas ? 'bg-harmony-accent_light text-harmony-accent' : 'bg-harmony-error_light text-harmony-error'}">
+                                                ${isLunas ? 'LUNAS' : 'BELUM LUNAS'}
+                                            </span>
+                                        </div>
+                                        <span class="text-xs text-slate-400">ID: #${row.id_pendaftaran}</span>
+                                    </div>
+                                    <h3 class="text-lg font-extrabold text-slate-800">${row.nama_poli} - ${row.nama_dokter}</h3>
+                                    
+                                    <div class="mt-3 inline-block bg-harmony-primary_light text-harmony-primary_dark text-sm px-3 py-1.5 rounded-xl border border-harmony-primary/30 font-medium">
+                                        <i class="fas fa-stethoscope mr-1"></i> ${row.diagnosa_utama || 'Diagnosa tercatat'}
+                                    </div>
+                                </div>
+
+                                <div class="flex flex-col md:flex-row gap-2 w-full md:w-auto mt-4">
+                                    ${strukButton}
+                                    <button onclick="openModalRmPasien(${row.id_rm})" ${row.id_rm ? '' : 'disabled'} class="w-full md:w-auto px-5 py-2.5 bg-harmony-primary/10 border border-harmony-primary/50 text-harmony-primary rounded-xl font-bold hover:bg-harmony-primary hover:text-white transition shadow-sm flex items-center justify-center gap-2 transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed">
+                                        Rekam Medis <i class="fas fa-file-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>`;
+                    });
+                    container.innerHTML = html;
+                });
+            }, 300);
+        }
+
+        function resetFilter() {
+            document.getElementById('filter-search').value = '';
+            document.getElementById('filter-date').value = '';
+            loadRiwayat();
+        }
+
+        /**
+         * Mengambil dan menampilkan detail struk pembayaran untuk Pasien.
+         * Pasien hanya dapat melihat detail jika transaksi sudah Lunas.
+         * @param {number} id_pendaftaran ID Pendaftaran yang sudah lunas.
+         */
+        window.viewStrukPasien = async function(id_pendaftaran) {
+            showToast('Memuat detail struk...', 'info');
+            openModal('modal-struk-pasien'); // Tampilkan modal dengan loading
+            
+            try {
+                // Panggil endpoint baru di backend_pasien.php
+                const res = await fetch(`${API_URL}?action=get_struk_detail_pasien&id=${id_pendaftaran}`);
+                const d = await res.json();
+                
+                if (d.status === 'success' && d.data) {
+                    const data = d.data;
+                    
+                    // 1. Set Info Umum
+                    document.getElementById('struk-pasien-tgl-lunas').textContent = new Date(data.tgl_selesai).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                    document.getElementById('struk-pasien-id-pendaftaran').textContent = data.id;
+                    document.getElementById('struk-pasien-nama-pasien').textContent = data.nama_pasien;
+                    document.getElementById('struk-pasien-no-rm').textContent = data.no_rm;
+                    document.getElementById('struk-pasien-layanan').textContent = `${data.nama_poli} (${data.nama_dokter})`;
+
+                    // 2. Set Rincian Biaya
+                    document.getElementById('struk-pasien-biaya-medis').textContent = formatRupiah(data.biaya_medis_dasar);
+                    document.getElementById('struk-pasien-biaya-obat').textContent = formatRupiah(data.total_harga_resep);
+
+                    // 3. Set Detail Resep
+                    const resepContainer = document.getElementById('struk-pasien-detail-resep');
+                    resepContainer.innerHTML = '';
+                    
+                    if (data.resep_detail && data.resep_detail.length > 0) {
+                        data.resep_detail.forEach(resep => {
+                            const itemEl = document.createElement('p');
+                            const satuan = resep.satuan || 'Unit';
+                            itemEl.textContent = `- ${resep.nama} (${resep.jumlah} ${satuan})`; 
+                            resepContainer.appendChild(itemEl);
+                        });
+                        document.getElementById('struk-pasien-detail-resep-container').classList.remove('hidden');
+                    } else {
+                        const itemEl = document.createElement('p');
+                        itemEl.textContent = `- Tidak ada resep obat`;
+                        resepContainer.appendChild(itemEl);
+                    }
+
+                    // 4. Set Total dan Pembayaran
+                    document.getElementById('struk-pasien-total-tagihan').textContent = formatRupiah(data.total_biaya_final);
+                    // Gunakan data dari server untuk jumlah bayar dan kembalian
+                    document.getElementById('struk-pasien-jumlah-bayar').textContent = formatRupiah(data.jumlah_bayar_input); 
+                    document.getElementById('struk-pasien-kembalian').textContent = formatRupiah(data.kembalian); 
+                    
+                } else {
+                    showToast(d.message || 'Gagal memuat data struk. Pastikan tagihan sudah lunas.', 'error');
+                    closeModal('modal-struk-pasien');
+                }
+
+            } catch (e) {
+                console.error("Error viewing struk:", e);
+                showToast('Gagal terhubung ke server (Error: Network/Server Pasien).', 'error');
+                closeModal('modal-struk-pasien');
+            }
+        }
+        
+        // --- MODAL DETAIL ---
+        function openModalRmPasien(id_rm) {
+            openModal('modal-rm-pasien');
+            fetch(`${API_URL}?action=get_rm_detail_pasien&id_rm=${id_rm}&nik=${currentUser.nik}`)
+            .then(r => r.json())
+            .then(resp => {
+                if(resp.status === 'success') {
+                    const d = resp.data;
+                    document.getElementById('modal-rm-tgl').textContent = d.tgl_kunjungan;
+                    document.getElementById('modal-rm-dokter').textContent = d.nama_dokter;
+                    document.getElementById('modal-rm-poli').textContent = d.nama_poli;
+                    
+                    document.getElementById('modal-rm-keluhan').textContent = d.keluhan_utama || '-';
+                    document.getElementById('modal-rm-fisik').textContent = d.pemeriksaan_fisik || '-';
+                    document.getElementById('modal-rm-diagnosa-utama').textContent = d.diagnosa_utama_display || '-'; 
+                    document.getElementById('modal-rm-diagnosa-sekunder').textContent = d.diagnosa_sekunder_display || '-'; 
+                    document.getElementById('modal-rm-instruksi').textContent = d.instruksi_pasien || '-';
+
+                    let resepHTML = '';
+                    try {
+                        const resepData = d.resep_obat ? JSON.parse(d.resep_obat) : [];
+                        const obatArr = Array.isArray(resepData) ? resepData : [];
+
+                        if(obatArr.length > 0) {
+                            obatArr.forEach(o => {
+                                resepHTML += `
+                                <div class="bg-white p-3 rounded-xl border border-slate-200 shadow-sm">
+                                    <p class="font-bold text-slate-800 text-sm">${o.nama} <span class="text-xs text-harmony-primary">(${o.dosis || '-'})</span></p>
+                                    <div class="flex justify-between items-center mt-1 text-xs text-slate-500">
+                                        <span>${o.aturan || '-'} (${o.durasi || '-'} hari)</span>
+                                        <span class="bg-slate-50 px-2 py-0.5 rounded shadow-sm border font-bold">x${o.jumlah || 0}</span>
+                                    </div>
+                                </div>`;
+                            });
+                        } else resepHTML = '<p class="text-slate-400 text-sm italic col-span-2 text-center">Tidak ada resep obat.</p>';
+                    } catch(e){ 
+                        console.error("Error parsing resep obat:", e);
+                        resepHTML='<p class="text-harmony-error text-sm italic col-span-2 text-center">Error data resep</p>'; 
+                    }
+                    
+                    document.getElementById('modal-rm-resep-list').innerHTML = resepHTML;
+                } else {
+                    showToast(resp.message, 'error');
+                }
+            });
+        }
+        
+        // --- PENDAFTARAN ---
+        function resetDaftarPoliForm() {
+            document.getElementById('form-daftar-poli').reset();
+            
+            document.getElementById('dokter-select').innerHTML = '<option value="">-- Menunggu Poli --</option>';
+            document.getElementById('dokter-select').disabled = true;
+            document.getElementById('step-dokter').classList.add('opacity-50');
+
+            document.getElementById('step-tanggal').classList.add('opacity-50');
+            document.getElementById('day-buttons-container').innerHTML = '<div class="w-full text-center py-6 text-slate-400 italic bg-slate-50 rounded-xl border border-dashed border-slate-200">Silahkan pilih dokter terlebih dahulu</div>';
+            document.getElementById('result-info').classList.add('hidden');
+            document.getElementById('btn-daftar').disabled = true;
+            document.getElementById('tgl-kunjungan-input').value = '';
+
+            loadPoli(); 
+        }
+
+        function loadPoli() { 
+            document.getElementById('poli-select').innerHTML = '<option value="">-- Memuat Poli... --</option>';
+            document.getElementById('poli-select').disabled = true;
+
+            fetch(API_URL + '?action=get_poli').then(res => res.json()).then(data => { 
+                let html = '<option value="">-- Pilih Poli --</option>'; 
+                data.forEach(p => html += `<option value="${p.id}">${p.nama_poli}</option>`); 
+                document.getElementById('poli-select').innerHTML = html; 
+                document.getElementById('poli-select').disabled = false;
+            }).catch(e => {
+                console.error("Gagal memuat poli:", e);
+                document.getElementById('poli-select').innerHTML = '<option value="">-- Gagal Memuat --</option>';
+                showToast("Gagal memuat daftar Poli. Cek koneksi backend.", "error");
+            }); 
+        }
+        window.loadDokter = function(id) { 
+            document.getElementById('step-tanggal').classList.add('opacity-50');
+            document.getElementById('day-buttons-container').innerHTML = '<div class="w-full text-center py-6 text-slate-400 italic bg-slate-50 rounded-xl border border-dashed border-slate-200">Silahkan pilih dokter terlebih dahulu</div>';
+            document.getElementById('result-info').classList.add('hidden');
+            document.getElementById('btn-daftar').disabled = true;
+            document.getElementById('tgl-kunjungan-input').value = '';
+            
+            document.getElementById('dokter-select').disabled=true;
+            document.getElementById('step-dokter').classList.remove('opacity-50');
+            document.getElementById('dokter-select').innerHTML = '<option value="">-- Memuat Dokter... --</option>';
+            
+            if (id === "") { 
+                document.getElementById('dokter-select').innerHTML = '<option value="">-- Menunggu Poli --</option>';
+                document.getElementById('dokter-select').disabled = true;
+                document.getElementById('step-dokter').classList.add('opacity-50');
+                return;
+            }
+
+            fetch(API_URL+'?action=get_dokter&id_poli='+id).then(r=>r.json()).then(d=>{
+                dokterDataGlobal=d; 
+                let h='<option value="">-- Pilih Dokter --</option>'; 
+                d.forEach(x=>h+=`<option value="${x.id}">${x.nama_dokter} (${x.spesialis || 'Umum'})</option>`);
+                document.getElementById('dokter-select').innerHTML=h; document.getElementById('dokter-select').disabled=false;
+            }).catch(e => {
+                document.getElementById('dokter-select').innerHTML = '<option value="">-- Gagal Memuat --</option>';
+                showToast("Gagal memuat daftar Dokter.", "error");
+            }); 
+        }
+        window.onDokterSelected = function() {
+            const id = document.getElementById('dokter-select').value; 
+            const doc = dokterDataGlobal.find(x=>x.id==id);
+            
+            document.getElementById('step-tanggal').classList.add('opacity-50');
+            document.getElementById('day-buttons-container').innerHTML = '<div class="w-full text-center py-6 text-slate-400 italic bg-slate-50 rounded-xl border border-dashed border-slate-200">Silahkan pilih dokter terlebih dahulu</div>';
+            document.getElementById('result-info').classList.add('hidden');
+            document.getElementById('btn-daftar').disabled = true;
+            document.getElementById('tgl-kunjungan-input').value = '';
+
+            if (!doc) return;
+
+            document.getElementById('step-tanggal').classList.remove('opacity-50');
+            
+            document.getElementById('day-buttons-container').innerHTML = '<div class="w-full text-center py-4"><i class="fas fa-spinner fa-spin text-harmony-primary text-2xl"></i></div>';
+
+            fetch(API_URL+'?action=get_quota_info&id_dokter='+id).then(r=>r.json()).then(d=>{
+                let h=''; const max=parseInt(d.max_quota); const schedule = parseSchedule(doc.jadwal_praktik);
+                const dates = genDates(schedule);
+                
+                if(dates.length === 0) h = '<div class="w-full text-center text-harmony-error py-4 bg-harmony-error_light rounded-xl">Jadwal Penuh / Tidak Tersedia</div>';
+                else {
+                    dates.forEach(dt=>{
+                        const booked = d.booked[dt.val] ? parseInt(d.booked[dt.val]) : 0;
+                        const sisa = max - booked;
+                        const isFull = sisa <= 0;
+                        
+                        h+=`
+                        <button type="button" class="border transition-all p-4 rounded-xl text-center w-32 flex-shrink-0 flex flex-col items-center justify-center gap-1 interactive-card
+                            ${isFull ? 'bg-slate-50 text-slate-400 cursor-not-allowed' : 'bg-white border-slate-300 hover:border-harmony-primary day-btn'}" 
+                            ${isFull?'disabled':'onclick="selDate(this, \''+dt.val+'\', \''+schedule[dt.day].s+'\', \''+schedule[dt.day].e+'\')"'}>
+                            <span class="text-xs font-bold uppercase">${dt.dayName}</span>
+                            <span class="text-lg font-extrabold">${dt.date}</span>
+                            <span class="text-[10px] ${isFull?'text-harmony-error font-bold':'text-harmony-accent font-bold'}">${isFull?'PENUH':'Sisa: '+sisa}</span>
+                        </button>`;
+                    });
+                }
+                document.getElementById('day-buttons-container').innerHTML=h;
+            });
+        }
+        function parseSchedule(str){ const s={}; str.split(',').forEach(d=>{ const m=d.trim().match(/^([a-zA-Z]+)\s*\((\d{2}:\d{2})\s*-\s*(\d{2}:\d{2})\)$/); if(m) s[m[1].toLowerCase()]={s:m[2],e:m[3]}; }); return s; }
+        function genDates(sch){ const days=['minggu','senin','selasa','rabu','kamis','jumat','sabtu']; const r=[]; const t=new Date(); 
+            for(let i=0; i<=14; i++){ const d=new Date(t); d.setDate(t.getDate()+i); const dn=days[d.getDay()]; if(sch[dn]) r.push({val:formatLocalDate(d), day:dn, dayName:dn.toUpperCase(), date:d.getDate()+'/'+(d.getMonth()+1)}); } return r; 
+        }
+        window.selDate=function(el, val, s, e){
+            document.querySelectorAll('.day-btn').forEach(b=>b.classList.remove('selected', 'bg-harmony-primary', 'text-white'));
+            
+            el.classList.add('bg-harmony-primary', 'text-white', 'shadow-md', 'transform', 'scale-105', 'selected');
+            
+            document.getElementById('tgl-kunjungan-input').value=val;
+            const res = document.getElementById('result-info');
+            res.classList.remove('hidden');
+            document.getElementById('result-date').textContent=val; document.getElementById('result-shift').textContent=s+' - '+e+' WIB';
+            
+            const btn = document.getElementById('btn-daftar');
+            btn.disabled=false;
+        }
+        document.getElementById('form-daftar-poli').addEventListener('submit', function(e){
+            e.preventDefault(); const fd=new FormData(this); fd.append('nik', currentUser.nik);
+            fetch(API_URL+'?action=daftar_poli', {method:'POST', body:fd}).then(r=>r.json()).then(d=>{
+                if(d.status==='success'){ 
+                    const noAntrian = d.data && d.data.no_antrian ? d.data.no_antrian : '??';
+                    showToast(`Berhasil! No. Antrian: ${noAntrian}`); 
+                    
+                    resetDaftarPoliForm();
+                    showPage('home'); 
+                    loadDashboard(); 
+                }
+                else showToast(d.message, 'error');
+            });
+        });
+
+        // PROFIL & AKUN LOGIC
+        let isEditMode = false;
+        const editableFields = ['prof-alamat', 'prof-telp', 'prof-email'];
+
+        function toggleEditProfile() {
+            if (isEditMode) {
+                isEditMode = false;
+                loadProfil(false); 
+            } else {
+                isEditMode = true;
+            }
+            
+            const btn = document.getElementById('btn-toggle-edit');
+            const saveContainer = document.getElementById('save-button-container');
+            const saveBtn = document.getElementById('btn-simpan-profil');
+
+            if (isEditMode) {
+                btn.innerHTML = '<i class="fas fa-times-circle mr-1"></i> Batal Edit';
+                btn.classList.remove('bg-harmony-primary', 'hover:bg-harmony-primary/90');
+                btn.classList.add('bg-harmony-error', 'hover:bg-harmony-error/90');
+                saveContainer.classList.remove('hidden');
+                saveBtn.disabled = false;
+                
+                editableFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.readOnly = false;
+                    el.classList.remove('bg-slate-50');
+                    el.classList.add('bg-white');
+                });
+            } else {
+                btn.innerHTML = '<i class="fas fa-edit mr-1"></i> Edit Profil';
+                btn.classList.remove('bg-harmony-error', 'hover:bg-harmony-error/90');
+                btn.classList.add('bg-harmony-primary', 'hover:bg-harmony-primary/90');
+                saveContainer.classList.add('hidden');
+                saveBtn.disabled = true;
+                
+                editableFields.forEach(id => {
+                    const el = document.getElementById(id);
+                    el.readOnly = true;
+                    el.classList.add('bg-slate-50');
+                    el.classList.remove('bg-white');
+                });
+            }
+        }
+        
+        function loadProfil(){
+            if(!currentUser) return;
+            fetch(API_URL+'?action=get_profile&nik='+currentUser.nik).then(r=>r.json()).then(d=>{
+                if(d.status === 'error') { showToast(d.message, 'error'); return; }
+                
+                document.getElementById('prof-nama').value = d.nama_lengkap || '-'; 
+                document.getElementById('prof-nik').value = d.nik || '-';
+                document.getElementById('prof-rm').value = d.no_rm || '-';
+                document.getElementById('prof-jk').value = d.jenis_kelamin || '-';
+                document.getElementById('prof-tgl-lahir').value = d.tgl_lahir || '-';
+                document.getElementById('prof-tempat-lahir').value = d.tempat_lahir || '-';
+                
+                document.getElementById('prof-alamat').value = d.alamat || ''; 
+                document.getElementById('prof-telp').value = d.no_telp || ''; 
+                document.getElementById('prof-email').value = d.email || '';
+                document.getElementById('prof-nik-hidden').value = d.nik || '';
+
+            }).catch(e => showToast("Gagal memuat data profil.", "error"));
+        }
+        
+        document.getElementById('form-update-profile').addEventListener('submit', function(e){
+            e.preventDefault(); 
+            const fd=new FormData(this); 
+            const btn = document.getElementById('btn-simpan-profil');
+            btn.disabled = true;
+
+            fetch(API_URL+'?action=update_profile', {method:'POST', body:fd}).then(r=>r.json()).then(d=>{
+                showToast(d.message, d.status);
+                
+                if(d.status === 'success') {
+                    currentUser.nama_lengkap = d.data.nama_lengkap;
+                    currentUser.no_rm = d.data.no_rm;
+                    localStorage.setItem('user_fivecare', JSON.stringify(currentUser));
+                    
+                    isEditMode = true; 
+                    toggleEditProfile();
+                    initDashboard(); 
+                } else {
+                     btn.disabled = false;
+                }
+            }).catch(e => {
+                showToast("Gagal koneksi ke server saat update profil.", "error");
+                btn.disabled = false;
+            });
+        });
+
+        // MODAL LUPA PASSWORD (di login screen)
+        function openModalForgotPassword() {
+            // PERBAIKAN: Menambahkan flex untuk memastikan modal muncul di z-index tertinggi
+            document.getElementById('modal-forgot-password').classList.remove('hidden');
+            document.getElementById('modal-forgot-password').classList.add('flex');
+            document.getElementById('form-forgot-password').reset();
+        }
+        
+        document.getElementById('form-forgot-password').addEventListener('submit', function(e){
+            e.preventDefault(); 
+            const btn = e.submitter;
+            
+            // PERUBAHAN: Validasi minimal 8 karakter
+            if (this.elements['new_password'].value.length < 8) {
+                showToast('Password baru minimal 8 karakter.', 'error');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengatur Ulang...';
+
+            fetch(API_URL+'?action=forgot_password', {method:'POST', body:new FormData(this)}).then(r=>r.json()).then(d=>{
+                showToast(d.message, d.status);
+                btn.disabled = false;
+                btn.innerHTML = 'Atur Ulang Password';
+
+                if(d.status === 'success') {
+                    closeModal('modal-forgot-password');
+                    showLogin(); 
+                }
+            }).catch(e => {
+                showToast("Gagal koneksi ke server.", "error");
+                btn.disabled = false;
+                btn.innerHTML = 'Atur Ulang Password';
+            });
+        });
+        
+        // MODAL UBAH PASSWORD (Di Profil)
+        function openModalChangePassword() {
+             openModal('modal-change-password');
+             document.getElementById('form-change-password').reset();
+        }
+        
+        document.getElementById('form-change-password').addEventListener('submit', function(e){
+            e.preventDefault(); 
+            const fd = new FormData(this);
+            
+            // PERUBAHAN: Validasi minimal 8 karakter
+            if (this.elements['new_password'].value.length < 8) {
+                showToast('Password baru minimal 8 karakter.', 'error');
+                return;
+            }
+
+            fd.append('nik', currentUser.nik); 
+            
+            const btn = e.submitter;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Mengubah...';
+
+            fetch(API_URL+'?action=change_password', {method:'POST', body:fd}).then(r=>r.json()).then(d=>{
+                showToast(d.message, d.status);
+                btn.disabled = false;
+                btn.innerHTML = 'Simpan Password Baru';
+
+                if(d.status === 'success') {
+                    closeModal('modal-change-password');
+                    doLogout(); 
+                }
+            }).catch(e => {
+                showToast("Gagal koneksi ke server.", "error");
+                btn.disabled = false;
+                btn.innerHTML = 'Simpan Password Baru';
+            });
+        });
+
+
+        function loadLaporan(){ 
+            fetch(API_URL+'?action=get_laporan_saya&nik='+currentUser.nik).then(r=>r.json()).then(d=>{
+                let h=''; d.forEach(l=>{ 
+                    const st = l.status==='Baru'?'bg-harmony-primary_light text-harmony-primary':'bg-harmony-warning_light text-harmony-warning';
+                    const tanggapanHtml = l.tanggapan ? `<div class="mt-3 pt-3 border-t border-slate-100 text-sm bg-harmony-primary_light/50 p-2 rounded-lg text-slate-800"><strong class="block text-xs uppercase text-harmony-primary_dark mb-1">Tanggapan Admin:</strong>${l.tanggapan}</div>` : '';
+
+                    h+=`
+                    <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm interactive-card">
+                        <div class="flex justify-between items-start mb-2"><span class="font-bold text-slate-800">${l.jenis_masalah}</span><span class="px-2 py-1 rounded-full text-xs font-bold ${st}">${l.status}</span></div>
+                        <p class="text-sm text-slate-600">"${l.keterangan}"</p>
+                        ${tanggapanHtml}
+                        <p class="text-xs text-slate-400 mt-2 text-right">${l.tgl_lapor}</p>
+                    </div>`; 
+                });
+                document.getElementById('my-reports-list').innerHTML=h;
+            });
+        }
+        document.getElementById('form-lapor').addEventListener('submit', function(e){
+            e.preventDefault(); const fd=new FormData(this); fd.append('nik', currentUser.nik);
+            fetch(API_URL+'?action=lapor', {method:'POST', body:fd}).then(r=>r.json()).then(d=>{ showToast(d.message, d.status); if(d.status==='success'){ this.reset(); loadLaporan(); } });
+        });
+
+        checkSession();
+    </script>
+</body>
+</html>

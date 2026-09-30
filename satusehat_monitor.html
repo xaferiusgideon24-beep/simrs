@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>
+SATUSEHAT Integration Monitor
+</title>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+
+
+*{
+    box-sizing:border-box;
+}
+
+
+
+body{
+
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    margin:0;
+
+    padding:25px;
+
+    background:#f4f7fb;
+
+    color:#1f2937;
+
+}
+
+
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin-bottom:25px;
+
+}
+
+
+
+.header h1{
+
+    margin:0;
+
+    font-size:28px;
+
+    color:#111827;
+
+}
+
+
+
+.header p{
+
+    margin:5px 0 0;
+
+    color:#6b7280;
+
+}
+
+
+
+.btn-primary{
+
+    background:#2563eb;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.2s;
+
+}
+
+
+
+.btn-primary:hover{
+
+    background:#1d4ed8;
+
+}
+
+
+
+.section{
+
+    margin-top:30px;
+
+}
+
+
+
+.section-title{
+
+    font-size:20px;
+
+    margin-bottom:15px;
+
+    font-weight:600;
+
+}
+
+
+
+
+
+.dashboard-grid{
+
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fit,minmax(220px,1fr));
+
+    gap:15px;
+
+
+}
+
+
+
+
+.card{
+
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:14px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.05);
+
+
+    border:1px solid #e5e7eb;
+
+
+}
+
+
+
+.card h3{
+
+    margin:0 0 10px;
+
+    font-size:15px;
+
+    color:#6b7280;
+
+}
+
+
+
+.card p{
+
+    margin:0;
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+
+
+
+.resource-card{
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+}
+
+
+
+.resource-name{
+
+    font-weight:600;
+
+}
+
+
+
+.badge{
+
+
+    padding:5px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+
+}
+
+
+
+.badge-success{
+
+    background:#dcfce7;
+
+    color:#166534;
+
+}
+
+
+
+.badge-failed{
+
+    background:#fee2e2;
+
+    color:#991b1b;
+
+}
+
+
+
+.badge-default{
+
+    background:#e5e7eb;
+
+    color:#374151;
+
+}
+
+
+
+
+
+
+
+.table-wrapper{
+
+
+    background:white;
+
+    border-radius:14px;
+
+    overflow:auto;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.05);
+
+
+    border:1px solid #e5e7eb;
+
+
+}
+
+
+
+
+
+table{
+
+
+    width:100%;
+
+    border-collapse:collapse;
+
+
+}
+
+
+
+thead{
+
+
+    background:#f9fafb;
+
+
+}
+
+
+
+th{
+
+
+    text-align:left;
+
+    padding:14px;
+
+    font-size:13px;
+
+    color:#6b7280;
+
+    border-bottom:1px solid #e5e7eb;
+
+
+}
+
+
+
+
+td{
+
+
+    padding:14px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:14px;
+
+
+}
+
+
+
+
+tr:hover{
+
+
+    background:#f9fafb;
+
+
+}
+
+
+
+
+.btn-detail{
+
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    border:1px solid #bfdbfe;
+
+    padding:6px 12px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+
+}
+
+
+
+.btn-detail:hover{
+
+
+    background:#dbeafe;
+
+
+}
+
+
+
+
+
+
+#detailBox{
+
+
+    display:none;
+
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    right:0;
+
+    bottom:0;
+
+
+    background:
+    rgba(0,0,0,.5);
+
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+}
+
+
+
+.detail-content{
+
+
+    background:white;
+
+    width:90%;
+
+    max-width:900px;
+
+    max-height:80vh;
+
+    overflow:auto;
+
+    border-radius:15px;
+
+    padding:20px;
+
+
+}
+
+
+
+.detail-header{
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+}
+
+
+
+.close-btn{
+
+
+    background:#ef4444;
+
+    color:white;
+
+    border:none;
+
+    padding:7px 12px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+
+}
+
+
+
+pre{
+
+
+    background:#111827;
+
+    color:#22c55e;
+
+    padding:15px;
+
+    border-radius:10px;
+
+    overflow:auto;
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+@media(max-width:600px){
+
+
+body{
+
+    padding:15px;
+
+}
+
+
+.header h1{
+
+    font-size:22px;
+
+}
+
+
+}
+
+
+
+</style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="header">
+
+
+<div>
+
+<h1>
+SATUSEHAT Integration Monitor
+</h1>
+
+
+<p>
+Monitoring transaksi FHIR SIMRS ke SATUSEHAT Sandbox
+</p>
+
+
+</div>
+
+
+
+<button class="btn-primary" onclick="load()">
+
+↻ Refresh Data
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+
+<div class="section-title">
+
+Statistik
+
+</div>
+
+
+
+<div id="statistik" class="dashboard-grid">
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+
+<div class="section-title">
+
+Resource Summary
+
+</div>
+
+
+
+<div id="summary" class="dashboard-grid">
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+
+<div class="section-title">
+
+Status Failed
+
+</div>
+
+
+<div id="failed" class="dashboard-grid">
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="section">
+
+
+<div class="section-title">
+
+Transaksi Terakhir
+
+</div>
+
+
+
+<div class="table-wrapper">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+<th>
+Resource
+</th>
+
+<th>
+Lokal
+</th>
+
+<th>
+ID SATUSEHAT
+</th>
+
+<th>
+Status
+</th>
+
+<th>
+Waktu
+</th>
+
+<th>
+Aksi
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+<tbody id="table">
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div id="detailBox">
+
+
+<div class="detail-content">
+
+
+<div class="detail-header">
+
+
+<h2>
+FHIR Detail
+</h2>
+
+
+<button class="close-btn" onclick="closeDetail()">
+
+Tutup
+
+</button>
+
+
+</div>
+
+
+<hr>
+
+
+<pre id="detailData">
+
+</pre>
+
+
+</div>
+
+
+</div>
+<script>
+
+
+async function load(){
+
+
+try{
+
+
+// =======================
+// STATISTIK
+// =======================
+
+
+let st = await fetch(
+'backend_satusehat_monitor.php?action=statistik'
+);
+
+
+let statistik = await st.json();
+
+
+
+document.getElementById('statistik').innerHTML = `
+
+
+<div class="card">
+
+<h3>
+Total Mapping
+</h3>
+
+<p>
+${statistik.data.total}
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>
+Sent
+</h3>
+
+<p>
+${statistik.data.sent}
+</p>
+
+</div>
+
+
+
+
+<div class="card">
+
+<h3>
+Failed
+</h3>
+
+<p>
+${statistik.data.failed}
+</p>
+
+</div>
+
+
+`;
+
+
+
+
+
+
+// =======================
+// RESOURCE SUMMARY
+// =======================
+
+
+let s = await fetch(
+
+'backend_satusehat_monitor.php?action=summary'
+
+);
+
+
+
+let summary = await s.json();
+
+
+
+let summaryHTML="";
+
+
+
+summary.data.forEach(x=>{
+
+
+let badgeClass =
+x.status === "sent"
+?
+"badge badge-success"
+:
+"badge badge-default";
+
+
+
+summaryHTML += `
+
+
+<div class="card resource-card">
+
+
+<div>
+
+
+<div class="resource-name">
+
+${x.resource_type}
+
+</div>
+
+
+</div>
+
+
+
+<div class="${badgeClass}">
+
+
+${x.status || 'unknown'}
+:
+${x.jumlah}
+
+
+</div>
+
+
+
+</div>
+
+
+`;
+
+
+
+});
+
+
+
+document.getElementById('summary').innerHTML =
+summaryHTML;
+
+
+
+
+
+
+
+
+
+// =======================
+// FAILED
+// =======================
+
+
+let f = await fetch(
+
+'backend_satusehat_monitor.php?action=failed'
+
+);
+
+
+
+let failed = await f.json();
+
+
+
+
+document.getElementById('failed').innerHTML = `
+
+
+
+<div class="card">
+
+
+<h3>
+
+Failed Transaction
+
+</h3>
+
+
+
+<p>
+
+${failed.total}
+
+</p>
+
+
+
+</div>
+
+
+
+`;
+
+
+
+
+
+
+
+
+
+// =======================
+// RECENT TRANSACTION
+// =======================
+
+
+let r = await fetch(
+
+'backend_satusehat_monitor.php?action=recent'
+
+);
+
+
+
+let recent = await r.json();
+
+
+
+console.log(
+"RECENT DATA",
+recent
+);
+
+
+
+
+let rows="";
+
+
+
+
+recent.data.forEach(x=>{
+
+
+let badgeClass =
+x.status === "sent"
+?
+"badge badge-success"
+:
+"badge badge-failed";
+
+
+
+rows += `
+
+
+
+<tr>
+
+
+<td>
+
+${x.resource_type}
+
+</td>
+
+
+
+
+<td>
+
+${x.local_table}
+
+(${x.local_key})
+
+</td>
+
+
+
+
+<td>
+
+${x.satusehat_id}
+
+</td>
+
+
+
+
+<td>
+
+
+<span class="${badgeClass}">
+
+${x.status || 'unknown'}
+
+</span>
+
+
+</td>
+
+
+
+
+
+<td>
+
+${x.last_sync}
+
+</td>
+
+
+
+
+
+<td>
+
+
+<button
+
+class="btn-detail"
+
+onclick="detail(${x.id})"
+
+>
+
+Detail
+
+</button>
+
+
+
+</td>
+
+
+
+
+</tr>
+
+
+
+`;
+
+
+
+});
+
+
+
+
+
+document.getElementById('table').innerHTML =
+rows;
+
+
+
+
+}
+
+catch(e){
+
+
+
+console.error(e);
+
+
+
+alert(
+
+"Gagal load monitor: "+e
+
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+async function detail(id){
+
+
+
+try{
+
+
+
+let r = await fetch(
+
+'backend_satusehat_monitor.php?action=detail&id='+id
+
+);
+
+
+
+let d = await r.json();
+
+
+
+
+console.log(d);
+
+
+
+
+
+document.getElementById('detailData').textContent =
+
+
+JSON.stringify(
+
+d.data.response_decode,
+
+null,
+
+2
+
+);
+
+
+
+
+
+document.getElementById('detailBox').style.display =
+"flex";
+
+
+
+}
+
+catch(e){
+
+
+
+alert(
+"Gagal mengambil detail: "+e
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+function closeDetail(){
+
+
+document.getElementById('detailBox').style.display =
+"none";
+
+
+}
+
+
+
+
+
+
+// Load awal
+
+
+load();
+
+
+
+</script>

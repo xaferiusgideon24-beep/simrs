@@ -1,0 +1,34 @@
+{
+    "resourceType": "MedicationDispense",
+    "identifier": [
+        {
+            "system": "http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e",
+            "use": "official",
+            "value": "DISP-4"
+        }
+    ],
+    "status": "completed",
+    "medicationReference": {
+        "reference": "Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"
+    },
+    "subject": {
+        "reference": "Patient/P02029576507"
+    },
+    "context": {
+        "reference": "Encounter/9a32afac-e513-4870-a142-3113c786fff0"
+    },
+    "authorizingPrescription": [
+        {
+            "reference": "MedicationRequest/6ffcdde4-e011-43fb-9532-48251e5fa398"
+        }
+    ],
+    "quantity": {
+        "value": 10,
+        "unit": "1"
+    },
+    "dosageInstruction": [
+        {
+            "text": "500 mg 3x sehari Sesudah makan"
+        }
+    ]
+}

@@ -1,0 +1,664 @@
+2026-09-09 15:12:00
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 15:12:01
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 15:42:33
+HTTP : 200
+{"entry":[{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/100009880728","resource":{"id":"100009880728","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-12-19T08:09:41.696225+00:00","versionId":"MTc2NjEzMTc4MTY5NjIyNTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/1000980728","resource":{"id":"1000980728","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-12-19T08:02:36.195572+00:00","versionId":"MTc2NjEzMTM1NjE5NTU3MjAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/99f9234a-a838-41e8-8166-0aa24d4780e2","resource":{"id":"99f9234a-a838-41e8-8166-0aa24d4780e2","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:31.384715+00:00","versionId":"MTc2NDEzNjExMTM4NDcxNTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/cccd70ca-4889-4723-9fca-272c0b40f006","resource":{"id":"cccd70ca-4889-4723-9fca-272c0b40f006","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:30.050744+00:00","versionId":"MTc2NDEzNjExMDA1MDc0NDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/dbad95e0-5f23-4034-b8a8-e5697e319d7f","resource":{"id":"dbad95e0-5f23-4034-b8a8-e5697e319d7f","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.877038+00:00","versionId":"MTc2NDEzNjEwOTg3NzAzODAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/f198fe2a-e535-44e4-9650-07bea6a95dd8","resource":{"id":"f198fe2a-e535-44e4-9650-07bea6a95dd8","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.725878+00:00","versionId":"MTc2NDEzNjEwOTcyNTg3ODAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/784fc787-fd82-4874-b6ab-24d08898cb7f","resource":{"id":"784fc787-fd82-4874-b6ab-24d08898cb7f","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.599937+00:00","versionId":"MTc2NDEzNjEwOTU5OTkzNzAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/4d95dd46-aa7c-43f2-b9b4-6726b591e98b","resource":{"id":"4d95dd46-aa7c-43f2-b9b4-6726b591e98b","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:28.578284+00:00","versionId":"MTc2NDEzNjEwODU3ODI4NDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/dd4f2eb6-89a5-44f2-bee0-7b80568619f5","resource":{"id":"dd4f2eb6-89a5-44f2-bee0-7b80568619f5","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:32.506620+00:00","versionId":"MTc2NDEzMDIzMjUwNjYyMDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/15799534-0f0e-4833-b651-a98dc2e33e9e","resource":{"id":"15799534-0f0e-4833-b651-a98dc2e33e9e","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:32.046810+00:00","versionId":"MTc2NDEzMDIzMjA0NjgxMDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/4f997b0b-e698-43e3-a101-9422bcf2c9b7","resource":{"id":"4f997b0b-e698-43e3-a101-9422bcf2c9b7","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:31.672081+00:00","versionId":"MTc2NDEzMDIzMTY3MjA4MTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/578e29a8-b0bc-4f6f-be3f-c995a8c65371","resource":{"id":"578e29a8-b0bc-4f6f-be3f-c995a8c65371","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:31.141614+00:00","versionId":"MTc2NDEzMDIzMTE0MTYxNDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/054c994b-2275-4539-93a2-1957c401c0dc","resource":{"id":"054c994b-2275-4539-93a2-1957c401c0dc","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:30.356689+00:00","versionId":"MTc2NDEzMDIzMDM1NjY4OTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/ae018c89-6af2-4c4a-a87b-1b987794be75","resource":{"id":"ae018c89-6af2-4c4a-a87b-1b987794be75","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-25T08:31:09.485566+00:00","versionId":"MTc2NDA1OTQ2OTQ4NTU2NjAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/81dfcb5d-83b2-400f-bfe7-000e6ad38d85","resource":{"id":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:44:54.607198+00:00","versionId":"MTc2MzYwMzA5NDYwNzE5ODAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/24679661-dd44-4ab6-8d42-5c8720de7e73","resource":{"id":"24679661-dd44-4ab6-8d42-5c8720de7e73","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:43:09.644683+00:00","versionId":"MTc2MzYwMjk4OTY0NDY4MzAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/f5146b20-7a2d-4c6a-b21b-d371ec440855","resource":{"id":"f5146b20-7a2d-4c6a-b21b-d371ec440855","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:40:05.217208+00:00","versionId":"MTc2MzYwMjgwNTIxNzIwODAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/056f2fe8-7ef1-457f-95dc-933e2dfd0a15","resource":{"id":"056f2fe8-7ef1-457f-95dc-933e2dfd0a15","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:35:12.832299+00:00","versionId":"MTc2MzYwMjUxMjgzMjI5OTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/af5280f6-407d-482e-a7ff-894947c8b89d","resource":{"id":"af5280f6-407d-482e-a7ff-894947c8b89d","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:33:10.321319+00:00","versionId":"MTc2MzYwMjM5MDMyMTMxOTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/fe08e65b-a5be-435c-ac82-fc0661edbcfe","resource":{"id":"fe08e65b-a5be-435c-ac82-fc0661edbcfe","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:27:52.561335+00:00","versionId":"MTc2MzYwMjA3MjU2MTMzNTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/0a331bb9-40fa-4ccc-8dfc-e02dfa9725fb","resource":{"id":"0a331bb9-40fa-4ccc-8dfc-e02dfa9725fb","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:43:50.763310+00:00","versionId":"MTc2MzU5NTgzMDc2MzMxMDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/e1b71659-6b48-4d2c-8402-d098054b5e99","resource":{"id":"e1b71659-6b48-4d2c-8402-d098054b5e99","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:36:10.008660+00:00","versionId":"MTc2MzU5NTM3MDAwODY2MDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/be6898c6-7d7d-4936-8296-ea42349f7e06","resource":{"id":"be6898c6-7d7d-4936-8296-ea42349f7e06","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:33:30.663524+00:00","versionId":"MTc2MzU5NTIxMDY2MzUyNDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/a7ff8214-ab06-4294-916d-16199e3e024b","resource":{"id":"a7ff8214-ab06-4294-916d-16199e3e024b","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:30:55.461572+00:00","versionId":"MTc2MzU5NTA1NTQ2MTU3MjAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/3099a247-30be-4966-9076-54f09b4372a1","resource":{"id":"3099a247-30be-4966-9076-54f09b4372a1","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:27:33.298123+00:00","versionId":"MTc2MzU5NDg1MzI5ODEyMzAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/7c7bb73a-6172-4489-8507-f213380a33b9","resource":{"id":"7c7bb73a-6172-4489-8507-f213380a33b9","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:20:39.418995+00:00","versionId":"MTc2MzU5NDQzOTQxODk5NTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/923e0393-1a90-400c-b4d6-7084727f2b71","resource":{"id":"923e0393-1a90-400c-b4d6-7084727f2b71","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:20:20.952346+00:00","versionId":"MTc2MzU5NDQyMDk1MjM0NjAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}}],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"}],"resourceType":"Bundle","total":27,"type":"searchset"}
+
+2026-09-09 16:33:45
+HTTP : 200
+{"entry":[{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/100009880728","resource":{"id":"100009880728","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-12-19T08:09:41.696225+00:00","versionId":"MTc2NjEzMTc4MTY5NjIyNTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/1000980728","resource":{"id":"1000980728","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-12-19T08:02:36.195572+00:00","versionId":"MTc2NjEzMTM1NjE5NTU3MjAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/99f9234a-a838-41e8-8166-0aa24d4780e2","resource":{"id":"99f9234a-a838-41e8-8166-0aa24d4780e2","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:31.384715+00:00","versionId":"MTc2NDEzNjExMTM4NDcxNTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/cccd70ca-4889-4723-9fca-272c0b40f006","resource":{"id":"cccd70ca-4889-4723-9fca-272c0b40f006","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:30.050744+00:00","versionId":"MTc2NDEzNjExMDA1MDc0NDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/dbad95e0-5f23-4034-b8a8-e5697e319d7f","resource":{"id":"dbad95e0-5f23-4034-b8a8-e5697e319d7f","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.877038+00:00","versionId":"MTc2NDEzNjEwOTg3NzAzODAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/f198fe2a-e535-44e4-9650-07bea6a95dd8","resource":{"id":"f198fe2a-e535-44e4-9650-07bea6a95dd8","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.725878+00:00","versionId":"MTc2NDEzNjEwOTcyNTg3ODAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/784fc787-fd82-4874-b6ab-24d08898cb7f","resource":{"id":"784fc787-fd82-4874-b6ab-24d08898cb7f","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:29.599937+00:00","versionId":"MTc2NDEzNjEwOTU5OTkzNzAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/4d95dd46-aa7c-43f2-b9b4-6726b591e98b","resource":{"id":"4d95dd46-aa7c-43f2-b9b4-6726b591e98b","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T05:48:28.578284+00:00","versionId":"MTc2NDEzNjEwODU3ODI4NDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/dd4f2eb6-89a5-44f2-bee0-7b80568619f5","resource":{"id":"dd4f2eb6-89a5-44f2-bee0-7b80568619f5","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:32.506620+00:00","versionId":"MTc2NDEzMDIzMjUwNjYyMDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/15799534-0f0e-4833-b651-a98dc2e33e9e","resource":{"id":"15799534-0f0e-4833-b651-a98dc2e33e9e","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:32.046810+00:00","versionId":"MTc2NDEzMDIzMjA0NjgxMDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/4f997b0b-e698-43e3-a101-9422bcf2c9b7","resource":{"id":"4f997b0b-e698-43e3-a101-9422bcf2c9b7","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:31.672081+00:00","versionId":"MTc2NDEzMDIzMTY3MjA4MTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/578e29a8-b0bc-4f6f-be3f-c995a8c65371","resource":{"id":"578e29a8-b0bc-4f6f-be3f-c995a8c65371","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:31.141614+00:00","versionId":"MTc2NDEzMDIzMTE0MTYxNDAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/054c994b-2275-4539-93a2-1957c401c0dc","resource":{"id":"054c994b-2275-4539-93a2-1957c401c0dc","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-26T04:10:30.356689+00:00","versionId":"MTc2NDEzMDIzMDM1NjY4OTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/ae018c89-6af2-4c4a-a87b-1b987794be75","resource":{"id":"ae018c89-6af2-4c4a-a87b-1b987794be75","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-11-25T08:31:09.485566+00:00","versionId":"MTc2NDA1OTQ2OTQ4NTU2NjAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/81dfcb5d-83b2-400f-bfe7-000e6ad38d85","resource":{"id":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:44:54.607198+00:00","versionId":"MTc2MzYwMzA5NDYwNzE5ODAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/24679661-dd44-4ab6-8d42-5c8720de7e73","resource":{"id":"24679661-dd44-4ab6-8d42-5c8720de7e73","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:43:09.644683+00:00","versionId":"MTc2MzYwMjk4OTY0NDY4MzAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/f5146b20-7a2d-4c6a-b21b-d371ec440855","resource":{"id":"f5146b20-7a2d-4c6a-b21b-d371ec440855","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:40:05.217208+00:00","versionId":"MTc2MzYwMjgwNTIxNzIwODAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/056f2fe8-7ef1-457f-95dc-933e2dfd0a15","resource":{"id":"056f2fe8-7ef1-457f-95dc-933e2dfd0a15","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:35:12.832299+00:00","versionId":"MTc2MzYwMjUxMjgzMjI5OTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/af5280f6-407d-482e-a7ff-894947c8b89d","resource":{"id":"af5280f6-407d-482e-a7ff-894947c8b89d","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:33:10.321319+00:00","versionId":"MTc2MzYwMjM5MDMyMTMxOTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/fe08e65b-a5be-435c-ac82-fc0661edbcfe","resource":{"id":"fe08e65b-a5be-435c-ac82-fc0661edbcfe","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-20T01:27:52.561335+00:00","versionId":"MTc2MzYwMjA3MjU2MTMzNTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/0a331bb9-40fa-4ccc-8dfc-e02dfa9725fb","resource":{"id":"0a331bb9-40fa-4ccc-8dfc-e02dfa9725fb","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:43:50.763310+00:00","versionId":"MTc2MzU5NTgzMDc2MzMxMDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/e1b71659-6b48-4d2c-8402-d098054b5e99","resource":{"id":"e1b71659-6b48-4d2c-8402-d098054b5e99","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:36:10.008660+00:00","versionId":"MTc2MzU5NTM3MDAwODY2MDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/be6898c6-7d7d-4936-8296-ea42349f7e06","resource":{"id":"be6898c6-7d7d-4936-8296-ea42349f7e06","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:33:30.663524+00:00","versionId":"MTc2MzU5NTIxMDY2MzUyNDAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/a7ff8214-ab06-4294-916d-16199e3e024b","resource":{"id":"a7ff8214-ab06-4294-916d-16199e3e024b","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:30:55.461572+00:00","versionId":"MTc2MzU5NTA1NTQ2MTU3MjAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/3099a247-30be-4966-9076-54f09b4372a1","resource":{"id":"3099a247-30be-4966-9076-54f09b4372a1","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:27:33.298123+00:00","versionId":"MTc2MzU5NDg1MzI5ODEyMzAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/7c7bb73a-6172-4489-8507-f213380a33b9","resource":{"id":"7c7bb73a-6172-4489-8507-f213380a33b9","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:20:39.418995+00:00","versionId":"MTc2MzU5NDQzOTQxODk5NTAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}},{"fullUrl":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/923e0393-1a90-400c-b4d6-7084727f2b71","resource":{"id":"923e0393-1a90-400c-b4d6-7084727f2b71","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"10009880728"}],"meta":{"lastUpdated":"2025-11-19T23:20:20.952346+00:00","versionId":"MTc2MzU5NDQyMDk1MjM0NjAwMA"},"name":[{"text":"d** Ru** Sp**"}],"resourceType":"Practitioner"}}],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C7209061211900001"}],"resourceType":"Bundle","total":27,"type":"searchset"}
+
+2026-09-09 16:37:31
+HTTP : 400
+{"issue":[{"code":"structure","details":{"text":"bad_resource_id"},"diagnostics":"invalid ID 'ORGANIZATION_ID'","severity":"error"}],"resourceType":"OperationOutcome"}
+
+2026-09-09 16:41:09
+HTTP : 400
+{"issue":[{"code":"structure","details":{"text":"bad_resource_id"},"diagnostics":"invalid ID 'ORG_ID_ANDA'","severity":"error"}],"resourceType":"OperationOutcome"}
+
+2026-09-09 16:41:24
+HTTP : 200
+{"active":true,"id":"06ff9913-88d6-4480-82da-d6631a80448e","identifier":[],"meta":{"lastUpdated":"2026-09-08T13:30:12.117504+00:00","versionId":"MTc4ODg3NDIxMjExNzUwNDAwMA"},"name":"STAGING sittymaharani6@gmail.com","resourceType":"Organization","telecom":[{"system":"phone","use":"work","value":"+6282196940695"},{"system":"email","use":"work","value":"sittymaharani6@gmail.com"}]}
+
+2026-09-09 16:45:22
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: PractitionerRole.code (RuleNumber: 10933)"},"expression":["PractitionerRole.code"]}]}
+
+2026-09-09 16:46:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system: http://terminology.hl7.org/CodeSystem/practitioner-role (RuleNumber: 10933)"},"expression":["PractitionerRole.code[0].system"]}]}
+
+2026-09-09 16:48:18
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system: https://terminology.kemkes.go.id/v1/CodeSystem/practitioner-role (RuleNumber: 10933)"},"expression":["PractitionerRole.code[0].system"]}]}
+
+2026-09-09 16:49:22
+HTTP : 201
+{"active":true,"code":[{"coding":[{"code":"309343006","display":"Physician","system":"http://snomed.info/sct"}]}],"id":"c5036fac-5fe4-44b7-a681-97518bc1af06","identifier":[],"meta":{"lastUpdated":"2026-09-09T09:49:22.366226+00:00","versionId":"MTc4ODk0NzM2MjM2NjIyNjAwMA"},"organization":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"practitioner":{"reference":"Practitioner/100009880728"},"resourceType":"PractitionerRole"}
+
+2026-09-09 16:51:08
+HTTP : 400
+
+        {
+          "resourceType": "OperationOutcome",
+          "issue": [
+            {
+              "severity": "error",
+              "code": "value",
+              "details": {
+                "text": "Invalid query"
+              },
+              "diagnostics": "Invalid identifier value"
+            }
+          ]
+        }
+      
+
+2026-09-09 16:51:25
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:52:10
+HTTP : 400
+
+        {
+          "resourceType": "OperationOutcome",
+          "issue": [
+            {
+              "severity": "error",
+              "code": "value",
+              "details": {
+                "text": "Invalid query"
+              },
+              "diagnostics": "Invalid identifier value"
+            }
+          ]
+        }
+      
+
+2026-09-09 16:59:12
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:59:13
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:59:14
+HTTP : 200
+{"entry":[],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"next","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZvfLojmV9MdV6XvnAxs9ni5YDGB3T4BoLI_EnaLeJdzFs4Nk-hlc80TsG6JtgMZvPIcjqfLsqKGLDWh5MdmRDv7txKCXiyZ3Fi_f_aoDANBdmKr33dah2DIo7zcjhbP7yCX26UH2Z9Vj4ErzD56V9nyog4Nzh173IbeFMAjeIbDsEfSKWvnI1NhI-oB2DjQpUe4UBLms8NLwuXpsSgGluY5qc5kamgXBhsl7qog1qaJcsyWENYdBmxFxgDhFcUnyZjjtktLn1rq0ZINfT7FlJj-cQtrgzxpKz9t5FMqmgkP"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset"}
+
+2026-09-09 17:20:52
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:20:52
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:20:53
+HTTP : 200
+{"entry":[],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"next","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZuuTpXWtm3v0qwv_17FwmsMydk8DJ_SDL0e0PMMR__eKor_hvlsTvwd896eCQC0OI9I9eAtyYa8qC944fA93oiicveCD9xroodLhBVYP1WDOFeV3YMLjDZmsY2FLiFb8KUyH1WfmGxGFMv14LhG2a_V3_03MwIedOt7SCgmDGSVFQY5ark4wzfuW1hUBZmdg0JHXWuVw2quuyBmo0Dk4A_Yl8noWLhJI2HJQQ-MIW0cSu0SIUdHRk1vISLsODNxvYYrbGkAfr-HXc-qPiN6z7-YEujTRkfj5oqPKAc2MQTt"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset"}
+
+2026-09-09 17:23:15
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:23:16
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:23:16
+HTTP : 200
+{"entry":[],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"next","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZsf7-DAJEEQsBb-I2QbJbpOL6z1d6rUt4mr0BPPNMKmBUtn8USWIO5wP1ysJAsnjSoSB1iLTYaUUh35jIhkO101wdvBRb8M_HLFbwTl_13fhyvYyyNGl9ES1hBf9LZR0Xn0zopUxCtLEWCY4mRNQXsiX6BgizuRv8t780ynl8l04Z7VKqDy3zt16a_Qg-DVcSc3Kf0Phgkl62AMafifdHl1f8343LVxOL9ZtdxdiHdIflPc1Xc-00-aeOjaLn9g0gKuWdlkyoNRIXYXgfVU_4VWTu_SPbaLsx7lAgqSeD11HQ%3D%3D"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset"}
+
+2026-09-09 17:24:24
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:24:25
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:24:25
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:24:26
+HTTP : 200
+{"entry":[],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"next","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZvzf5rCcNOjHxrHgS9mvutfm6tb0Igky-RyRdQFLtskECdEjGOGmq5sE_RBXmO11wWzx9LkFI2vyMBPbxsrV4BTwcQ4evsosbPZbd82rT3YSPuZYRlxo0PDOiTc2mmBwgRVtnIWuFgRdwqrrHszgVQ9znVcN5YsfpdMy5JKttVybxbpIR3RamjRCulO4KSK9IVae7AbE8hMKHbHGzh6wAlWtgSpTW-OZ0-8GLgZqJ12ig28cOq4uo525Ao8tHXGHj52Yy1PCH1JbHqgLBMxiMYALEJEYkt2pSbDlVpyvKTEeA%3D%3D"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset"}
+
+2026-09-09 17:27:00
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:27:00
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:27:01
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 17:27:01
+HTTP : 200
+{"entry":[],"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"next","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A&_page_token=AXXMBZtzKkyQTKOswdN-hUs5zRYPKrnU2V3EkD_8xRZC6SltqliM3JAmX8tQYgxv06v4l4Q6-1zBWSj3d6PZy9TMZFUnvEgPAxxP1psxwTgPED-dc7UGvpTzsMEsQQDrsxwlHfArBvp8VthDDRZ5vRszWM_PaZxI8F86XvpAfRKhm9vD9fw6V80GLhjmAKP-Px0B7odCVgpGbDlDp75Lb9RqxvPPrqM3n-0LtfEQtq-nZclwWwoWJsp1wwHS1yH4Eq8qMaKDSGJO8lz_9bUxdYwxKBKs-_hCy2JbX5D7VIzj7T66pA%3D%3D"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?gender=male&name=dr.+Yoga+Yandika%2C+Sp.A"}],"resourceType":"Bundle","total":0,"type":"searchset"}
+
+2026-09-09 13:04:52
+HTTP : 200
+{"id":"100009880728","identifier":[{"system":"https://fhir.kemkes.go.id/id/nik","value":"*************001"},{"system":"http://sys-ids.kemkes.go.id/practitioner","value":"81dfcb5d-83b2-400f-bfe7-000e6ad38d85"}],"meta":{"lastUpdated":"2025-12-19T08:09:41.696225+00:00","versionId":"MTc2NjEzMTc4MTY5NjIyNTAwMA"},"name":[{"text":"d** Na** Ha**"}],"resourceType":"Practitioner"}
+
+2026-09-09 14:49:04
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Encounter.identifier (RuleNumber: 10117)"},"expression":["Encounter.identifier"]},{"severity":"error","code":"value","details":{"text":"Element not found: Encounter.statusHistory (RuleNumber: 10122)"},"expression":["Encounter.statusHistory"]},{"severity":"error","code":"value","details":{"text":"Element not found: Encounter.location (RuleNumber: 10120)"},"expression":["Encounter.location"]}]}
+
+2026-09-09 14:51:16
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Identifier value not found: '109' in system: http://simrs-fivecare.local/encounter (RuleNumber: 10117)"},"expression":["Encounter.identifier[0].code"]}]}
+
+2026-09-09 14:52:11
+HTTP : 400
+{"issue":[{"code":"structure","details":{"text":"unparseable_resource"},"diagnostics":"invalid reference to a Organization resource, want Location","expression":["Encounter.location[0].location"],"severity":"error"}],"resourceType":"OperationOutcome"}
+
+2026-09-09 14:56:03
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Encounter.location (RuleNumber: 10120)"},"expression":["Encounter.location"]}]}
+
+2026-09-09 15:03:52
+HTTP : 201
+{"class":{"code":"AMB","display":"ambulatory","system":"http://terminology.hl7.org/CodeSystem/v3-ActCode"},"id":"d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d","identifier":[{"system":"http://sys-ids.kemkes.go.id/encounter/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"109"}],"location":[{"location":{"reference":"Location/1e997571-dd1f-4afe-8a00-90b903270ae6"},"status":"active"}],"meta":{"lastUpdated":"2026-09-09T13:03:52.339817+00:00","versionId":"MTc4ODk1OTAzMjMzOTgxNzAwMA"},"participant":[{"individual":{"reference":"Practitioner/100009880728"}}],"period":{"start":"2026-09-09T08:00:00+07:00"},"resourceType":"Encounter","serviceProvider":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"status":"arrived","statusHistory":[{"period":{"start":"2026-09-09T08:00:00+07:00"},"status":"arrived"}],"subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 15:08:08
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate resource: Encounter (RuleNumber: 20002)"}}]}
+
+2026-09-09 15:28:33
+HTTP : 201
+{"category":[{"coding":[{"code":"encounter-diagnosis","display":"Encounter Diagnosis","system":"http://terminology.hl7.org/CodeSystem/condition-category"}]}],"clinicalStatus":{"coding":[{"code":"active","display":"Active","system":"http://terminology.hl7.org/CodeSystem/condition-clinical"}]},"code":{"coding":[{"code":"J06.9","display":"Acute upper respiratory infection, unspecified","system":"http://hl7.org/fhir/sid/icd-10"}]},"encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"f0e84484-2320-466f-a069-83a31fc4445d","identifier":[],"meta":{"lastUpdated":"2026-09-09T13:28:34.047380+00:00","versionId":"MTc4ODk2MDUxNDA0NzM4MDAwMA"},"recorder":{"reference":"Practitioner/100009880728"},"resourceType":"Condition","subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 15:47:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:47:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:47:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:47:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:47:41
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:54:11
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:54:11
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:54:11
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:54:12
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:54:12
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10012)"},"expression":["Observation.valueQuantity.system"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]}]}
+
+2026-09-09 15:56:32
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8310-5","display":"Body temperature","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T15:56:32+02:00","encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"445063c1-a9a7-406d-bf27-0f5f66d54f2a","identifier":[],"issued":"2026-09-09T15:56:32+02:00","meta":{"lastUpdated":"2026-09-09T13:56:32.394936+00:00","versionId":"MTc4ODk2MjE5MjM5NDkzNjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"Cel","system":"http://unitsofmeasure.org","unit":"Cel","value":38.5}}
+
+2026-09-09 15:56:32
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8867-4","display":"Heart rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T15:56:32+02:00","encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"6fd4608d-95e4-40d0-8365-694890e6e0ae","identifier":[],"issued":"2026-09-09T15:56:32+02:00","meta":{"lastUpdated":"2026-09-09T13:56:32.703652+00:00","versionId":"MTc4ODk2MjE5MjcwMzY1MjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":90}}
+
+2026-09-09 15:56:32
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"9279-1","display":"Respiratory rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T15:56:32+02:00","encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"e559edfb-7c25-47ca-bca4-46b519a96db6","identifier":[],"issued":"2026-09-09T15:56:32+02:00","meta":{"lastUpdated":"2026-09-09T13:56:32.975152+00:00","versionId":"MTc4ODk2MjE5Mjk3NTE1MjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":20}}
+
+2026-09-09 15:56:33
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"29463-7","display":"Body weight","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T15:56:32+02:00","encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"80a3348c-995d-4cfa-9d9a-a36c59396717","identifier":[],"issued":"2026-09-09T15:56:32+02:00","meta":{"lastUpdated":"2026-09-09T13:56:33.229021+00:00","versionId":"MTc4ODk2MjE5MzIyOTAyMTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"kg","system":"http://unitsofmeasure.org","unit":"kg","value":60}}
+
+2026-09-09 15:56:33
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8302-2","display":"Body height","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T15:56:33+02:00","encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"15ee24af-22e8-4397-b62e-7cc22689e1b9","identifier":[],"issued":"2026-09-09T15:56:33+02:00","meta":{"lastUpdated":"2026-09-09T13:56:33.452225+00:00","versionId":"MTc4ODk2MjE5MzQ1MjIyNTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"cm","system":"http://unitsofmeasure.org","unit":"cm","value":165}}
+
+2026-09-09 16:47:31
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:47:31
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension[0].village[3].valueCode (RuleNumber: 10621)"},"expression":["Patient.address[0].extension[0].village[3].valueCode"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension[0].district[2].valueCode (RuleNumber: 10622)"},"expression":["Patient.address[0].extension[0].district[2].valueCode"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension[0].city[1].valueCode (RuleNumber: 10623)"},"expression":["Patient.address[0].extension[0].city[1].valueCode"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension[0].province[0].valueCode (RuleNumber: 10624)"},"expression":["Patient.address[0].extension[0].province[0].valueCode"]}]}
+
+2026-09-09 16:51:24
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:51:24
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10621)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10622)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10623)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10624)"},"expression":["Patient.address[0].extension"]}]}
+
+2026-09-09 16:56:05
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:57:31
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 16:57:31
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10621)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KELURAHAN' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10621)"},"expression":["Patient.address[0].extension[0].village[3].valueCode"]},{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10622)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KECAMATAN' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10622)"},"expression":["Patient.address[0].extension[0].district[2].valueCode"]},{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10623)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KOTA' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10623)"},"expression":["Patient.address[0].extension[0].city[1].valueCode"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_PROVI' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10624)"},"expression":["Patient.address[0].extension[0].province[0].valueCode"]}]}
+
+2026-09-09 17:06:45
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Reference is mandatory : MedicationRequest.medicationReference (RuleNumber: 10135)"},"expression":["MedicationRequest.medicationReference"]},{"severity":"error","code":"value","details":{"text":"Element not found: MedicationRequest.authoredOn (RuleNumber: 10337)"},"expression":["MedicationRequest.authoredOn"]},{"severity":"error","code":"value","details":{"text":"Element not found: MedicationRequest.identifier (RuleNumber: 10388)"},"expression":["MedicationRequest.identifier"]}]}
+
+2026-09-09 17:17:15
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Medication.extension (RuleNumber: 10031)"},"expression":["Medication.extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Medication.identifier (RuleNumber: 10380)"},"expression":["Medication.identifier"]}]}
+
+2026-09-09 17:19:08
+HTTP : 201
+{"code":{"coding":[{"code":"93002225","display":"Paracetamol 500 mg Tablet (OMEGRIP)","system":"http://sys-ids.kemkes.go.id/kfa"}]},"extension":[{"url":"https://fhir.kemkes.go.id/r4/StructureDefinition/MedicationType","valueCodeableConcept":{"coding":[{"code":"NC","display":"Non Compounded","system":"http://terminology.kemkes.go.id/CodeSystem/medication-type"}]}}],"id":"140bb948-2d84-4d5b-acb9-9019b59cd02b","identifier":[{"system":"http://sys-ids.kemkes.go.id/medication/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"OBAT-10"}],"meta":{"lastUpdated":"2026-09-09T15:19:08.616124+00:00","versionId":"MTc4ODk2NzE0ODYxNjEyNDAwMA"},"resourceType":"Medication"}
+
+2026-09-09 17:25:25
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid date time value : 2026-09-09 (RuleNumber: 10337) Not Allowed : Future Date or Past Date before 3rd June 2014"},"expression":["MedicationRequest.authoredOn"]}]}
+
+2026-09-09 17:29:10
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid date time value : 2025-01-01 (RuleNumber: 10337) Not Allowed : Future Date or Past Date before 3rd June 2014"},"expression":["MedicationRequest.authoredOn"]}]}
+
+2026-09-09 17:29:59
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid date time value : 2024-01-01 (RuleNumber: 10337) Not Allowed : Future Date or Past Date before 3rd June 2014"},"expression":["MedicationRequest.authoredOn"]}]}
+
+2026-09-09 17:31:39
+HTTP : 201
+{"authoredOn":"2026-09-09T17:31:39+02:00","dosageInstruction":[{"text":"500 mg 3x sehari Sesudah makan"}],"encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"38d3265e-3950-444b-be9d-f28b9ff4cd67","identifier":[{"system":"http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"RESEP-2-1788967899"}],"intent":"order","medicationReference":{"reference":"Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"},"meta":{"lastUpdated":"2026-09-09T15:31:39.789847+00:00","versionId":"MTc4ODk2Nzg5OTc4OTg0NzAwMA"},"requester":{"reference":"Practitioner/100009880728"},"resourceType":"MedicationRequest","status":"active","subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 17:40:43
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Medication (RuleNumber: 20002)"}}]}
+
+2026-09-09 17:41:51
+HTTP : 201
+{"authoredOn":"2026-09-09T17:41:49+02:00","dosageInstruction":[{"text":"500 mg 3x sehari Sesudah makan"}],"encounter":{"reference":"Encounter/d2ea2f28-e4ad-40ed-8650-eb5fdf5af49d"},"id":"2b520834-722a-44cb-bafd-25643318b009","identifier":[{"system":"http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"RESEP-2-1788968509"}],"intent":"order","medicationReference":{"reference":"Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"},"meta":{"lastUpdated":"2026-09-09T15:41:51.956620+00:00","versionId":"MTc4ODk2ODUxMTk1NjYyMDAwMA"},"requester":{"reference":"Practitioner/100009880728"},"resourceType":"MedicationRequest","status":"active","subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 20:05:25
+HTTP : 201
+{"class":{"code":"AMB","display":"ambulatory","system":"http://terminology.hl7.org/CodeSystem/v3-ActCode"},"id":"ea4e9595-0207-4498-83b8-77f0e753a13c","identifier":[{"system":"http://sys-ids.kemkes.go.id/encounter/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"110"}],"location":[{"location":{"reference":"Location/1e997571-dd1f-4afe-8a00-90b903270ae6"},"status":"active"}],"meta":{"lastUpdated":"2026-09-09T18:05:25.718892+00:00","versionId":"MTc4ODk3NzEyNTcxODg5MjAwMA"},"participant":[{"individual":{"reference":"Practitioner/100009880728"}}],"period":{"start":"2026-09-09T08:00:00+07:00"},"resourceType":"Encounter","serviceProvider":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"status":"arrived","statusHistory":[{"period":{"start":"2026-09-09T08:00:00+07:00"},"status":"arrived"}],"subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 20:11:24
+HTTP : 201
+{"category":[{"coding":[{"code":"encounter-diagnosis","display":"Encounter Diagnosis","system":"http://terminology.hl7.org/CodeSystem/condition-category"}]}],"clinicalStatus":{"coding":[{"code":"active","display":"Active","system":"http://terminology.hl7.org/CodeSystem/condition-clinical"}]},"code":{"coding":[{"code":"J06.9","display":"Acute upper respiratory infection, unspecified","system":"http://hl7.org/fhir/sid/icd-10"}]},"encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"eef4642d-0d96-44bd-97d2-63c50ec552b8","identifier":[],"meta":{"lastUpdated":"2026-09-09T18:11:25.018401+00:00","versionId":"MTc4ODk3NzQ4NTAxODQwMTAwMA"},"recorder":{"reference":"Practitioner/100009880728"},"resourceType":"Condition","subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 20:17:13
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8310-5","display":"Body temperature","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:17:11+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"46dcce8a-e3fb-4aa1-9144-be2a617cf098","identifier":[],"issued":"2026-09-09T20:17:11+02:00","meta":{"lastUpdated":"2026-09-09T18:17:13.450842+00:00","versionId":"MTc4ODk3NzgzMzQ1MDg0MjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"Cel","system":"http://unitsofmeasure.org","unit":"Cel","value":38.5}}
+
+2026-09-09 20:17:13
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8867-4","display":"Heart rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:17:13+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"e03921ab-c70c-4941-bbdd-537b21b0d61f","identifier":[],"issued":"2026-09-09T20:17:13+02:00","meta":{"lastUpdated":"2026-09-09T18:17:13.735445+00:00","versionId":"MTc4ODk3NzgzMzczNTQ0NTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":90}}
+
+2026-09-09 20:17:13
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"9279-1","display":"Respiratory rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:17:13+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"62607c0e-5d0e-472e-a5d7-238cec543371","identifier":[],"issued":"2026-09-09T20:17:13+02:00","meta":{"lastUpdated":"2026-09-09T18:17:14.030469+00:00","versionId":"MTc4ODk3NzgzNDAzMDQ2OTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":20}}
+
+2026-09-09 20:17:14
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"29463-7","display":"Body weight","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:17:13+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"09e1ad78-87e6-461c-8ed6-d1583cccb5c9","identifier":[],"issued":"2026-09-09T20:17:13+02:00","meta":{"lastUpdated":"2026-09-09T18:17:14.357820+00:00","versionId":"MTc4ODk3NzgzNDM1NzgyMDAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"kg","system":"http://unitsofmeasure.org","unit":"kg","value":60}}
+
+2026-09-09 20:17:14
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8302-2","display":"Body height","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:17:14+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"3cb16139-232f-4400-8380-07c0298a1b64","identifier":[],"issued":"2026-09-09T20:17:14+02:00","meta":{"lastUpdated":"2026-09-09T18:17:14.608029+00:00","versionId":"MTc4ODk3NzgzNDYwODAyOTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"cm","system":"http://unitsofmeasure.org","unit":"cm","value":165}}
+
+2026-09-09 20:18:59
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8310-5","display":"Body temperature","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:18:58+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"5f6d7f21-d100-4fc4-8bc6-7dbf088ccdc5","identifier":[],"issued":"2026-09-09T20:18:58+02:00","meta":{"lastUpdated":"2026-09-09T18:18:59.688582+00:00","versionId":"MTc4ODk3NzkzOTY4ODU4MjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"Cel","system":"http://unitsofmeasure.org","unit":"Cel","value":38.5}}
+
+2026-09-09 20:18:59
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8867-4","display":"Heart rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:18:59+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"b0a43a43-32fc-455c-8f37-320a8c10f04d","identifier":[],"issued":"2026-09-09T20:18:59+02:00","meta":{"lastUpdated":"2026-09-09T18:18:59.989331+00:00","versionId":"MTc4ODk3NzkzOTk4OTMzMTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":90}}
+
+2026-09-09 20:19:00
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"9279-1","display":"Respiratory rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:18:59+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"7950a223-8fd1-4d66-a29b-21eeb3345e5b","identifier":[],"issued":"2026-09-09T20:18:59+02:00","meta":{"lastUpdated":"2026-09-09T18:19:00.410403+00:00","versionId":"MTc4ODk3Nzk0MDQxMDQwMzAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"/min","value":20}}
+
+2026-09-09 20:19:00
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"29463-7","display":"Body weight","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:19:00+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"298005ad-8904-49cb-b98c-8f1ad962f035","identifier":[],"issued":"2026-09-09T20:19:00+02:00","meta":{"lastUpdated":"2026-09-09T18:19:00.686336+00:00","versionId":"MTc4ODk3Nzk0MDY4NjMzNjAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"kg","system":"http://unitsofmeasure.org","unit":"kg","value":60}}
+
+2026-09-09 20:19:00
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8302-2","display":"Body height","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-09T20:19:00+02:00","encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"2c7936ef-96a3-409e-99bb-8be58fdf7522","identifier":[],"issued":"2026-09-09T20:19:00+02:00","meta":{"lastUpdated":"2026-09-09T18:19:00.975781+00:00","versionId":"MTc4ODk3Nzk0MDk3NTc4MTAwMA"},"performer":[{"reference":"Practitioner/100009880728"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576518"},"valueQuantity":{"code":"cm","system":"http://unitsofmeasure.org","unit":"cm","value":165}}
+
+2026-09-10 01:24:14
+HTTP : 201
+{"authoredOn":"2026-09-10T01:24:12+07:00","dosageInstruction":[{"text":"500 mg 3x sehari Sesudah makan"}],"encounter":{"reference":"Encounter/ea4e9595-0207-4498-83b8-77f0e753a13c"},"id":"19ff14f3-0598-41e4-beea-ba26784489db","identifier":[{"system":"http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"RESEP-3"}],"intent":"order","medicationReference":{"reference":"Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"},"meta":{"lastUpdated":"2026-09-09T18:24:14.216860+00:00","versionId":"MTc4ODk3ODI1NDIxNjg2MDAwMA"},"requester":{"reference":"Practitioner/100009880728"},"resourceType":"MedicationRequest","status":"active","subject":{"reference":"Patient/P02029576518"}}
+
+2026-09-09 21:42:44
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3322071302900002"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 21:47:05
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 21:47:09
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Practitioner/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C0000000000000001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 22:11:41
+HTTP : 201
+{"class":{"code":"AMB","display":"ambulatory","system":"http://terminology.hl7.org/CodeSystem/v3-ActCode"},"id":"b0531d01-2494-4dbf-8365-0ec84c6ae2f3","identifier":[{"system":"http://sys-ids.kemkes.go.id/encounter/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"118"}],"location":[{"location":{"reference":"Location/1e997571-dd1f-4afe-8a00-90b903270ae6"},"status":"active"}],"meta":{"lastUpdated":"2026-09-09T20:11:40.707398+00:00","versionId":"MTc4ODk4NDcwMDcwNzM5ODAwMA"},"participant":[{"individual":{"reference":"Practitioner/10018452434"}}],"period":{"start":"2026-09-10T08:00:00+07:00"},"resourceType":"Encounter","serviceProvider":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"status":"arrived","statusHistory":[{"period":{"start":"2026-09-10T08:00:00+07:00"},"status":"arrived"}],"subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-09 22:25:53
+HTTP : 201
+{"category":[{"coding":[{"code":"encounter-diagnosis","display":"Encounter Diagnosis","system":"http://terminology.hl7.org/CodeSystem/condition-category"}]}],"clinicalStatus":{"coding":[{"code":"active","display":"Active","system":"http://terminology.hl7.org/CodeSystem/condition-clinical"}]},"code":{"coding":[{"code":"J06.9","display":"Acute upper respiratory infection, unspecified","system":"http://hl7.org/fhir/sid/icd-10"}]},"encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"ee8044d2-b76d-4f82-80c2-514dcc1f92cb","identifier":[],"meta":{"lastUpdated":"2026-09-09T20:25:53.304624+00:00","versionId":"MTc4ODk4NTU1MzMwNDYyNDAwMA"},"recorder":{"reference":"Practitioner/10018452434"},"resourceType":"Condition","subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-09 22:28:57
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]},{"severity":"error","code":"value","details":{"text":"Integer formated as a string: '36.5' (RuleNumber: 10331)"},"expression":["Observation.valueQuantity.value"]},{"severity":"error","code":"value","details":{"text":"Reference is mandatory : Observation.performer (RuleNumber: 10383)"},"expression":["Observation.performer"]}]}
+
+2026-09-09 22:28:58
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]},{"severity":"error","code":"value","details":{"text":"Reference is mandatory : Observation.performer (RuleNumber: 10383)"},"expression":["Observation.performer"]}]}
+
+2026-09-09 22:28:58
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Observation.effectiveDateTime (RuleNumber: 10295)"},"expression":["Observation.effectiveDateTime"]},{"severity":"error","code":"value","details":{"text":"Element not found: Observation.issued (RuleNumber: 10296)"},"expression":["Observation.issued"]},{"severity":"error","code":"value","details":{"text":"Reference is mandatory : Observation.performer (RuleNumber: 10383)"},"expression":["Observation.performer"]}]}
+
+2026-09-09 22:30:06
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8310-5","display":"Body temperature","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"4dca94f4-c02f-48b8-be78-4f25e0ee6b84","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:30:06.651769+00:00","versionId":"MTc4ODk4NTgwNjY1MTc2OTAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"Cel","system":"http://unitsofmeasure.org","unit":"Cel","value":36.5}}
+
+2026-09-09 22:30:07
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"85354-9","display":"Blood pressure panel","system":"http://loinc.org"}]},"component":[{"code":{"coding":[{"code":"8480-6","display":"Systolic blood pressure","system":"http://loinc.org"}]},"valueQuantity":{"code":"mm[Hg]","system":"http://unitsofmeasure.org","unit":"mmHg","value":120}},{"code":{"coding":[{"code":"8462-4","display":"Diastolic blood pressure","system":"http://loinc.org"}]},"valueQuantity":{"code":"mm[Hg]","system":"http://unitsofmeasure.org","unit":"mmHg","value":80}}],"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"8376c30f-79a7-4f05-9fc2-e34dc5b419ae","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:30:07.300621+00:00","versionId":"MTc4ODk4NTgwNzMwMDYyMTAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-09 22:30:09
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:30:09
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:30:09
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8867-4","display":"Heart rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"aaeff86f-4f20-4931-8ab2-1520bdf25e5b","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:30:10.146456+00:00","versionId":"MTc4ODk4NTgxMDE0NjQ1NjAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"beats/minute","value":82}}
+
+2026-09-09 22:33:39
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:33:39
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:33:40
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:33:40
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"9279-1","display":"Respiratory rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"1e22f7ad-9f8d-4cbf-8820-3ed8cf3eddb5","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:33:40.635188+00:00","versionId":"MTc4ODk4NjAyMDYzNTE4ODAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"breaths/minute","value":20}}
+
+2026-09-09 22:33:40
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"29463-7","display":"Body weight","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"ae350083-47fe-43dc-a985-28eaf56f14db","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:33:40.955846+00:00","versionId":"MTc4ODk4NjAyMDk1NTg0NjAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"kg","system":"http://unitsofmeasure.org","unit":"kg","value":65}}
+
+2026-09-09 22:33:41
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8302-2","display":"Body height","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T03:27:26+02:00","encounter":{"reference":"Encounter/b0531d01-2494-4dbf-8365-0ec84c6ae2f3"},"id":"460a2c11-1e9f-4c81-9eb7-d890614df496","identifier":[],"issued":"2026-09-10T03:27:26+02:00","meta":{"lastUpdated":"2026-09-09T20:33:41.309622+00:00","versionId":"MTc4ODk4NjAyMTMwOTYyMjAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"cm","system":"http://unitsofmeasure.org","unit":"cm","value":170}}
+
+2026-09-09 22:40:36
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:40:36
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:40:37
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:40:37
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:40:37
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 22:40:37
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Observation (RuleNumber: 20002)"}}]}
+
+2026-09-09 23:07:11
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:07:11
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10621)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KELURAHAN' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10621)"},"expression":["Patient.address[0].extension[0].village[3].valueCode"]},{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10622)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KECAMATAN' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10622)"},"expression":["Patient.address[0].extension[0].district[2].valueCode"]},{"severity":"error","code":"value","details":{"text":"district or village didn't match with City code (Rule Number: 10623)"},"expression":["Patient.address"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_KOTA' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10623)"},"expression":["Patient.address[0].extension[0].city[1].valueCode"]},{"severity":"error","code":"value","details":{"text":"Code not found: 'KODE_PROVI' in system: http://sys-ids.kemkes.go.id/administrative-area (RuleNumber: 10624)"},"expression":["Patient.address[0].extension[0].province[0].valueCode"]}]}
+
+2026-09-09 23:11:33
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:11:33
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: Patient.multipleBirthInteger (RuleNumber: 10167)"},"expression":["Patient.multipleBirthInteger"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.multipleBirthBoolean (RuleNumber: 10813)"},"expression":["Patient.multipleBirthBoolean"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10621)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10622)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10623)"},"expression":["Patient.address[0].extension"]},{"severity":"error","code":"value","details":{"text":"Element not found: Patient.address[0].extension (RuleNumber: 10624)"},"expression":["Patient.address[0].extension"]}]}
+
+2026-09-09 23:13:32
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:13:33
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"exception","details":{"text":"Patient data exists. Search by name, birthdate and gender to get patient's id"}}]}
+
+2026-09-09 23:16:09
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:16:10
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"exception","details":{"text":"Patient data exists. Search by name, birthdate and gender to get patient's id"}}]}
+
+2026-09-09 23:16:13
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:16:14
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"exception","details":{"text":"Patient data exists. Search by name, birthdate and gender to get patient's id"}}]}
+
+2026-09-09 23:20:53
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:20:53
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"exception","details":{"text":"Patient data exists. Search by name, birthdate and gender to get patient's id"}}]}
+
+2026-09-09 23:20:54
+HTTP : 400
+
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>400 Bad Request</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Bad Request</h1>
+<h2>Your client has issued a malformed or illegal request.</h2>
+<h2></h2>
+</body></html>
+
+
+2026-09-09 23:22:52
+HTTP : 200
+{"link":[{"relation":"search","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"first","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"},{"relation":"self","url":"https://api-satusehat-stg.dto.kemkes.go.id/fhir-r4/v1/Patient/?identifier=https%3A%2F%2Ffhir.kemkes.go.id%2Fid%2Fnik%7C3276010101900001"}],"resourceType":"Bundle","total":0,"type":"searchset","entry":[]}
+
+2026-09-09 23:22:53
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"exception","details":{"text":"Patient data exists. Search by name, birthdate and gender to get patient's id"}}]}
+
+2026-09-09 23:22:53
+HTTP : 400
+
+<html><head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>400 Bad Request</title>
+</head>
+<body text=#000000 bgcolor=#ffffff>
+<h1>Error: Bad Request</h1>
+<h2>Your client has issued a malformed or illegal request.</h2>
+<h2></h2>
+</body></html>
+
+
+2026-09-10 04:00:26
+HTTP : 201
+{"class":{"code":"AMB","display":"ambulatory","system":"http://terminology.hl7.org/CodeSystem/v3-ActCode"},"id":"bf14d822-d4b9-475e-951d-bb78acdc30a1","identifier":[{"system":"http://sys-ids.kemkes.go.id/encounter/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"100"}],"location":[{"location":{"reference":"Location/1e997571-dd1f-4afe-8a00-90b903270ae6"},"status":"active"}],"meta":{"lastUpdated":"2026-09-10T02:00:26.049933+00:00","versionId":"MTc4OTAwNTYyNjA0OTkzMzAwMA"},"participant":[{"individual":{"reference":"Practitioner/100009880728"}}],"period":{"start":"2025-12-12T08:00:00+07:00"},"resourceType":"Encounter","serviceProvider":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"status":"arrived","statusHistory":[{"period":{"start":"2025-12-12T08:00:00+07:00"},"status":"arrived"}],"subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-10 04:05:17
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Element not found: MedicationRequest.authoredOn (RuleNumber: 10337)"},"expression":["MedicationRequest.authoredOn"]},{"severity":"error","code":"value","details":{"text":"Element not found: MedicationRequest.identifier (RuleNumber: 10388)"},"expression":["MedicationRequest.identifier"]}]}
+
+2026-09-10 04:10:02
+HTTP : 400
+{"issue":[{"code":"value","details":{"text":"reference_not_found"},"diagnostics":"reference target(s) not found: Medication/93002225","severity":"error"}],"resourceType":"OperationOutcome"}
+
+2026-09-10 04:16:06
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"duplicate","details":{"text":"Found duplicate: Medication (RuleNumber: 20002)"}}]}
+
+2026-09-10 04:19:23
+HTTP : 201
+{"authoredOn":"2026-09-10T04:19:23+02:00","dosageInstruction":[{"text":"500 mg 3x sehari Sesudah makan"}],"encounter":{"reference":"Encounter/bf14d822-d4b9-475e-951d-bb78acdc30a1"},"id":"32a24d3e-56d3-4da6-b363-d6e63119158f","identifier":[{"system":"http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"RX-1"}],"intent":"order","medicationReference":{"reference":"Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"},"meta":{"lastUpdated":"2026-09-10T02:19:23.646089+00:00","versionId":"MTc4OTAwNjc2MzY0NjA4OTAwMA"},"requester":{"reference":"Practitioner/100009880728"},"resourceType":"MedicationRequest","status":"active","subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-10 08:26:07
+HTTP : 201
+{"class":{"code":"AMB","display":"ambulatory","system":"http://terminology.hl7.org/CodeSystem/v3-ActCode"},"id":"9a32afac-e513-4870-a142-3113c786fff0","identifier":[{"system":"http://sys-ids.kemkes.go.id/encounter/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"116"}],"location":[{"location":{"reference":"Location/1e997571-dd1f-4afe-8a00-90b903270ae6"},"status":"active"}],"meta":{"lastUpdated":"2026-09-10T06:26:07.713968+00:00","versionId":"MTc4OTAyMTU2NzcxMzk2ODAwMA"},"participant":[{"individual":{"reference":"Practitioner/10018452434"}}],"period":{"start":"2026-09-10T08:00:00+07:00"},"resourceType":"Encounter","serviceProvider":{"reference":"Organization/06ff9913-88d6-4480-82da-d6631a80448e"},"status":"arrived","statusHistory":[{"period":{"start":"2026-09-10T08:00:00+07:00"},"status":"arrived"}],"subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-10 08:30:25
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8310-5","display":"Body temperature","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T13:30:20+02:00","encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"094a25e8-f65f-4f7e-90a7-3c4f3a7a90f3","identifier":[],"issued":"2026-09-10T13:30:20+02:00","meta":{"lastUpdated":"2026-09-10T06:30:25.557092+00:00","versionId":"MTc4OTAyMTgyNTU1NzA5MjAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"Cel","system":"http://unitsofmeasure.org","unit":"Cel","value":38.5}}
+
+2026-09-10 08:30:26
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8867-4","display":"Heart rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T13:30:20+02:00","encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"55741c45-5215-421f-a4fd-52b2d05495cc","identifier":[],"issued":"2026-09-10T13:30:20+02:00","meta":{"lastUpdated":"2026-09-10T06:30:25.966838+00:00","versionId":"MTc4OTAyMTgyNTk2NjgzODAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"beats/minute","value":90}}
+
+2026-09-10 08:30:26
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"9279-1","display":"Respiratory rate","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T13:30:20+02:00","encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"71bf74c6-1fa2-4b8f-9464-1f3b18eed801","identifier":[],"issued":"2026-09-10T13:30:20+02:00","meta":{"lastUpdated":"2026-09-10T06:30:26.420105+00:00","versionId":"MTc4OTAyMTgyNjQyMDEwNTAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"/min","system":"http://unitsofmeasure.org","unit":"breaths/minute","value":20}}
+
+2026-09-10 08:30:26
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"29463-7","display":"Body weight","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T13:30:20+02:00","encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"53c36778-d8d2-476f-82e3-901d0200367e","identifier":[],"issued":"2026-09-10T13:30:20+02:00","meta":{"lastUpdated":"2026-09-10T06:30:26.861189+00:00","versionId":"MTc4OTAyMTgyNjg2MTE4OTAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"kg","system":"http://unitsofmeasure.org","unit":"kg","value":60}}
+
+2026-09-10 08:30:27
+HTTP : 201
+{"category":[{"coding":[{"code":"vital-signs","display":"Vital Signs","system":"http://terminology.hl7.org/CodeSystem/observation-category"}]}],"code":{"coding":[{"code":"8302-2","display":"Body height","system":"http://loinc.org"}]},"effectiveDateTime":"2026-09-10T13:30:20+02:00","encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"d1e689ce-7a16-4784-9301-188e641142f2","identifier":[],"issued":"2026-09-10T13:30:20+02:00","meta":{"lastUpdated":"2026-09-10T06:30:27.369650+00:00","versionId":"MTc4OTAyMTgyNzM2OTY1MDAwMA"},"performer":[{"reference":"Practitioner/10018452434"}],"resourceType":"Observation","status":"final","subject":{"reference":"Patient/P02029576507"},"valueQuantity":{"code":"cm","system":"http://unitsofmeasure.org","unit":"cm","value":165}}
+
+2026-09-10 08:33:41
+HTTP : 201
+{"category":[{"coding":[{"code":"encounter-diagnosis","display":"Encounter Diagnosis","system":"http://terminology.hl7.org/CodeSystem/condition-category"}]}],"clinicalStatus":{"coding":[{"code":"active","display":"Active","system":"http://terminology.hl7.org/CodeSystem/condition-clinical"}]},"code":{"coding":[{"code":"J06.9","display":"Acute upper respiratory infection, unspecified","system":"http://hl7.org/fhir/sid/icd-10"}]},"encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"ad27d990-c998-4387-99c2-0363cf01717b","identifier":[],"meta":{"lastUpdated":"2026-09-10T06:33:41.258984+00:00","versionId":"MTc4OTAyMjAyMTI1ODk4NDAwMA"},"recorder":{"reference":"Practitioner/10018452434"},"resourceType":"Condition","subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-10 08:38:45
+HTTP : 201
+{"authoredOn":"2026-09-10T08:38:44+02:00","dosageInstruction":[{"text":"500 mg 3x sehari Sesudah makan"}],"encounter":{"reference":"Encounter/9a32afac-e513-4870-a142-3113c786fff0"},"id":"6ffcdde4-e011-43fb-9532-48251e5fa398","identifier":[{"system":"http://sys-ids.kemkes.go.id/prescription/06ff9913-88d6-4480-82da-d6631a80448e","use":"official","value":"RX-4"}],"intent":"order","medicationReference":{"reference":"Medication/140bb948-2d84-4d5b-acb9-9019b59cd02b"},"meta":{"lastUpdated":"2026-09-10T06:38:45.049827+00:00","versionId":"MTc4OTAyMjMyNTA0OTgyNzAwMA"},"requester":{"reference":"Practitioner/10018452434"},"resourceType":"MedicationRequest","status":"active","subject":{"reference":"Patient/P02029576507"}}
+
+2026-09-10 09:07:33
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Code not found: 'TAB' in system: http://unitsofmeasure.org (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.code"]}]}
+
+2026-09-10 09:08:17
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Code not found: '{tbl}' in system: http://unitsofmeasure.org (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.code"]}]}
+
+2026-09-10 09:08:22
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Code not found: '{tbl}' in system: http://unitsofmeasure.org (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.code"]}]}
+
+2026-09-10 09:08:24
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Code not found: '{tbl}' in system: http://unitsofmeasure.org (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.code"]}]}
+
+2026-09-10 09:09:05
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Code not found: '{tbl}' in system: http://unitsofmeasure.org (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.code"]}]}
+
+2026-09-10 09:09:14
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:10:43
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:11:23
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:14:02
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:14:02
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:15:15
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:15:16
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:15:19
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:15:19
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:16:44
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:16:44
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+
+2026-09-10 09:19:01
+HTTP : 400
+{"resourceType":"OperationOutcome","text":{"status":"generated"},"issue":[{"severity":"error","code":"value","details":{"text":"Invalid coding system:  (RuleNumber: 10050)"},"expression":["MedicationDispense.quantity.system"]}]}
+

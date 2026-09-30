@@ -1,0 +1,12 @@
+=== SATUSEHAT DEBUG ===
+
+AUTH URL:
+https://api-satusehat-stg.dto.kemkes.go.id/oauth2/v1/accesstoken
+
+CLIENT ID LENGTH: 48
+CLIENT SECRET LENGTH: 64
+
+BASIC AUTH LENGTH: 152
+
+BASIC AUTH START:
+bTNqU3FHNm5qWUhYRnJm........

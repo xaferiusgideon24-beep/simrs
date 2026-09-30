@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmasi Portal - RS FiveCare</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Load Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // Konfigurasi Tailwind CSS untuk tema Prismatic Harmony (Vibrant yet Soft)
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { inter: ['Inter', 'sans-serif'] },
+                    colors: {
+                        harmony: {
+                            // Warna Utama: Blue (Primary - Dokter/Admin)
+                            primary: '#3b82f6',   // Blue 500
+                            primary_dark: '#1e3a8a', // Blue 900
+                            primary_light: '#eff6ff', // Blue 50
+                            
+                            // Warna Sekunder: Violet (Dokter/Deep Action)
+                            secondary: '#8b5cf6', // Violet 500 (Soft Purple)
+                            secondary_light: '#f5f3ff', // Violet 50
+                            
+                            // Warna Farmasi / Accent: Calm Mint/Joyful Green
+                            accent: '#10b981',    // Emerald 500 (Joyful Green - Warna Kunci Farmasi)
+                            accent_dark: '#059669', // Emerald 600
+                            accent_light: '#e6fffa', // Soft Mint/Emerald 50
+                            
+                            // Warna Warning/Menunggu: Amber
+                            warning: '#facc15',   // Amber 500
+                            warning_light: '#fffceb', // Amber 50
+                            
+                            // Warna Error/Laporkan (Soft Rose/Pink)
+                            error: '#f43f5e',     // Rose 500
+                            error_light: '#ffe4e6', // Rose 100
+
+                            // NEW CUSTOM COLORS (User Request)
+                            custom_red_dark: '#991b1b', // equivalent to bg-red-900 for text
+                            custom_yellow_dark: '#d97706', // equivalent to bg-yellow-600 for text
+                            custom_blue_dark: '#ffffff', // equivalent to bg-blue-800 for icon
+                        },
+                    },
+                    keyframes: {
+                        'pop-in': { 
+                            '0%': { transform: 'scale(0.8) translateY(-20px)', opacity: 0 }, 
+                            '80%': { transform: 'scale(1.05) translateY(0)', opacity: 1 },
+                            '100%': { transform: 'scale(1) translateY(0)', opacity: 1 } 
+                        },
+                        'fade-out-up': {
+                            '0%': { opacity: 1, transform: 'translateY(0)' },
+                            '100%': { opacity: 0, transform: 'translateY(-10px)' }
+                        },
+                        'soft-pulse': {
+                            '0%, 100%': { opacity: 1, transform: 'scale(1)' },
+                            '50%': { opacity: 0.8, transform: 'scale(0.99)' }
+                        },
+                        'light-glow': {
+                            '0%, 100%': { 'box-shadow': '0 0 0 0 rgba(16, 185, 129, 0.4)' },
+                            '50%': { 'box-shadow': '0 0 5px 3px rgba(16, 185, 129, 0.6)' },
+                        }
+                    },
+                    animation: {
+                        'pop-in': 'pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards', 
+                        'fade-out-up': 'fade-out-up 0.5s ease-out forwards',
+                        'soft-pulse': 'soft-pulse 4s infinite ease-in-out',
+                        'light-glow': 'light-glow 2s infinite alternate',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            /* Latar belakang lembut dengan sentuhan Mint/Green (Joyful/Peaceful) */
+            background: linear-gradient(135deg, #f8fafc 0%, #f0fff4 100%); /* Soft White to light mint green */
+        } 
+        .page-content { animation: fadeIn 0.4s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        /* Sidebar/Navigation Active State (Menggunakan Warna Akses Green) */
+        .nav-item.active {
+            background-color: #1e293b !important; /* slate-800 */
+            color: white !important;
+            border-left: 4px solid #10b981; /* Accent Green Indicator */
+            padding-left: 1rem !important;
+        }
+
+        /* Card Stats Hover Effect */
+        .card-stat { 
+            transition: all 0.3s; 
+            cursor: pointer; 
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
+            animation: soft-pulse 4s infinite ease-in-out;
+        }
+        .card-stat:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); 
+        }
+
+        /* Gaya Glassmorphism untuk elemen penting */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); 
+            border: 1px solid rgba(255, 255, 255, 0.6); 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Filter Radio Button Styles (Menggunakan Warna Akses Green) */
+        .filter-radio { display: none; }
+        .filter-label { 
+            cursor: pointer; 
+            padding: 8px 16px; 
+            border-radius: 9999px; 
+            transition: all 0.2s; 
+            border: 1px solid #e2e8f0;
+            background-color: white;
+            color: #475569;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        .filter-radio:checked + .filter-label {
+            background-color: #10b981; /* Accent Green */
+            color: white;
+            border-color: #10b981;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3);
+            font-weight: 600;
+        }
+        
+        /* Modal Pop-In */
+        .modal-animate {
+             animation: pop-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        
+        /* Warna untuk Resep Menunggu di List */
+        .resep-menunggu-row {
+            background-color: #fffbeb; /* Amber/Warning Light */
+            border-left: 4px solid #facc15; /* Amber/Warning */
+        }
+
+        /* Custom Switch Button Style (Mode Switch Baru) */
+        .switch-button {
+            background-color: #f1f5f9; /* slate-100 */
+            color: #475569; /* slate-600 */
+            border-radius: 0.75rem; /* rounded-xl */
+            transition: all 0.3s;
+            font-weight: 600;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); /* shadow-inner */
+        }
+        .switch-button.active {
+            background-color: white;
+            color: '#10b981'; /* harmony-accent */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Gaya Khusus untuk Log Aktivitas (Memberikan Efek Dinamis) */
+        .log-item-masuk {
+            animation: light-glow 2s infinite alternate; /* Animasi Glow Hijau */
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased">
+
+<!-- TOAST -->
+<div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none"></div>
+
+<!-- MODAL KONFIRMASI (Umum) -->
+<div id="modal-confirm" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[110] backdrop-blur-sm">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-sm p-8 modal-animate glass-card">
+        <h3 class="text-xl font-extrabold text-center mb-2 text-harmony-error"><i class="fas fa-exclamation-triangle mr-2"></i> Konfirmasi</h3>
+        <p id="confirm-message" class="text-sm text-center text-slate-600 mb-6">Selesaikan masalah ini?</p>
+        <div class="flex justify-center gap-3">
+            <button onclick="closeModal('modal-confirm')" class="px-6 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-50 transition">Batal</button>
+            <!-- Button: Error Rose BG -->
+            <button id="btn-confirm-yes" class="px-6 py-2.5 bg-harmony-error text-white rounded-xl text-sm font-bold hover:bg-harmony-error/90 transition shadow-lg shadow-harmony-error/30">Ya, Proses</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL DETAIL BATCH (Hanya View) -->
+<div id="modal-batch-detail" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[90] p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col modal-animate glass-card">
+        <div class="p-5 border-b bg-harmony-accent_light flex justify-between items-center rounded-t-3xl border-b-harmony-accent/30">
+            <div>
+                <h3 class="font-extrabold text-lg text-slate-800" id="batch-modal-title">Detail Stok Obat</h3>
+                <p class="text-xs text-harmony-accent_dark" id="batch-modal-subtitle">Daftar Batch & Status Expired</p>
+            </div>
+            <button onclick="closeModal('modal-batch-detail')" class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 hover:bg-red-100 hover:text-harmony-error flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="p-0 overflow-y-auto flex-1 bg-white">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-50 text-slate-500 text-xs uppercase font-extrabold sticky top-0 shadow-sm">
+                        <tr>
+                            <th class="p-4 font-semibold">No. Batch</th>
+                            <th class="p-4 font-semibold">Kedaluwarsa</th>
+                            <th class="p-4 font-semibold text-right">Harga Satuan</th> <!-- ADDED COLUMN -->
+                            <th class="p-4 font-semibold text-right">Stok</th>
+                            <th class="p-4 font-semibold">Vendor</th>
+                            <th class="p-4 font-semibold text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-batch-list" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+            <div id="batch-empty" class="hidden p-10 text-center">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl"><i class="fas fa-box-open"></i></div>
+                <p class="text-slate-500">Belum ada data batch.</p>
+            </div>
+        </div>
+        <div class="p-4 border-t bg-slate-50 rounded-b-3xl flex justify-between items-center">
+            <div class="text-xs text-slate-500 font-medium px-3 py-1.5 bg-harmony-accent_light rounded-xl border border-slate-200">
+                Total Stok: <strong id="batch-total-stok" class="text-slate-800 text-sm ml-1">0</strong>
+            </div>
+            <!-- Display Harga Satuan Here -->
+            <div class="text-xs text-slate-500 font-medium px-3 py-1.5 bg-harmony-accent_light rounded-xl border border-slate-200">
+                Harga Jual Satuan: <strong id="batch-harga-satuan" class="text-slate-800 text-sm ml-1">Rp 0.00</strong>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL UNIFIED (INPUT OBAT & STOK) -->
+<div id="modal-obat" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[100] p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-y-auto max-h-[90vh] modal-animate glass-card">
+        <!-- HEADER DIBUAT SERAGAM DENGAN LOG AKTIVITAS (SLATE DARK) -->
+        <div class="p-6 bg-harmony-accent/90 text-white flex justify-between items-center rounded-t-3xl shadow-lg">
+            <div><h3 class="font-extrabold text-xl"><i class="fas fa-boxes mr-2"></i> Kelola Obat & Stok</h3></div>
+            <button onclick="closeModal('modal-obat')" class="text-white hover:text-slate-300 transition text-xl"><i class="fas fa-times"></i></button>
+        </div>
+        
+        <form id="form-obat" class="p-8 space-y-6">
+            <!-- PENGGANTIAN SWITCH MODE -->
+            <div class="bg-slate-200 p-1.5 rounded-xl flex text-sm font-bold text-center shadow-inner">
+                <button type="button" id="switch-existing" data-mode="existing" onclick="toggleFormMode('existing')" class="flex-1 switch-button active py-2.5 rounded-xl text-slate-600 flex items-center justify-center gap-2">
+                    <i class="fas fa-box-open"></i> Stok Obat Lama
+                </button>
+                <button type="button" id="switch-new" data-mode="new" onclick="toggleFormMode('new')" class="flex-1 switch-button py-2.5 rounded-xl text-slate-600 flex items-center justify-center gap-2">
+                    <i class="fas fa-pills"></i> Data Obat Baru
+                </button>
+            </div>
+
+            <div id="section-existing" class="space-y-4 animate-fadeIn">
+                <div class="relative">
+                    <label class="text-xs font-bold text-slate-500 uppercase mb-1 block">Pilih Obat *</label>
+                    <div class="relative">
+                        <i class="fas fa-search absolute left-4 top-3 text-slate-400"></i>
+                        <select id="select-obat-existing" name="obat_id_stok" class="w-full border border-slate-300 pl-12 pr-4 py-3 rounded-xl bg-white focus:ring-2 focus:ring-harmony-accent outline-none appearance-none text-sm" onchange="updateSatuanLabel()">
+                            <option value="">-- Cari / Pilih Obat --</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-4 top-3.5 text-slate-400 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div id="section-new" class="space-y-4 hidden animate-fadeIn">
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-xs font-bold text-slate-500 uppercase">Nama Obat *</label><input type="text" name="nama_obat" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" placeholder="Cth: Paracetamol"></div>
+                    <div><label class="text-xs font-bold text-slate-500 uppercase">Kode Obat *</label><input type="text" name="kode_obat" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" placeholder="Cth: OB-001"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="text-xs font-bold text-slate-500 uppercase">Kategori</label><input type="text" name="kategori" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm"></div>
+                    <div><label class="text-xs font-bold text-slate-500 uppercase">Harga Jual</label><input type="number" name="harga" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" value="0"></div>
+                </div>
+                <div><label class="text-xs font-bold text-slate-500 uppercase">Satuan *</label><input type="text" name="satuan" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" placeholder="Tablet/Botol/Strip"></div>
+            </div>
+
+            <div class="border-t border-dashed border-slate-300 pt-6">
+                <h4 class="font-extrabold text-slate-700 mb-4 flex items-center gap-2 text-sm"><i class="fas fa-layer-group text-harmony-accent"></i> Detail Batch Masuk</h4>
+                <div class="bg-harmony-accent_light p-4 rounded-xl border border-harmony-accent/30 space-y-3 shadow-inner">
+                    <div class="grid grid-cols-2 gap-4">
+                         <div>
+                             <label class="text-xs font-bold text-slate-700 uppercase">Jumlah Masuk *</label>
+                             <div class="relative">
+                                 <!-- FIX: Mengubah name dari 'stok' menjadi 'jumlah_masuk' agar lebih jelas -->
+                                 <input type="number" name="jumlah_masuk" class="w-full border border-slate-300 p-3 rounded-xl mt-1 pl-3 pr-16 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" required min="1" placeholder="0">
+                                 <span id="label-satuan-dinamis" class="absolute right-3 top-3.5 text-xs text-slate-500 font-bold bg-slate-100 px-2 py-0.5 rounded-lg border border-slate-200">Unit</span>
+                             </div>
+                         </div>
+                         <div>
+                             <label class="text-xs font-bold text-slate-700 uppercase">Tgl Kedaluwarsa *</label>
+                             <!-- FIX: Mengubah name dari 'tgl_kadaluwarsa' menjadi 'tgl_ed' agar lebih spesifik untuk batch -->
+                             <input type="date" name="tgl_ed" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" required>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                         <div>
+                             <label class="text-xs font-bold text-slate-700 uppercase">No. Batch (Opsional)</label>
+                             <!-- FIX: Mengubah name dari 'nomor_batch' menjadi 'batch_no' -->
+                             <input type="text" name="batch_no" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" placeholder="Auto-gen">
+                        </div>
+                         <div>
+                             <label class="text-xs font-bold text-slate-700 uppercase">Vendor / Supplier</label>
+                             <!-- FIX: Mengubah name dari 'vendor' menjadi 'supplier' -->
+                             <input type="text" name="supplier" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-accent outline-none text-sm" placeholder="Nama Supplier">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center pt-6 border-t">
+                <button type="button" onclick="closeModal('modal-obat')" class="px-6 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-100 transition">Batal</button>
+                <button type="submit" class="px-6 py-2.5 bg-harmony-accent text-white rounded-xl text-sm font-bold hover:bg-harmony-accent/90 transition shadow-lg shadow-harmony-accent/30">Simpan Data Stok</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL UBAH USERNAME -->
+<div id="modal-edit-profile" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[110] backdrop-blur-sm">
+    <div class="bg-white p-8 rounded-3xl w-full max-w-md shadow-2xl modal-animate glass-card">
+        <h3 class="font-extrabold mb-4 text-xl text-harmony-accent"><i class="fas fa-user-edit mr-2"></i> Ubah Username</h3>
+        <form id="form-edit-profile">
+            <input type="hidden" name="id_user" id="edit-profile-id">
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Username Baru *</label>
+                    <input type="text" name="username" id="edit-profile-username" class="w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-accent text-sm" required>
+                    <p class="text-[10px] text-slate-400 mt-1">Username akan digunakan untuk login. Anda akan otomatis logout.</p>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Password Lama (untuk konfirmasi) *</label>
+                    <input type="password" name="old_password" id="edit-profile-old-pwd" class="w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-accent text-sm" required>
+                </div>
+            </div>
+            
+            <div class="flex justify-between items-center pt-6 border-t mt-6">
+                <button type="button" onclick="closeModal('modal-edit-profile')" class="px-6 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-100 transition">Batal</button>
+                <button type="submit" class="px-6 py-2.5 bg-harmony-accent text-white rounded-xl text-sm font-bold hover:bg-harmony-accent/90 transition shadow-md shadow-harmony-accent/30">Simpan Perubahan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL UBAH PASSWORD -->
+<div id="modal-change-pwd" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-[110] backdrop-blur-sm">
+    <div class="bg-white p-8 rounded-3xl w-full max-w-md shadow-2xl modal-animate glass-card">
+        <h3 class="font-extrabold mb-4 text-xl text-harmony-error"><i class="fas fa-key mr-2"></i> Ubah Kata Sandi Akun</h3>
+        <form id="form-change-pwd">
+            <input type="hidden" name="id_user" id="pwd-user-id">
+            <div class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Password Lama *</label>
+                    <input type="password" name="old_password" class="w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-error text-sm" required>
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Password Baru *</label>
+                    <input type="password" name="new_password" id="new-password-input" class="w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-error text-sm" required minlength="8">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-slate-500 uppercase">Konfirmasi Password Baru *</label>
+                    <input type="password" name="confirm_password" id="confirm-password-input" class="w-full border border-slate-300 p-3 rounded-xl mt-1 outline-none focus:ring-2 focus:ring-harmony-error text-sm" required>
+                </div>
+            </div>
+            
+            <div class="flex justify-between items-center pt-6 border-t mt-6">
+                 <button type="button" onclick="closeModal('modal-change-pwd')" class="px-6 py-2.5 border border-slate-300 rounded-xl text-sm font-semibold hover:bg-slate-100 transition">Batal</button>
+                <button type="submit" class="px-6 py-2.5 bg-harmony-error text-white rounded-xl text-sm font-bold hover:bg-harmony-error/90 transition shadow-md shadow-harmony-error/30">Simpan Password</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL LOG STOK (NEW) -->
+<div id="modal-log-stok" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-[120] p-4 backdrop-blur-sm">
+    <div class="bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[85vh] flex flex-col modal-animate glass-card">
+        <div class="p-6 border-b bg-slate-800 text-white flex justify-between items-center rounded-t-3xl shadow-lg">
+            <div>
+                <h3 class="font-extrabold text-xl"><i class="fas fa-history text-harmony-custom_blue_dark mr-2"></i> Log Aktivitas Obat</h3>
+                <p class="text-xs text-slate-300">Riwayat masuk, keluar, dan pemusnahan obat.</p>
+            </div>
+            <button onclick="closeModal('modal-log-stok')" class="w-8 h-8 rounded-full bg-white/20 text-white hover:bg-red-500 hover:text-white flex items-center justify-center transition text-lg"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="p-0 overflow-y-auto flex-1 bg-white">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left text-sm">
+                    <thead class="bg-white text-slate-500 text-xs uppercase font-extrabold sticky top-0 shadow-sm z-10 border-b">
+                        <tr>
+                            <th class="p-4 font-semibold">Waktu</th>
+                            <th class="p-4 font-semibold">Obat</th>
+                            <th class="p-4 font-semibold">Aktivitas</th>
+                            <th class="p-4 font-semibold text-right">Qty</th>
+                            <th class="p-4 font-semibold">Petugas</th>
+                            <th class="p-4 font-semibold">Catatan</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-log-stok" class="divide-y divide-slate-100"></tbody>
+                </table>
+            </div>
+            <div id="log-empty" class="hidden p-10 text-center">
+                <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl"><i class="fas fa-clipboard-list"></i></div>
+                <p class="text-slate-500">Belum ada riwayat aktivitas.</p>
+            </div>
+        </div>
+        <div class="p-4 border-t bg-slate-50 rounded-b-3xl text-right">
+            <button onclick="loadLogStok()" class="text-xs bg-white border border-slate-300 px-3 py-1.5 rounded-xl hover:bg-slate-100 transition shadow-sm font-semibold text-slate-600"><i class="fas fa-sync text-harmony-primary mr-1"></i> Refresh Data</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="flex h-screen overflow-hidden">
+    <!-- SIDEBAR: Dark Blue/Navy Dark Theme -->
+    <aside class="w-64 bg-harmony-primary_dark text-white flex-shrink-0 flex flex-col shadow-2xl z-20">
+        <div class="p-6 border-b border-slate-800 flex items-center gap-3">
+            <!-- Icon dengan Accent Green/Primary Blue Gradient -->
+            <div class="w-10 h-10 bg-gradient-to-br from-harmony-accent to-harmony-primary rounded-xl flex items-center justify-center shadow-lg shadow-harmony-accent/30"><i class="fas fa-hospital text-white text-lg"></i></div>
+            <div><h2 class="text-xl font-extrabold tracking-tight">FiveCare</h2><p class="text-[10px] text-slate-400 uppercase tracking-widest font-semibold">Farmasi Portal</p></div>
+        </div>
+        
+        <nav class="flex-1 px-2 py-6 space-y-1 overflow-y-auto">
+             <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">TRANSAKSI</p>
+            <button data-page="dashboard" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-tachometer-alt w-5 text-center group-hover:text-harmony-accent"></i> Dashboard</button>
+            <button data-page="resep" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-file-prescription w-5 text-center group-hover:text-harmony-secondary"></i> Resep Masuk</button>
+            <button data-page="riwayat" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-history w-5 text-center group-hover:text-harmony-primary"></i> Riwayat Resep</button>
+            
+            <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">INVENTORI</p>
+            <button data-page="stok" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-boxes w-5 text-center group-hover:text-harmony-warning"></i> Stok Obat</button>
+            
+            <p class="px-4 text-[10px] font-extrabold text-slate-500 uppercase mt-4 mb-2 tracking-widest">AKUN & BANTUAN</p>
+            <button data-page="lapor" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-exclamation-triangle w-5 text-center group-hover:text-harmony-error"></i> Laporkan</button>
+            <button data-page="profil" class="nav-item w-full text-left px-4 py-3 rounded-xl text-slate-300 flex gap-3 items-center transition-all hover:bg-slate-800 group"><i class="fas fa-user-cog w-5 text-center group-hover:text-slate-400"></i> Profil</button>
+        </nav>
+        
+        <div class="p-4 border-t border-slate-800 bg-harmony-primary_dark">
+            <button onclick="doLogout()" class="w-full text-left px-4 py-2 text-red-400 hover:text-red-300 flex items-center gap-3 transition hover:bg-slate-800 rounded-lg group">
+                <i class="fas fa-sign-out-alt group-hover:-translate-x-1 transition-transform"></i> Keluar
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 flex flex-col h-screen overflow-hidden relative" style="background-color: #fbfcf9;">
+        <!-- HEADER: Accent Green Highlight (Joyful/Calm) -->
+        <header class="bg-white/90 backdrop-blur-sm border-b border-slate-200 px-8 py-4 flex justify-between items-center shadow-sm z-10 sticky top-0">
+            <div><h2 id="page-title" class="text-2xl font-extrabold text-slate-900 tracking-tight">Dashboard</h2><p class="text-sm text-slate-500">Panel Kontrol Farmasi</p></div>
+            <div class="flex items-center gap-3 bg-harmony-accent_light px-4 py-2 rounded-full border border-harmony-accent/30 shadow-inner">
+                <div class="text-right leading-tight">
+                    <p id="user-name" class="font-extrabold text-sm text-slate-800">Petugas</p>
+                    <p class="text-[10px] text-harmony-accent_dark uppercase font-bold tracking-wide">Apoteker</p>
+                </div>
+                <!-- Icon: Accent Green -->
+                <div class="w-10 h-10 bg-harmony-accent/20 rounded-full flex items-center justify-center text-harmony-accent font-bold border border-harmony-accent/30 text-xl"><i class="fas fa-user-nurse"></i></div>
+            </div>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-8 space-y-8">
+            <!-- DASHBOARD SECTION -->
+            <section id="page-dashboard" class="page-content">
+                <div id="dashboard-alert-container" class="space-y-3 mb-6 hidden"></div>
+                 
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+                    <!-- Resep Masuk / Menunggu Diproses (Secondary Violet) -->
+                    <div onclick="showPage('resep')" class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-200 border-l-4 border-harmony-secondary hover:border-l-8 hover:shadow-secondary/10">
+                        <div class="flex justify-between mb-2"><div class="w-10 h-10 p-2 bg-harmony-secondary_light rounded-xl text-harmony-secondary flex items-center justify-center text-lg shadow-sm"><i class="fas fa-file-prescription"></i></div></div>
+                        <p class="text-sm text-slate-500 font-medium">Resep Masuk</p>
+                        <h3 id="stat-resep-hari-ini" class="text-4xl font-extrabold text-slate-800 mt-2">0</h3>
+                    </div>
+                    
+                    <!-- Resep Selesai Hari Ini (Accent Green) -->
+                    <div onclick="showPage('riwayat')" class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-200 border-l-4 border-harmony-accent hover:border-l-8 hover:shadow-accent/10">
+                        <div class="flex justify-between mb-2"><div class="w-10 h-10 p-2 bg-harmony-accent_light rounded-xl text-harmony-accent flex items-center justify-center text-lg shadow-sm"><i class="fas fa-check-circle"></i></div></div>
+                        <p class="text-sm text-slate-500 font-medium">Resep Selesai Hari Ini</p>
+                        <h3 id="stat-resep-selesai" class="text-4xl font-extrabold text-slate-800 mt-2">0</h3>
+                    </div>
+                    
+                    <!-- Obat Kedaluwarsa (Error Rose) -->
+                    <div onclick="filterAndShowStok('expired')" class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-200 border-l-4 border-harmony-error hover:border-l-8 hover:shadow-error/10">
+                        <div class="flex justify-between mb-2"><div class="w-10 h-10 p-2 bg-harmony-error_light rounded-xl text-harmony-error flex items-center justify-center text-lg shadow-sm"><i class="fas fa-skull-crossbones"></i></div></div>
+                        <p class="text-sm text-slate-500 font-medium">Obat Kedaluwarsa</p>
+                        <!-- PENTING: WARNA ANGKA DIUBAH MENJADI RED-900 GELAP -->
+                        <h3 id="stat-obat-expired" class="text-4xl font-extrabold text-[--harmony-custom_red_dark] mt-2">0</h3>
+                    </div>
+                    
+                    <!-- Stok Menipis (Warning Amber) -->
+                    <div onclick="filterAndShowStok('low')" class="card-stat bg-white p-6 rounded-2xl shadow-xl border border-slate-200 border-l-4 border-harmony-warning hover:border-l-8 hover:shadow-warning/10">
+                        <div class="flex justify-between mb-2"><div class="w-10 h-10 p-2 bg-harmony-warning_light rounded-xl text-harmony-warning flex items-center justify-center text-lg shadow-sm"><i class="fas fa-arrow-down"></i></div></div>
+                        <p class="text-sm text-slate-500 font-medium">Stok Menipis</p>
+                        <!-- PENTING: WARNA ANGKA DIUBAH MENJADI YELLOW-600 GELAP -->
+                        <h3 id="stat-obat-low-stock" class="text-4xl font-extrabold text-[--harmony-custom_yellow_dark] mt-2">0</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RESEP SECTION -->
+            <section id="page-resep" class="page-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden glass-card">
+                    <div class="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-50/50 glass-card">
+                        <h3 class="font-extrabold text-xl text-slate-900">Daftar Resep Menunggu</h3>
+                        <!-- Button: Accent Green Text on White -->
+                        <button onclick="loadResepMenunggu()" class="text-sm bg-white border border-slate-300 px-3 py-1.5 rounded-xl hover:bg-slate-50 transition shadow-sm font-bold text-harmony-accent"><i class="fas fa-sync text-harmony-accent mr-1"></i> Segarkan</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-white text-slate-500 uppercase text-xs font-extrabold border-b">
+                                <tr>
+                                    <th class="p-4 border-b">Tanggal</th>
+                                    <th class="p-4 border-b">Pasien & RM</th>
+                                    <th class="p-4 border-b">Dokter & Poli</th>
+                                    <th class="p-4 border-b">Resep Dokter (Ringkas)</th> 
+                                    <th class="p-4 border-b text-right">Harga Total</th> <!-- ADDED COLUMN -->
+                                    <th class="p-4 border-b text-center">Status</th>
+                                    <th class="p-4 border-b text-center">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-resep-menunggu" class="divide-y divide-slate-100"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIWAYAT SECTION -->
+            <section id="page-riwayat" class="page-content hidden">
+                <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden glass-card">
+                    <div class="p-6 border-b border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-50/50 glass-card">
+                        <h3 class="font-extrabold text-xl text-slate-900">Riwayat Resep Selesai</h3>
+                        <div class="relative w-full sm:w-64">
+                            <i class="fas fa-search absolute left-3 top-3 text-slate-400 text-xs"></i>
+                            <input type="text" id="search-riwayat" class="border border-slate-300 rounded-xl pl-8 pr-3 py-2.5 text-sm focus:ring-2 focus:ring-harmony-accent outline-none w-full" placeholder="Cari pasien/dokter...">
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm">
+                            <thead class="bg-white text-slate-500 uppercase text-xs font-extrabold border-b">
+                                <tr>
+                                    <th class="p-4 border-b">Waktu Selesai</th>
+                                    <th class="p-4 border-b">No. RM</th>
+                                    <th class="p-4 border-b">Pasien</th>
+                                    <th class="p-4 border-b">Dokter</th>
+                                    <th class="p-4 border-b">Harga Total</th> <!-- ADDED COLUMN -->
+                                    <th class="p-4 border-b">Detail Resep</th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-riwayat-resep" class="divide-y divide-slate-100"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STOK OBAT SECTION -->
+            <section id="page-stok" class="page-content hidden">
+                <!-- Header Control Bar: Search & Add Button -->
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
+                    <div class="relative w-full md:w-96 group transition-all">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-slate-400 group-focus-within:text-harmony-accent transition-colors"></i>
+                        </div>
+                        <input id="search-obat" type="text" class="block w-full pl-12 pr-3 py-3 border border-slate-200 rounded-xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-harmony-accent focus:border-harmony-accent sm:text-sm shadow-md transition-all hover:border-slate-300" placeholder="Cari nama obat, kode, atau kategori...">
+                    </div>
+                    
+                    <div class="flex gap-3 w-full md:w-auto">
+                        <!-- Button: Dark Slate BG, sekarang dengan efek transisi yang konsisten -->
+                        <button onclick="openModalLogStok()" class="flex-1 md:flex-none bg-slate-700 text-white px-5 py-3 rounded-xl font-bold hover:bg-slate-800 shadow-lg shadow-slate-300 transition-all flex items-center justify-center gap-2 transform active:scale-95">
+                            <!-- ICON DIUBAH WARNANYA MENJADI BLUE-800 -->
+                            <i class="fas fa-history text-[--harmony-custom_blue_dark] text-lg"></i> 
+                            <span>Log Aktivitas</span>
+                        </button>
+                        <!-- Button: Menggunakan harmony-accent (Emerald 500) dan shadow yang sesuai -->
+                        <button onclick="openModalObat('existing')" class="flex-1 md:flex-none bg-harmony-accent text-white px-6 py-3 rounded-xl font-bold hover:bg-harmony-accent/90 shadow-lg shadow-emerald-300 transition-all flex items-center justify-center gap-2 transform active:scale-95">
+                            <i class="fas fa-plus-circle text-lg"></i> 
+                            <span>Input Stok / Obat</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modern Filter Chips Container (Accent Green Active) -->
+                <div class="mb-8 overflow-x-auto pb-2 -mx-4 px-4 md:mx-0 md:px-0">
+                    <div class="flex gap-3 min-w-max">
+                        <!-- All (Default) -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" id="filter-all" name="stok_filter" value="all" class="peer sr-only" checked onchange="filterStokView('all')">
+                            <div class="px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 text-sm font-semibold transition-all peer-checked:bg-slate-800 peer-checked:text-white peer-checked:border-slate-800 peer-checked:shadow-lg peer-checked:shadow-slate-200 hover:bg-slate-50 hover:border-slate-300 flex items-center gap-2">
+                                <i class="fas fa-layer-group"></i> Semua Obat
+                            </div>
+                        </label>
+
+                        <!-- Safe (Accent Green) -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" id="filter-safe" name="stok_filter" value="safe" class="peer sr-only" onchange="filterStokView('safe')">
+                            <div class="px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 text-sm font-semibold transition-all peer-checked:bg-harmony-accent peer-checked:text-white peer-checked:border-harmony-accent peer-checked:shadow-lg peer-checked:shadow-harmony-accent/30 hover:bg-harmony-accent/10 hover:text-harmony-accent_dark hover:border-harmony-accent">
+                                <i class="fas fa-check-circle"></i> Stok Aman
+                            </div>
+                        </label>
+
+                        <!-- Low (Warning Amber) -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" id="filter-low" name="stok_filter" value="low" class="peer sr-only" onchange="filterStokView('low')">
+                            <div class="px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 text-sm font-semibold transition-all peer-checked:bg-harmony-warning peer-checked:text-slate-800 peer-checked:border-harmony-warning peer-checked:shadow-lg peer-checked:shadow-harmony-warning/30 hover:bg-harmony-warning/10 hover:text-slate-800 hover:border-harmony-warning/50">
+                                <i class="fas fa-exclamation-triangle"></i> Stok Menipis
+                            </div>
+                        </label>
+
+                        <!-- Near ED (Secondary Violet) -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" id="filter-near_ed" name="stok_filter" value="near_ed" class="peer sr-only" onchange="filterStokView('near_ed')">
+                            <div class="px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 text-sm font-semibold transition-all peer-checked:bg-harmony-secondary peer-checked:text-white peer-checked:border-harmony-secondary peer-checked:shadow-lg peer-checked:shadow-harmony-secondary/30 hover:bg-harmony-secondary/10 hover:text-harmony-secondary hover:border-harmony-secondary/50">
+                                <i class="fas fa-clock"></i> Hampir ED
+                            </div>
+                        </label>
+
+                        <!-- Expired (Error Rose) -->
+                        <label class="cursor-pointer group">
+                            <input type="radio" id="filter-expired" name="stok_filter" value="expired" class="peer sr-only" onchange="filterStokView('expired')">
+                            <div class="px-5 py-2.5 rounded-full border border-slate-200 bg-white text-slate-600 text-sm font-semibold transition-all peer-checked:bg-harmony-error peer-checked:text-white peer-checked:border-harmony-error peer-checked:shadow-lg peer-checked:shadow-harmony-error/30 hover:bg-harmony-error/10 hover:text-harmony-error hover:border-harmony-error/50">
+                                <i class="fas fa-times-circle"></i> Kedaluwarsa
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div id="grid-obat" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"></div>
+                
+                <!-- Empty State UI -->
+                <div id="obat-empty" class="hidden text-center py-20">
+                    <div class="w-24 h-24 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm border border-slate-100">
+                        <i class="fas fa-box-open text-4xl text-slate-300"></i>
+                    </div>
+                    <h3 class="text-lg font-extrabold text-slate-700 mb-1">Data Tidak Ditemukan</h3>
+                    <p class="text-slate-500 text-sm">Coba ubah kata kunci pencarian atau ganti filter Anda.</p>
+                </div>
+            </section>
+            
+            <!-- LAPOR SECTION -->
+            <section id="page-lapor" class="page-content hidden">
+                 <div class="max-w-3xl mx-auto">
+                     <!-- Form Laporan -->
+                     <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-xl mb-8 glass-card">
+                         <h3 class="font-extrabold text-xl mb-6 text-slate-900">Laporkan Masalah Sistem/Stok</h3>
+                         <form id="form-lapor-farmasi" class="space-y-5">
+                             <div class="space-y-1">
+                                 <label class="text-xs font-bold text-slate-500 uppercase">Kategori</label>
+                                 <select name="jenis_masalah" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-error outline-none bg-white text-sm">
+                                     <option>Stok Tidak Sesuai</option><option>Bug Sistem</option><option>Request Obat Baru</option>
+                                 </select>
+                             </div>
+                             <div class="space-y-1">
+                                 <label class="text-xs font-bold text-slate-500 uppercase">Keterangan</label>
+                                 <textarea name="keterangan" class="w-full border border-slate-300 p-3 rounded-xl mt-1 focus:ring-2 focus:ring-harmony-error outline-none bg-white text-sm" rows="5" required placeholder="Jelaskan masalah secara detail..."></textarea>
+                             </div>
+                             <!-- Button: Error Rose BG -->
+                             <button class="bg-harmony-error text-white w-full py-3 rounded-xl font-bold hover:bg-harmony-error/90 transition shadow-lg shadow-harmony-error/30 transform active:scale-95">Kirim Laporan</button>
+                         </form>
+                     </div>
+                     
+                     <!-- Riwayat Laporan -->
+                     <h4 class="font-extrabold text-lg text-slate-700 mb-4 px-1">Riwayat Laporan Saya</h4>
+                     <div id="list-laporan-container" class="space-y-4">
+                         <p class="text-center text-slate-400 italic py-4 border border-dashed rounded-xl bg-white shadow-sm">Memuat riwayat...</p>
+                     </div>
+                 </div>
+            </section>
+            
+            <!-- PROFIL SECTION -->
+            <section id="page-profil" class="page-content hidden">
+                 <div class="max-w-xl mx-auto bg-white p-8 rounded-2xl border border-slate-200 shadow-xl text-center glass-card">
+                     <!-- Icon: Accent Green Mist BG -->
+                     <div class="w-24 h-24 bg-harmony-accent_light rounded-full flex items-center justify-center text-4xl mx-auto text-harmony-accent font-extrabold mb-4 border border-harmony-accent/30 shadow-lg shadow-emerald-100/50"><i class="fas fa-user-nurse"></i></div>
+                     <h3 id="prof-nama-display" class="font-extrabold text-2xl text-slate-900">Memuat...</h3>
+                     <p class="text-slate-500 mb-6 font-semibold">Petugas Farmasi / Apoteker</p>
+                     
+                     <div class="text-left bg-slate-50 p-6 rounded-xl border border-slate-200 space-y-3 mb-6">
+                         <div class="flex justify-between items-center text-sm">
+                             <span class="text-slate-500 font-medium">ID Username:</span> 
+                             <strong id="prof-username-display" class="font-mono text-slate-800">-</strong>
+                         </div>
+                     </div>
+                     
+                     <div class="flex gap-4 justify-center">
+                        <!-- Button: Dark Slate BG -->
+                        <button onclick="openModalChangePwd()" class="bg-slate-700 text-white px-6 py-2.5 rounded-xl hover:bg-slate-800 transition flex items-center justify-center gap-2 shadow-md shadow-slate-300 transform active:scale-95">
+                             <i class="fas fa-key"></i> Ubah Password
+                        </button>
+                        <!-- Button: Accent Green BG -->
+                        <button onclick="openEditProfileModal()" class="bg-harmony-accent text-white px-6 py-2.5 rounded-xl hover:bg-harmony-accent/90 transition flex items-center justify-center gap-2 shadow-md shadow-harmony-accent/30 transform active:scale-95">
+                             <i class="fas fa-user-edit"></i> Ubah Username
+                        </button>
+                    </div>
+                 </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script>
+    const API = 'backend_farmasi.php';
+    const MIN_STOCK = 10; 
+    const NEAR_ED_DAYS = 60; 
+
+    /* ===============================
+       KONFIGURASI PATH (WAJIB KONSISTEN)
+       =============================== */
+    const BASE_PROJECT_PATH = window.location.pathname.replace(/\/farmasi_portal\.html$/, ''); 
+    const LOGIN_PAGE_ABSOLUTE = window.location.origin + BASE_PROJECT_PATH + '/staff.html';
+
+    /* ===============================
+       AUTH & SESSION HANDLING
+       =============================== */
+    let currentStaff = null;
+
+    function formatRupiah(angka) {
+        if (typeof angka === 'undefined' || angka === null) return 'Rp 0';
+        return 'Rp ' + parseFloat(angka).toFixed(0).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container');
+        const el = document.createElement('div');
+        
+        let bgColor, iconClass, borderClass, iconColorClass;
+        
+        // Menggunakan warna Prismatic Harmony
+        if (type === 'success') {
+            bgColor = 'bg-harmony-accent_dark'; // Dark Green (Solid for Toast)
+            iconClass = 'fa-check-circle';
+            borderClass = 'border-l-4 border-harmony-accent';
+            iconColorClass = 'text-white';
+        } else if (type === 'error') {
+            bgColor = 'bg-harmony-error'; // Rose
+            iconClass = 'fa-exclamation-circle';
+            borderClass = 'border-l-4 border-white';
+            iconColorClass = 'text-white';
+        } else { // warning
+            bgColor = 'bg-harmony-warning'; // Amber
+            iconClass = 'fa-exclamation-triangle';
+            borderClass = 'border-l-4 border-white';
+            iconColorClass = 'text-white';
+        }
+
+        el.className = `${bgColor} text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 min-w-[300px] transform transition-all pointer-events-auto animate-pop-in ${borderClass}`;
+        el.innerHTML = `<i class="fas ${iconClass} text-xl flex-shrink-0 ${iconColorClass}"></i><div class="flex-1 text-sm font-medium leading-relaxed">${message}</div>`;
+        container.appendChild(el);
+        
+        setTimeout(() => {
+            el.classList.remove('animate-pop-in'); 
+            el.classList.add('animate-fade-out-up');
+            setTimeout(() => el.remove(), 500); 
+        }, 4500);
+    }
+
+    function closeModal(id){ document.getElementById(id).classList.add('hidden'); document.getElementById(id).classList.remove('flex'); }
+    function openModal(id){ document.getElementById(id).classList.remove('hidden'); document.getElementById(id).classList.add('flex'); }
+
+    function checkSession() {
+        const s = localStorage.getItem('staff_fivecare');
+
+        if (!s) { window.location.href = LOGIN_PAGE_ABSOLUTE; return; }
+
+        try { currentStaff = JSON.parse(s); } 
+        catch (e) { localStorage.removeItem('staff_fivecare'); window.location.href = LOGIN_PAGE_ABSOLUTE; return; }
+
+        if (currentStaff.role !== 'Farmasi' || !currentStaff.id) {
+            localStorage.removeItem('staff_fivecare');
+            window.location.href = LOGIN_PAGE_ABSOLUTE;
+            return;
+        }
+
+        const userNameEl = document.getElementById('user-name');
+        if (userNameEl) { userNameEl.textContent = currentStaff.nama_lengkap; }
+        showPage('dashboard');
+    }
+
+    function doLogout() {
+        // --- LOGIKA PERBAIKAN LOGOUT: Jaminan Redirect ke LOGIN_PAGE_ABSOLUTE ---
+        localStorage.removeItem('staff_fivecare');
+        sessionStorage.clear();
+        // Menggunakan replace untuk mengganti entri riwayat, lebih bersih
+        window.location.replace(LOGIN_PAGE_ABSOLUTE);
+    }
+    window.doLogout = doLogout;
+
+    let stokCache = [];
+    let currentFilterMode = 'all';
+
+    /* NAVIGATION */
+    function setActiveNavItem(pageId) {
+        document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+        const navItem = document.querySelector(`button[data-page="${pageId}"]`);
+        if (navItem) navItem.classList.add('active');
+    }
+
+    function showPage(p){
+        setActiveNavItem(p);
+        document.querySelectorAll('.page-content').forEach(e => e.classList.add('hidden'));
+        document.getElementById(`page-${p}`).classList.remove('hidden');
+        document.getElementById('page-title').textContent = p.charAt(0).toUpperCase() + p.slice(1);
+        
+        if(p==='dashboard') loadDashboard();
+        if(p==='resep') loadResepMenunggu();
+        if(p==='stok') loadStokObat();
+        if(p==='riwayat') loadRiwayat();
+        if(p==='profil') loadUserProfile();
+        if(p==='lapor') loadLaporanSaya();
+    }
+    
+    function filterAndShowStok(mode) {
+        showPage('stok');
+        const radioEl = document.getElementById(`filter-${mode}`);
+        if (radioEl) {
+            radioEl.checked = true;
+            setTimeout(() => filterStokView(mode), 100);
+        } else {
+             setTimeout(() => filterStokView('all'), 100);
+        }
+    }
+    window.filterAndShowStok = filterAndShowStok;
+    window.showPage = showPage;
+
+    /* DASHBOARD */
+    async function loadDashboard(){
+        try {
+            const res = await fetch(`${API}?action=farmasi_dashboard_stats`);
+            const d = await res.json();
+            
+            document.getElementById('stat-resep-hari-ini').textContent = d.resep_menunggu || 0; 
+            document.getElementById('stat-resep-selesai').textContent = d.resep_selesai || 0;
+            document.getElementById('stat-obat-expired').textContent = d.obat_kedaluwarsa || 0;
+            document.getElementById('stat-obat-low-stock').textContent = d.obat_stok_menipis || 0; 
+
+        } catch(e) { console.error(e); }
+    }
+    
+    /* STOK OBAT LOGIC */
+    async function loadStokObat(){
+        const res = await fetch(`${API}?action=farmasi_get_stok_obat`);
+        stokCache = await res.json();
+        renderObatCards();
+    }
+
+    function filterStokView(mode) {
+        currentFilterMode = mode;
+        const radioEl = document.getElementById(`filter-${mode}`);
+        if (radioEl) radioEl.checked = true;
+
+        document.getElementById('search-obat').value = ''; 
+        renderObatCards();
+    }
+
+    function renderObatCards(){
+        const grid = document.getElementById('grid-obat');
+        grid.innerHTML = '';
+        
+        let filtered = stokCache;
+        const q = document.getElementById('search-obat').value.toLowerCase();
+        const today = new Date();
+        
+        // Apply Filter Tabs
+        if (currentFilterMode === 'low') {
+            filtered = filtered.filter(o => parseInt(o.stok) <= MIN_STOCK && parseInt(o.stok) > 0);
+        } else if (currentFilterMode === 'expired') {
+            filtered = filtered.filter(o => o.has_expired_batch > 0);
+        } else if (currentFilterMode === 'near_ed') {
+            filtered = filtered.filter(o => {
+                if (o.nearest_ed) {
+                    const edDate = new Date(o.nearest_ed);
+                    const diffDays = Math.ceil((edDate - today) / (1000 * 60 * 60 * 24));
+                    return diffDays >= 0 && diffDays <= NEAR_ED_DAYS;
+                }
+                return false;
+            });
+        } else if (currentFilterMode === 'safe') {
+            filtered = filtered.filter(o => {
+                const stokAman = parseInt(o.stok) > MIN_STOCK;
+                let edAman = true;
+
+                if (o.nearest_ed) {
+                    const edDate = new Date(o.nearest_ed);
+                    const diffDays = Math.ceil((edDate - today) / (1000 * 60 * 60 * 24));
+                    if (diffDays <= NEAR_ED_DAYS || diffDays < 0) {
+                        edAman = false;
+                    }
+                } 
+                
+                return stokAman && edAman && o.has_expired_batch == 0;
+            });
+        }
+
+        // Apply Search
+        filtered = filtered.filter(o => o.nama_obat.toLowerCase().includes(q) || o.kode_obat.toLowerCase().includes(q));
+
+        if(filtered.length === 0) { document.getElementById('obat-empty').classList.remove('hidden'); return; }
+        document.getElementById('obat-empty').classList.add('hidden');
+
+        filtered.forEach(o => {
+            const stok = parseInt(o.stok);
+            let edStatus = 'text-harmony-accent bg-harmony-accent_light border-harmony-accent/30'; // Default Safe/Green
+            let edText = 'Stok Aman';
+            let borderClass = 'border-slate-200';
+            // WARNA ANGKA DEFAULT
+            let stokColor = 'text-slate-800'; 
+            
+            if (o.nearest_ed) {
+                const edDate = new Date(o.nearest_ed);
+                const diffDays = Math.ceil((edDate - today) / (1000 * 60 * 60 * 24));
+                if (diffDays < 0) { 
+                    edStatus = 'text-harmony-error bg-harmony-error_light border-harmony-error/30'; 
+                    edText = 'EXPIRED!'; 
+                    borderClass = 'border-harmony-error ring-2 ring-harmony-error_light'; 
+                } 
+                else if (diffDays < NEAR_ED_DAYS) { 
+                    edStatus = 'text-harmony-secondary bg-harmony-secondary_light border-harmony-secondary/30'; 
+                    edText = `Exp < ${NEAR_ED_DAYS} hari`; 
+                    borderClass = 'border-harmony-secondary'; 
+                } 
+                else { edText = `ED: ${o.nearest_ed}`; }
+            } else { edText = 'Tidak ada Batch Aktif'; }
+
+            if(stok <= MIN_STOCK && stok > 0) { borderClass = 'border-harmony-warning'; }
+            if(stok === 0) { borderClass = 'border-slate-300 bg-slate-50/50'; stokColor = 'text-slate-500'; edStatus='text-slate-500 bg-slate-100 border-slate-200'; }
+            
+            // JIKA STATUSNYA EXPIRED, WARNA ANGKA MENJADI MERAH GELAP
+            if (o.has_expired_batch > 0 && stok > 0) {
+                 stokColor = 'text-[--harmony-custom_red_dark]'; // RED-900
+            } 
+            // JIKA STATUSNYA STOK MENIPIS, WARNA ANGKA MENJADI KUNING GELAP
+            else if (stok <= MIN_STOCK && stok > 0) {
+                 stokColor = 'text-[--harmony-custom_yellow_dark]'; // YELLOW-600
+            }
+
+
+            const card = document.createElement('div');
+            card.className = `obat-card bg-white p-5 rounded-2xl border ${borderClass} shadow-md relative overflow-hidden group flex flex-col justify-between h-full cursor-pointer transition hover:shadow-xl`;
+            card.onclick = () => openBatchDetail(o.id, o.nama_obat, o.satuan);
+
+            card.innerHTML = `
+                <div>
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="w-10 h-10 rounded-full bg-harmony-accent_light/50 border border-harmony-accent/30 flex items-center justify-center text-harmony-accent group-hover:bg-harmony-accent/20 transition duration-300 shadow-sm">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-full border ${edStatus}">${edText}</span>
+                    </div>
+                    <h4 class="font-extrabold text-slate-900 text-lg leading-tight mb-1 truncate group-hover:text-harmony-accent transition">${o.nama_obat}</h4>
+                    <p class="text-xs text-slate-400 font-mono mb-4 bg-slate-50 inline-block px-2 py-0.5 rounded-lg border border-slate-100">${o.kode_obat}</p>
+                </div>
+                
+                <div class="flex items-end justify-between border-t border-slate-100 pt-3 mt-2">
+                    <div>
+                        <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Stok</p>
+                        <p class="text-3xl font-extrabold ${stokColor} leading-none">${stok} <span class="text-sm font-normal text-slate-500">${o.satuan}</span></p>
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-400 group-hover:bg-harmony-accent group-hover:text-white transition shadow-sm">
+                        <i class="fas fa-chevron-right text-xs"></i>
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    document.getElementById('search-obat').addEventListener('input', renderObatCards);
+
+    /* BATCH DETAIL & MUSNAHKAN (Kode tidak berubah) */
+    async function openBatchDetail(idObat, namaObat, satuan){
+        document.getElementById('batch-modal-title').textContent = namaObat;
+        document.getElementById('batch-modal-subtitle').textContent = `Satuan: ${satuan}`;
+        const tbody = document.getElementById('table-batch-list');
+        tbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400"><i class="fas fa-circle-notch fa-spin mr-2"></i> Memuat data batch...</td></tr>';
+        openModal('modal-batch-detail');
+
+        try {
+            const res = await fetch(`${API}?action=farmasi_get_batch_detail&id_obat=${idObat}`);
+            const data = await res.json();
+            const batches = data.batches; // Access the batches array
+            const hargaSatuan = data.harga_satuan || 0; // Access the new price data
+            
+            document.getElementById('batch-harga-satuan').textContent = formatRupiah(hargaSatuan); // Display price
+            
+            tbody.innerHTML = ''; 
+            let total = 0; 
+            const today = new Date();
+
+            if(batches.length === 0){
+                document.getElementById('batch-empty').classList.remove('hidden'); document.querySelector('#modal-batch-detail table').classList.add('hidden');
+            } else {
+                document.getElementById('batch-empty').classList.add('hidden'); document.querySelector('#modal-batch-detail table').classList.remove('hidden');
+                batches.forEach(b => {
+                    total += parseInt(b.stok_saat_ini);
+                    const ed = new Date(b.tgl_kadaluwarsa);
+                    const diff = Math.ceil((ed - today)/(1000*60*60*24));
+                    
+                    let statusColor = ''; let actionBtn = '-';
+                    
+                    if(b.stok_saat_ini <= 0) {
+                        statusColor = 'text-slate-400 italic';
+                    } else if (diff < 0 && b.stok_saat_ini > 0) { 
+                        statusColor = 'text-harmony-error font-bold';
+                        actionBtn = `<button onclick="musnahkanBatch(${b.id}, '${b.nomor_batch}', ${b.stok_saat_ini})" class="text-xs bg-harmony-error text-white px-3 py-1.5 rounded-xl hover:bg-harmony-error/90 shadow-sm transition transform hover:scale-105"><i class="fas fa-trash-alt mr-1"></i> Musnahkan</button>`;
+                    } else if(diff < NEAR_ED_DAYS) {
+                        statusColor = 'text-harmony-secondary font-semibold';
+                    } else {
+                        statusColor = 'text-harmony-accent_dark';
+                    }
+
+                    tbody.innerHTML += `
+                        <tr class="border-b border-slate-50 hover:bg-slate-50 transition">
+                            <td class="p-4 font-mono text-xs text-slate-600">${b.nomor_batch}</td>
+                            <td class="p-4 ${statusColor} font-semibold">${b.tgl_kadaluwarsa}</td>
+                            <td class="p-4 text-right text-xs font-semibold text-slate-500">${formatRupiah(hargaSatuan)}</td> <!-- ADDED PRICE -->
+                            <td class="p-4 text-right font-extrabold text-slate-800">${b.stok_saat_ini}</td>
+                            <td class="p-4 text-slate-500 text-xs">${b.vendor || '-'}</td>
+                            <td class="p-4 text-center">${actionBtn}</td>
+                        </tr>`;
+                });
+            }
+            document.getElementById('batch-total-stok').textContent = total;
+        } catch(e) { console.error(e); tbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-red-500">Gagal memuat detail batch</td></tr>'; }
+    }
+
+    function musnahkanBatch(idBatch, noBatch, qty) {
+        document.getElementById('confirm-message').innerHTML = `Apakah anda yakin ingin memusnahkan Batch ${noBatch} dengan stok ${qty} unit? Tindakan ini tidak dapat dibatalkan.`;
+        openModal('modal-confirm');
+        
+        document.getElementById('btn-confirm-yes').onclick = async () => {
+             closeModal('modal-confirm');
+             const fd = new FormData();
+             fd.append('id_batch', idBatch);
+             fd.append('id_petugas', currentStaff.id);
+             fd.append('alasan', 'Batch Expired');
+             
+             fetch(`${API}?action=farmasi_musnahkan_batch`, { method: 'POST', body: fd })
+                .then(res => res.json())
+                .then(d => {
+                    showToast(d.message, d.status);
+                    if(d.status === 'success') {
+                        loadStokObat();
+                        loadDashboard();
+                        closeModal('modal-batch-detail'); 
+                    }
+                })
+                .catch(err => showToast('Gagal memusnahkan batch', 'error'));
+        };
+    }
+
+    /* MODAL STOK LOGIC (Diperbarui dengan Switch) */
+    function openModalObat(defaultMode = 'existing', selectedId = null) {
+        document.getElementById('form-obat').reset();
+        
+        // Memastikan mode radio/button sesuai dengan defaultMode
+        toggleFormMode(defaultMode);
+        
+        populateObatDropdown(selectedId);
+        openModal('modal-obat');
+    }
+
+    window.toggleFormMode = function(mode) {
+        const sectionExisting = document.getElementById('section-existing');
+        const sectionNew = document.getElementById('section-new');
+        const inputNama = document.querySelector('input[name="nama_obat"]');
+        const inputKode = document.querySelector('input[name="kode_obat"]');
+        const selectObat = document.getElementById('select-obat-existing');
+        const inputSatuan = document.querySelector('input[name="satuan"]');
+        
+        const switchExisting = document.getElementById('switch-existing');
+        const switchNew = document.getElementById('switch-new');
+
+        // Update Button Active State
+        switchExisting.classList.toggle('active', mode === 'existing');
+        switchNew.classList.toggle('active', mode === 'new');
+        
+        if (mode === 'existing') {
+            sectionExisting.classList.remove('hidden'); 
+            sectionNew.classList.add('hidden');
+            
+            // Set required/readonly properties
+            inputNama.required = false; 
+            inputKode.required = false; 
+            inputSatuan.readOnly = true; 
+            inputSatuan.value = ''; 
+            inputSatuan.classList.add('bg-slate-100'); 
+            selectObat.required = true;
+            
+            // Re-run updateSatuanLabel to show selected Satuan
+            updateSatuanLabel();
+        } else {
+            sectionExisting.classList.add('hidden'); 
+            sectionNew.classList.remove('hidden');
+            
+            // Set required/readonly properties
+            inputNama.required = true; 
+            inputKode.required = true; 
+            inputSatuan.readOnly = false; 
+            inputSatuan.value = ''; 
+            inputSatuan.classList.remove('bg-slate-100'); 
+            selectObat.required = false;
+
+            document.getElementById('label-satuan-dinamis').textContent = 'Unit';
+        }
+    }
+
+
+    function populateObatDropdown(selectedId) {
+        const select = document.getElementById('select-obat-existing');
+        select.innerHTML = '<option value="">-- Cari / Pilih Obat --</option>';
+        const sorted = [...stokCache].sort((a,b) => a.nama_obat.localeCompare(b.nama_obat));
+        sorted.forEach(o => {
+            const opt = document.createElement('option'); opt.value = o.id; opt.textContent = `${o.nama_obat} (${o.kode_obat})`; opt.dataset.satuan = o.satuan;
+            if (String(o.id) === String(selectedId)) opt.selected = true;
+            select.appendChild(opt);
+        });
+        if(selectedId) updateSatuanLabel();
+    }
+
+    function updateSatuanLabel() {
+        const select = document.getElementById('select-obat-existing');
+        const selectedOpt = select.options[select.selectedIndex];
+        const label = document.getElementById('label-satuan-dinamis');
+        if (selectedOpt && selectedOpt.value) label.textContent = selectedOpt.dataset.satuan; else label.textContent = 'Unit';
+    }
+
+    document.getElementById('form-obat').addEventListener('submit', async function(e){
+        e.preventDefault();
+        const fd = new FormData();
+        
+        // Get mode from active switch button
+        const activeSwitch = document.querySelector('.switch-button.active');
+        const mode = activeSwitch ? activeSwitch.dataset.mode : 'existing'; // Default to existing
+        
+        let action = '';
+        
+        // Menambahkan fields yang dibutuhkan
+        fd.append('id_petugas', currentStaff.id);
+        fd.append('nomor_batch', this.elements['batch_no'].value);
+        fd.append('tgl_kadaluwarsa', this.elements['tgl_ed'].value); // Menggunakan nama field yang baru
+        fd.append('vendor', this.elements['supplier'].value); // Menggunakan nama field yang baru
+        fd.append('stok', this.elements['jumlah_masuk'].value); // Menggunakan nama field yang baru
+
+        
+        if (mode === 'existing') {
+            action = 'farmasi_add_stok_obat';
+            fd.append('obat_id_stok', this.elements['obat_id_stok'].value);
+            // Menghapus field yang tidak relevan jika ada (safety check)
+            fd.delete('nama_obat'); fd.delete('kode_obat'); fd.delete('kategori'); fd.delete('harga'); fd.delete('satuan');
+            
+        } else {
+            action = 'farmasi_add_obat_baru'; 
+            fd.append('nama_obat', this.elements['nama_obat'].value);
+            fd.append('kode_obat', this.elements['kode_obat'].value);
+            fd.append('kategori', this.elements['kategori'].value);
+            fd.append('harga', this.elements['harga'].value);
+            fd.append('satuan', this.elements['satuan'].value);
+            // Menghapus field yang tidak relevan jika ada (safety check)
+            fd.delete('obat_id_stok');
+        }
+
+        try {
+            const res = await fetch(`${API}?action=${action}`, { method:'POST', body:fd });
+            const d = await res.json();
+            showToast(d.message, d.status);
+            if(d.status==='success'){ closeModal('modal-obat'); loadStokObat(); loadDashboard(); closeModal('modal-batch-detail'); }
+        } catch(err) { console.error(err); showToast('Terjadi kesalahan sistem (Server Error)', 'error'); }
+    });
+
+    /* PROFILE LOGIC - Diubah untuk Ubah Username + Password Lama */
+    async function loadUserProfile() {
+        try {
+            const res = await fetch(`${API}?action=farmasi_get_user_profile&id_user=${currentStaff.id}`);
+            const data = await res.json();
+            
+            if (data.status === 'success') {
+                const user = data.data;
+                
+                currentStaff.username = user.username;
+                currentStaff.nama_lengkap = user.nama_lengkap;
+                localStorage.setItem('staff_fivecare', JSON.stringify(currentStaff));
+                
+                document.getElementById('user-name').textContent = user.nama_lengkap;
+                document.getElementById('prof-nama-display').textContent = user.nama_lengkap;
+                document.getElementById('prof-username-display').textContent = user.username;
+                
+                document.getElementById('edit-profile-id').value = user.id;
+                document.getElementById('edit-profile-username').value = user.username; 
+                document.getElementById('pwd-user-id').value = user.id; 
+            } else {
+                showToast('Gagal memuat data profil.', 'error');
+            }
+        } catch (e) {
+            console.error('Error fetching profile:', e);
+            showToast('Koneksi gagal saat memuat profil.', 'error');
+        }
+    }
+    
+    function openEditProfileModal() {
+        document.getElementById('edit-profile-id').value = currentStaff.id;
+        document.getElementById('edit-profile-username').value = currentStaff.username;
+        document.getElementById('edit-profile-old-pwd').value = ''; 
+        openModal('modal-edit-profile');
+    }
+
+    document.getElementById('form-edit-profile').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const fd = new FormData(this);
+        const newUsername = fd.get('username');
+        const oldPassword = fd.get('old_password');
+        
+        if (newUsername.trim() === '' || oldPassword.trim() === '') {
+             showToast('Semua field wajib diisi.', 'error');
+             return;
+        }
+
+        try {
+             const checkRes = await fetch(`${API}?action=farmasi_check_password`, {
+                 method: 'POST', 
+                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                 body: new URLSearchParams({ id_user: currentStaff.id, old_password: oldPassword }) 
+             });
+             const checkData = await checkRes.json();
+             
+             if (checkData.status !== 'success') {
+                 showToast(checkData.message || 'Password Lama tidak cocok.', 'error');
+                 return;
+             }
+             
+            const updateFd = new FormData();
+            updateFd.append('id_user', currentStaff.id);
+            updateFd.append('username', newUsername);
+            updateFd.append('nama_lengkap', currentStaff.nama_lengkap); 
+
+            const res = await fetch(`${API}?action=farmasi_update_username_only`, { method: 'POST', body: updateFd });
+            const data = await res.json();
+            
+            showToast(data.message, data.status);
+            if (data.status === 'success' || data.status === 'warning') {
+                closeModal('modal-edit-profile');
+                
+                if (data.user_data) {
+                    localStorage.setItem('staff_fivecare', JSON.stringify(data.user_data));
+                    currentStaff = data.user_data; 
+                }
+                
+                setTimeout(() => {
+                    showToast('Silakan login kembali dengan username baru.', 'success');
+                    doLogout(); 
+                }, 1000);
+            }
+        } catch(e) {
+            console.error('Error during profile update:', e);
+            showToast('Gagal terhubung ke server saat update username.', 'error');
+        }
+    });
+
+    function openModalChangePwd() {
+        document.getElementById('pwd-user-id').value = currentStaff.id;
+        document.getElementById('form-change-pwd').reset();
+        openModal('modal-change-pwd');
+    }
+    
+    document.getElementById('form-change-pwd').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const newPwd = this.elements['new_password'].value;
+        const confirmPwd = this.elements['confirm_password'].value;
+        const oldPwd = this.elements['old_password'].value;
+        
+        if (newPwd !== confirmPwd) {
+            showToast('Konfirmasi password tidak cocok!', 'error');
+            return;
+        }
+
+        if (newPwd.length < 8) {
+             showToast('Password minimal 8 karakter.', 'error');
+             return;
+        }
+
+        const fd = new FormData(this);
+        fd.append('id_user', currentStaff.id);
+        fd.append('old_password', oldPwd);
+        fd.append('new_password', newPwd);
+
+        try {
+            const res = await fetch(`${API}?action=farmasi_change_password`, { method: 'POST', body: fd });
+            const data = await res.json();
+            
+            showToast(data.message, data.status);
+            if (data.status === 'success') {
+                closeModal('modal-change-pwd');
+                this.reset();
+                
+                showToast('Password berhasil diubah. Silakan login kembali.', 'success');
+                localStorage.removeItem('staff_fivecare'); 
+                setTimeout(() => {
+                   window.location.replace(LOGIN_PAGE_ABSOLUTE);
+                }, 1500);
+            }
+        } catch(e) {
+            showToast('Gagal terhubung ke server saat ubah password.', 'error');
+        }
+    });
+
+
+    /* RESEP & RIWAYAT LOGIC */
+    async function loadResepMenunggu(){
+        const res = await fetch(`${API}?action=farmasi_get_resep_menunggu`);
+        const data = await res.json();
+        const tb = document.getElementById('table-resep-menunggu'); tb.innerHTML='';
+        data.forEach(r => {
+            let resepRingkas = 'Tidak ada resep.';
+            let totalHargaHtml = '<span class="text-xs text-slate-400">N/A</span>';
+            
+            try {
+                // Gunakan resep_json_with_prices dari API (sudah termasuk harga)
+                const resep = JSON.parse(r.resep_json_with_prices || r.resep_json || '[]'); 
+                if (resep.length > 0) {
+                    // Membuat ringkasan resep
+                    resepRingkas = resep.map(i => `${i.nama} (x${i.jumlah})`).join(', ');
+                }
+                
+                // Menampilkan Total Harga Resep
+                if (r.total_harga_resep > 0) {
+                     totalHargaHtml = `<strong class="text-harmony-accent_dark">${formatRupiah(r.total_harga_resep)}</strong>`;
+                }
+                
+            } catch (e) {
+                 resepRingkas = 'Error data resep';
+                 console.error('Error parsing resep JSON:', e);
+            }
+
+            // MENGGUNAKAN KELAS KHUSUS RESEP MENUNGGU (Amber/Warning)
+            tb.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50 transition resep-menunggu-row">
+                <td class="p-4 text-slate-600 font-semibold">${r.tgl_resep}</td>
+                <td class="p-4 font-extrabold text-slate-800">${r.nama_pasien}<br><span class="text-xs font-normal text-slate-500 font-mono">${r.no_rm}</span></td>
+                <td class="p-4 text-sm text-slate-600">${r.nama_dokter}<br><span class="text-xs text-slate-400">${r.nama_poli}</span></td>
+                <td class="p-4 text-xs text-slate-500 italic max-w-xs truncate" title="${resepRingkas}">${resepRingkas}</td> 
+                <td class="p-4 text-right">${totalHargaHtml}</td> <!-- ADDED COLUMN -->
+                <td class="p-4 text-center"><span class="bg-harmony-warning/20 text-harmony-warning border border-harmony-warning/50 px-3 py-1 rounded-full text-xs font-bold">Menunggu Obat</span></td>
+                <td class="p-4 text-center">
+                    <!-- Button: Accent Green BG -->
+                    <button onclick="selesaikanResep(${r.id_pendaftaran})" class="bg-harmony-accent text-white px-4 py-1.5 rounded-xl text-xs font-bold hover:bg-harmony-accent/90 shadow-md shadow-harmony-accent/30 transition transform hover:scale-105">
+                        <i class="fas fa-hand-holding-medical mr-1"></i> Selesai & Serahkan
+                    </button>
+                </td>
+            </tr>`;
+        });
+        if(data.length===0) tb.innerHTML='<tr><td colspan="7" class="p-8 text-center text-slate-400 bg-white border-t">Tidak ada resep baru yang perlu diproses.</td></tr>'; // colspan increased to 7
+    }
+
+    async function selesaikanResep(id){
+        document.getElementById('confirm-message').textContent = 'Selesaikan resep ini? Stok akan dikurangi dan status pasien akan menjadi Selesai.';
+        openModal('modal-confirm');
+        
+        document.getElementById('btn-confirm-yes').onclick = async () => {
+             closeModal('modal-confirm');
+             const fd = new FormData(); fd.append('id_resep', id); fd.append('id_petugas', currentStaff.id);
+             try {
+                const res = await fetch(`${API}?action=farmasi_selesaikan_resep`, {method:'POST', body:fd});
+                const d = await res.json();
+                showToast(d.message, d.status);
+                if(d.status==='success') { 
+                    loadResepMenunggu(); 
+                    loadDashboard(); 
+                }
+             } catch(e) { showToast('Gagal memproses resep', 'error'); }
+        };
+    }
+
+    async function loadRiwayat(){
+        const s = document.getElementById('search-riwayat').value;
+        const res = await fetch(`${API}?action=farmasi_get_riwayat_resep&search=${s}`);
+        const data = await res.json();
+        const tb = document.getElementById('table-riwayat-resep'); tb.innerHTML='';
+        data.forEach(r => {
+            const items = JSON.parse(r.resep_json||'[]').map(i=>`${i.nama} (${i.jumlah})`).join(', ');
+            const tglSelesai = r.tgl_selesai ? new Date(r.tgl_selesai).toLocaleString('id-ID', {day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'}) : '-';
+            const totalHarga = formatRupiah(r.total_harga_resep); // Menggunakan total harga dari API
+            
+            tb.innerHTML += `<tr class="border-b border-slate-100 hover:bg-slate-50 transition">
+                <td class="p-4 text-xs text-harmony-accent font-extrabold font-mono">${tglSelesai}</td>
+                <td class="p-4 text-xs font-extrabold text-slate-600 font-mono">${r.no_rm}</td>
+                <td class="p-4 font-extrabold text-slate-700">${r.nama_pasien}</td>
+                <td class="p-4 text-sm text-slate-600">${r.nama_dokter}</td>
+                <td class="p-4 text-right font-extrabold text-harmony-accent_dark">${totalHarga}</td> <!-- ADDED COLUMN -->
+                <td class="p-4 text-xs text-slate-500 italic max-w-xs truncate">${items}</td>
+            </tr>`;
+        });
+        if(data.length===0) tb.innerHTML='<tr><td colspan="6" class="p-8 text-center text-slate-400 bg-white border-t">Belum ada riwayat resep selesai.</td></tr>'; // colspan increased to 6
+    }
+    document.getElementById('search-riwayat').addEventListener('input', loadRiwayat);
+
+    // Load Report History
+    async function loadLaporanSaya() {
+        const container = document.getElementById('list-laporan-container');
+        container.innerHTML = '<p class="text-center text-slate-400 italic py-4 border border-dashed rounded-xl bg-white shadow-sm"><i class="fas fa-spinner fa-spin mr-2"></i> Memuat...</p>';
+        try {
+            const res = await fetch(`${API}?action=farmasi_get_laporan_saya&id_user=${currentStaff.id}`);
+            const data = await res.json();
+            
+            if(data.length === 0) {
+                container.innerHTML = '<p class="text-center text-slate-400 italic py-4 border border-dashed rounded-xl bg-white shadow-sm">Belum ada laporan yang dikirim.</p>';
+                return;
+            }
+            
+            let html = '';
+            data.forEach(l => {
+                // Status Warna: Rose, Amber, Emerald
+                let statusColor = l.status === 'Baru' ? 'bg-harmony-error/10 text-harmony-error' : (l.status === 'Diproses' ? 'bg-harmony-warning/10 text-harmony-warning' : 'bg-harmony-accent/10 text-harmony-accent');
+                // Tanggapan: Primary Blue Light
+                let tanggapanHtml = l.tanggapan ? `<div class="mt-3 pt-3 border-t border-slate-100 text-sm bg-harmony-primary_light/30 p-3 rounded-lg text-slate-800"><strong class="block text-xs uppercase text-harmony-primary mb-1">Tanggapan Admin:</strong>${l.tanggapan}</div>` : '';
+                
+                html += `
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-md transition hover:shadow-lg">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <span class="font-extrabold text-slate-800 block">${l.jenis_masalah}</span>
+                            <span class="text-xs text-slate-400">${l.tgl_lapor}</span>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-bold ${statusColor} border border-slate-200">${l.status}</span>
+                    </div>
+                    <p class="text-sm text-slate-600 italic">"${l.keterangan}"</p>
+                    ${tanggapanHtml}
+                </div>`;
+            });
+            container.innerHTML = html;
+        } catch(e) { console.error(e); }
+    }
+
+    document.getElementById('form-lapor-farmasi').addEventListener('submit', async function(e) { e.preventDefault(); const fd=new FormData(e.target); fd.append('id_user', currentStaff.id); await fetch(`${API}?action=farmasi_lapor_masalah`,{method:'POST',body:fd}); showToast('Laporan terkirim', 'success'); e.target.reset(); loadLaporanSaya(); });
+
+
+    /* --- LOG STOK FEATURE --- */
+    window.openModalLogStok = function() {
+        openModal('modal-log-stok');
+        loadLogStok();
+    }
+
+    async function loadLogStok() {
+        const tbody = document.getElementById('table-log-stok');
+        if (!tbody) return;
+
+        tbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-slate-400"><i class="fas fa-circle-notch fa-spin mr-2"></i> Memuat data log...</td></tr>';
+        
+        try {
+            const res = await fetch(`${API}?action=farmasi_get_log_stok`);
+            const logs = await res.json();
+            
+            tbody.innerHTML = '';
+            if(!logs || logs.length === 0) {
+                document.getElementById('log-empty').classList.remove('hidden');
+                const tableEl = document.querySelector('#modal-log-stok table');
+                if(tableEl) tableEl.classList.add('hidden');
+            } else {
+                document.getElementById('log-empty').classList.add('hidden');
+                const tableEl = document.querySelector('#modal-log-stok table');
+                if(tableEl) tableEl.classList.remove('hidden');
+                
+                logs.forEach(l => {
+                    let badgeClass = 'bg-slate-100 text-slate-600';
+                    let icon = 'fa-info-circle';
+                    
+                    // Menggunakan warna tema untuk Log
+                    if(l.jenis_aktivitas === 'Masuk' || l.jenis_aktivitas === 'Masuk Awal') {
+                        badgeClass = 'bg-harmony-accent_light text-harmony-accent border-harmony-accent/30';
+                        icon = 'fa-arrow-down';
+                    } else if(l.jenis_aktivitas === 'Keluar Resep') {
+                        badgeClass = 'bg-harmony-secondary_light text-harmony-secondary border-harmony-secondary/30';
+                        icon = 'fa-prescription-bottle-alt';
+                    } else if(l.jenis_aktivitas === 'Keluar Musnah') {
+                        badgeClass = 'bg-harmony-error_light text-harmony-error border-harmony-error/30';
+                        icon = 'fa-trash-alt';
+                    }
+
+                    const date = new Date(l.tgl_aktivitas).toLocaleString('id-ID', {
+                        day: 'numeric', month: 'short', year: '2-digit', hour: '2-digit', minute: '2-digit'
+                    });
+
+                    const namaPetugas = l.nama_petugas_real || 'System';
+
+                    // Menambahkan kelas dinamis log-item-masuk untuk efek glow
+                    const dynamicClass = (l.jenis_aktivitas === 'Masuk' || l.jenis_aktivitas === 'Masuk Awal') ? 'log-item-masuk' : '';
+
+                    tbody.innerHTML += `
+                        <tr class="border-b border-slate-100 hover:bg-slate-50/80 transition ${dynamicClass}">
+                            <td class="p-4 text-xs font-mono text-slate-500 whitespace-nowrap">${date}</td>
+                            <td class="p-4 font-extrabold text-slate-700">${l.nama_obat}</td>
+                            <td class="p-4">
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold border ${badgeClass}">
+                                    <i class="fas ${icon}"></i> ${l.jenis_aktivitas}
+                                </span>
+                            </td>
+                            <td class="p-4 text-right font-mono font-extrabold text-lg text-slate-800">${l.jumlah_perubahan}</td>
+                            <td class="p-4 text-xs text-slate-600 font-medium">
+                                <i class="fas fa-user-circle text-slate-400 mr-1"></i> ${namaPetugas}
+                            </td>
+                            <td class="p-4 text-xs text-slate-500 italic max-w-xs truncate" title="${l.catatan}">${l.catatan || '-'}</td>
+                        </tr>`;
+                });
+            }
+        } catch(e) {
+            console.error(e);
+            tbody.innerHTML = '<tr><td colspan="6" class="p-6 text-center text-red-500">Gagal memuat log aktivitas.</td></tr>';
+        }
+    }
+
+
+    /* --- INISIALISASI --- */
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.nav-item').forEach(b => { 
+            b.addEventListener('click', () => showPage(b.dataset.page)); 
+        });
+
+        // Initialize form mode when modal is opened for the first time
+        if (document.getElementById('modal-obat').classList.contains('hidden')) {
+             toggleFormMode('existing');
+        }
+
+        if(currentStaff) {
+            showPage('dashboard');
+        }
+    });
+    
+    checkSession();
+</script>
+</body>
+</html>
